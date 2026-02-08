@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Website Developer in Mumbai | Business Website Design – Knox IT</title>
+    <meta name="description" content="Professional website development for small businesses. Fast delivery, affordable pricing and WhatsApp support. Get free consultation today.">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary-color: #003366; /* Navy Blue */
+            --accent-color: #f39c12;  /* Orange */
+            --light-bg: #f4f7f6;
+            --text-dark: #333;
+            --text-light: #fff;
+            --success: #25d366; /* WhatsApp Green */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Poppins', sans-serif;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+        
+        /* --- Utilities --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border-radius: 5px;
+            font-weight: 600;
+            display: inline-block;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary { background: var(--accent-color); color: var(--text-light); }
+        .btn-primary:hover { background: #e67e22; }
+
+        .btn-outline { border: 2px solid var(--text-light); color: var(--text-light); }
+        .btn-outline:hover { background: var(--text-light); color: var(--primary-color); }
+
+        .btn-whatsapp { background: var(--success); color: var(--text-light); }
+        .btn-whatsapp:hover { background: #1ebe57; }
+
+        .section-padding { padding: 80px 0; }
+        .section-title { text-align: center; margin-bottom: 50px; }
+        .section-title h2 { font-size: 2.2rem; }
+        .section-title p { color: #666; max-width: 600px; margin: 0 auto; }
+
+        /* --- Header --- */
+        header {
+            background: var(--text-light);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo { font-size: 1.8rem; font-weight: 700; color: var(--primary-color); }
+        .logo span { color: var(--accent-color); }
+
+        .nav-links { display: flex; gap: 25px; align-items: center; }
+        .nav-links a { font-weight: 600; font-size: 0.95rem; }
+        .nav-links a:hover { color: var(--accent-color); }
+
+        .cta-nav {
+            background: var(--primary-color);
+            color: #fff !important;
+            padding: 8px 20px;
+            border-radius: 4px;
+        }
+        .cta-nav:hover { opacity: 0.9; }
+
+        .hamburger { display: none; font-size: 1.5rem; cursor: pointer; }
+
+        /* --- Hero Section --- */
+        .hero {
+            background: linear-gradient(rgba(0,51,102,0.9), rgba(0,51,102,0.85)), url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--text-light);
+            text-align: center;
+            padding: 120px 20px;
+        }
+
+        .hero h1 { color: #fff; font-size: 2.8rem; margin-bottom: 20px; line-height: 1.2; }
+        .hero p { font-size: 1.2rem; margin-bottom: 30px; opacity: 0.9; }
+        .hero-stats { margin-bottom: 30px; font-weight: 600; color: #ddd; letter-spacing: 1px; }
+
+        .hero-btns { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+
+        /* --- Services --- */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+            border-top: 4px solid var(--primary-color);
+        }
+
+        .card:hover { transform: translateY(-10px); }
+        .card i { color: var(--primary-color); margin-bottom: 15px; }
+        .card ul { margin-top: 15px; padding-left: 20px; list-style-type: disc; color: #555; }
+
+        /* --- Features / Why Choose Us --- */
+        .features-section { background: var(--light-bg); }
+        .feature-box { text-align: center; background: #fff; padding: 25px; border-radius: 8px; }
+        
+        /* --- Process --- */
+        .process-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+            text-align: center;
+            margin-top: 30px;
+        }
+        .step { flex: 1; min-width: 140px; position: relative; }
+        .step-num {
+            width: 50px; height: 50px; background: var(--primary-color); color: #fff;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 15px; font-weight: bold; font-size: 1.2rem;
+        }
+
+        /* --- Portfolio --- */
+        .portfolio-section { background: var(--light-bg); }
+        .project-img {
+            width: 100%; height: 200px; object-fit: cover; border-radius: 5px; background: #ddd;
+        }
+
+        /* --- Pricing Teaser --- */
+        .pricing-banner {
+            background: var(--primary-color);
+            color: #fff;
+            text-align: center;
+            padding: 60px 20px;
+        }
+        .pricing-banner h2 { color: #fff; }
+
+        /* --- Detailed Services (Tabular look) --- */
+        .service-detail-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 60px;
+            align-items: center;
+        }
+        .service-text { flex: 1; min-width: 300px; }
+        .service-list li { margin-bottom: 10px; }
+        .service-list i { color: var(--success); margin-right: 10px; }
+
+        /* --- FAQ --- */
+        details {
+            background: #fff;
+            margin-bottom: 15px;
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #eee;
+        }
+        summary { font-weight: 600; cursor: pointer; outline: none; }
+        details p { margin-top: 10px; color: #555; }
+
+        /* --- Contact --- */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 40px;
+        }
+        .contact-info p { margin-bottom: 15px; font-size: 1.1rem; }
+        .contact-info i { width: 30px; color: var(--accent-color); }
+        
+        form input, form textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background: #1a1a1a;
+            color: #bbb;
+            padding: 60px 0 20px;
+        }
+        footer h4 { color: #fff; margin-bottom: 20px; }
+        footer ul li { margin-bottom: 10px; }
+        footer a:hover { color: var(--accent-color); }
+        .footer-bottom {
+            border-top: 1px solid #333;
+            margin-top: 40px;
+            padding-top: 20px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        /* --- Floating WhatsApp --- */
+        .float-wa {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 3px #999;
+            z-index: 100;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .float-wa:hover { background-color: #1ebe57; }
+
+        /* --- Mobile Responsive --- */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 80px; left: 0; width: 100%;
+                background: #fff;
+                padding: 20px;
+                box-shadow: 0 5px 5px rgba(0,0,0,0.1);
+                text-align: center;
+            }
+            .nav-links.active { display: flex; }
+            .hamburger { display: block; }
+            .hero h1 { font-size: 2rem; }
+            .contact-grid { grid-template-columns: 1fr; }
+            .service-detail-row { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Knox <span>IT</span></div>
+                <div class="hamburger" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
+                <ul class="nav-links">
+                    <li><a href="#home" onclick="toggleMenu()">Home</a></li>
+                    <li><a href="#services" onclick="toggleMenu()">Services</a></li>
+                    <li><a href="#portfolio" onclick="toggleMenu()">Portfolio</a></li>
+                    <li><a href="#about" onclick="toggleMenu()">About</a></li>
+                    <li><a href="#contact" class="cta-nav" onclick="toggleMenu()">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>Build a Professional Website for Your Business That Actually Brings Clients</h1>
+            <p>Custom websites for startups, shops and service businesses. Fast delivery. Affordable pricing.</p>
+            <div class="hero-stats">
+                80+ Websites Built | 4+ Years Experience | Mumbai Based Support
+            </div>
+            <div class="hero-btns">
+                <a href="#portfolio" class="btn btn-outline">View Portfolio</a>
+                <a href="https://wa.me/918009262472" class="btn btn-whatsapp"><i class="fab fa-whatsapp"></i> WhatsApp Now</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="section-padding">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Services</h2>
+                <p>Everything you need to grow your business online</p>
+            </div>
+            <div class="grid-3">
+                <div class="card">
+                    <i class="fas fa-laptop-code fa-2x"></i>
+                    <h3>Website Development</h3>
+                    <p>Modern, fast and mobile-friendly websites.</p>
+                    <ul>
+                        <li>Business Websites</li>
+                        <li>E-commerce Stores</li>
+                        <li>Landing Pages</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <i class="fas fa-envelope fa-2x"></i>
+                    <h3>Business Email</h3>
+                    <p>Look professional with branded email.</p>
+                    <ul>
+                        <li>Google Workspace</li>
+                        <li>Zoho Mail Setup</li>
+                        <li>Email Migration</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <i class="fas fa-recycle fa-2x"></i>
+                    <h3>Refurbished Laptops</h3>
+                    <p>High quality laptops for office use.</p>
+                    <ul>
+                        <li>Warranty Available</li>
+                        <li>Bulk Orders</li>
+                        <li>Delivery Across India</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features-section section-padding">
+        <div class="container">
+            <div class="section-title"><h2>Why Choose Knox IT</h2></div>
+            <div class="grid-3" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+                <div class="feature-box">
+                    <i class="fas fa-wallet fa-2x" style="color:var(--primary-color)"></i>
+                    <h4>Affordable Pricing</h4>
+                </div>
+                <div class="feature-box">
+                    <i class="fas fa-bolt fa-2x" style="color:var(--primary-color)"></i>
+                    <h4>Fast Delivery (3-7 Days)</h4>
+                </div>
+                <div class="feature-box">
+                    <i class="fab fa-whatsapp fa-2x" style="color:var(--primary-color)"></i>
+                    <h4>Direct WhatsApp Support</h4>
+                </div>
+                <div class="feature-box">
+                    <i class="fas fa-tools fa-2x" style="color:var(--primary-color)"></i>
+                    <h4>Long-term Maintenance</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding">
+        <div class="container">
+            
+            <div class="service-detail-row">
+                <div class="service-text">
+                    <h3><i class="fas fa-globe"></i> Web Development Plans</h3>
+                    <p>We build professional websites that help businesses create a strong online presence.</p>
+                    <br>
+                    <ul class="service-list">
+                        <li><i class="fas fa-check"></i> <strong>Business Website:</strong> Starting ₹7,999</li>
+                        <li><i class="fas fa-check"></i> <strong>E-commerce Website:</strong> Starting ₹18,000</li>
+                        <li><i class="fas fa-check"></i> <strong>Landing Page:</strong> Starting ₹4,999</li>
+                    </ul>
+                </div>
+                <div class="service-text">
+                    <h3><i class="fas fa-mail-bulk"></i> Email Setup</h3>
+                    <ul class="service-list">
+                        <li><i class="fas fa-check"></i> Google Workspace & Zoho Mail</li>
+                        <li><i class="fas fa-check"></i> SPF, DKIM, DMARC Security Setup</li>
+                        <li><i class="fas fa-check"></i> Domain Verification</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section-title" style="margin-top: 50px;"><h2>Our Process</h2></div>
+            <div class="process-container">
+                <div class="step"><div class="step-num">1</div><p>Requirement</p></div>
+                <div class="step"><div class="step-num">2</div><p>Design</p></div>
+                <div class="step"><div class="step-num">3</div><p>Development</p></div>
+                <div class="step"><div class="step-num">4</div><p>Testing</p></div>
+                <div class="step"><div class="step-num">5</div><p>Launch</p></div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="portfolio" class="portfolio-section section-padding">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Website Projects</h2>
+                <p>Here are some of the websites we have built for our clients.</p>
+            </div>
+            <div class="grid-3">
+                <div class="card" style="padding: 15px;">
+                    <img src="https://placehold.co/600x400/003366/FFF?text=Consulting+Site" class="project-img" alt="Project 1">
+                    <h3 style="margin-top: 15px; font-size: 1.2rem;">Financial Consulting</h3>
+                    <p style="font-size: 0.9rem;">Industry: Finance</p>
+                </div>
+                <div class="card" style="padding: 15px;">
+                    <img src="https://placehold.co/600x400/f39c12/FFF?text=Fashion+Store" class="project-img" alt="Project 2">
+                    <h3 style="margin-top: 15px; font-size: 1.2rem;">Clothing E-commerce</h3>
+                    <p style="font-size: 0.9rem;">Industry: Retail</p>
+                </div>
+                <div class="card" style="padding: 15px;">
+                    <img src="https://placehold.co/600x400/333/FFF?text=Portfolio+Site" class="project-img" alt="Project 3">
+                    <h3 style="margin-top: 15px; font-size: 1.2rem;">Interior Designer</h3>
+                    <p style="font-size: 0.9rem;">Industry: Creative</p>
+                </div>
+                <div class="card" style="padding: 15px;">
+                    <img src="https://placehold.co/600x400/25d366/FFF?text=Clinic+Website" class="project-img" alt="Project 4">
+                    <h3 style="margin-top: 15px; font-size: 1.2rem;">Dental Clinic</h3>
+                    <p style="font-size: 0.9rem;">Industry: Healthcare</p>
+                </div>
+                 <div class="card" style="padding: 15px;">
+                    <img src="https://placehold.co/600x400/555/FFF?text=Gym+Landing+Page" class="project-img" alt="Project 5">
+                    <h3 style="margin-top: 15px; font-size: 1.2rem;">Fitness Gym</h3>
+                    <p style="font-size: 0.9rem;">Industry: Health</p>
+                </div>
+                 <div class="card" style="padding: 15px;">
+                    <img src="https://placehold.co/600x400/999/FFF?text=Travel+Agency" class="project-img" alt="Project 6">
+                    <h3 style="margin-top: 15px; font-size: 1.2rem;">Travel Agency</h3>
+                    <p style="font-size: 0.9rem;">Industry: Tourism</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing-banner">
+        <div class="container">
+            <h2>Business Website Starting from ₹7,999</h2>
+            <p style="color: #eee; margin-bottom: 20px;">Get a free consultation today.</p>
+            <a href="https://wa.me/918009262472" class="btn btn-outline" style="border-color: #fff; color: #fff;">Get Quote Now</a>
+        </div>
+    </section>
+
+    <section id="about" class="section-padding">
+        <div class="container" style="text-align: center; max-width: 800px;">
+            <div class="section-title"><h2>About Knox IT Services</h2></div>
+            <p style="font-size: 1.1rem; line-height: 1.8;">
+                Knox IT helps small businesses and startups build their online presence with professional websites. 
+                We have 4+ years of experience in website development and IT solutions, serving clients across India.
+            </p>
+            <br>
+            <p><strong>Location:</strong> Mumbai, India</p>
+            
+            <div style="margin-top: 40px; text-align: left;">
+                <h3 style="text-align: center; margin-bottom: 20px;">FAQ</h3>
+                <details>
+                    <summary>How long does a website take?</summary>
+                    <p>3-7 days for a basic business website.</p>
+                </details>
+                <details>
+                    <summary>Do you provide domain and hosting help?</summary>
+                    <p>Yes, we provide complete guidance for purchasing domain and hosting.</p>
+                </details>
+                <details>
+                    <summary>Do you provide support after launch?</summary>
+                    <p>Yes, ongoing support is available for all our clients.</p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section-padding" style="background: var(--light-bg);">
+        <div class="container">
+            <div class="section-title"><h2>Contact Us</h2></div>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Get in Touch</h3>
+                    <p>Need a website for your business? Contact now and get free consultation.</p>
+                    <br>
+                    <p><i class="fas fa-phone"></i> 8009262472</p>
+                    <p><i class="fas fa-envelope"></i> reach@knoxit.in</p>
+                    <p><i class="fab fa-whatsapp"></i> +91 8009262472</p>
+                </div>
+                
+                <form action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST" style="background: #fff; padding: 30px; border-radius: 8px;">
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" name="name" required placeholder="Your Name">
+                    </div>
+                    <div class="form-group">
+                        <label>Phone</label>
+                        <input type="tel" name="phone" required placeholder="Your Phone Number">
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" name="email" required placeholder="Your Email">
+                    </div>
+                    <div class="form-group">
+                        <label>Message</label>
+                        <textarea name="message" rows="4" placeholder="How can we help you?"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="grid-3">
+                <div>
+                    <h4>Knox IT Services</h4>
+                    <p>Professional Web Development & IT Solutions.</p>
+                </div>
+                <div>
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#portfolio">Portfolio</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Contact</h4>
+                    <ul>
+                        <li>8009262472</li>
+                        <li>reach@knoxit.in</li>
+                        <li>Mumbai, India</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Knox IT Services. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/918009262472" class="float-wa" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        function toggleMenu() {
+            const nav = document.querySelector('.nav-links');
+            nav.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
