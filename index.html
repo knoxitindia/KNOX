@@ -19,13 +19,13 @@
     <style>
         /* --- VARIABLES & RESET --- */
         :root {
-            /* Point 12: Neon Gradient Background */
-            --bg-gradient: linear-gradient(135deg, #020202 0%, #0d001a 50%, #000c1a 100%); 
+            /* Point 15: Deep Shiny Neon Gradient */
+            --bg-gradient: linear-gradient(135deg, #000000 0%, #0a0a0a 40%, #1a0033 100%);
             --accent-lime: #D6F53C;
             --accent-blue: #2E63D7;
             --text-light: #ffffff;
             --text-gray: #a0a0a0;
-            --card-bg: rgba(20, 20, 30, 0.6);
+            --card-bg: rgba(20, 20, 30, 0.8);
             --font-main: 'Poppins', sans-serif;
             --transition: all 0.3s ease;
         }
@@ -35,6 +35,7 @@
             padding: 0;
             box-sizing: border-box;
             -webkit-tap-highlight-color: transparent;
+            user-select: none; /* Point 12: Disable Text Selection Global */
         }
 
         html { scroll-behavior: smooth; }
@@ -47,6 +48,9 @@
             overflow-x: hidden;
             line-height: 1.6;
         }
+
+        /* Point 12: Allow Selection Only on Contact Details */
+        .selectable-text { user-select: text !important; }
 
         a { text-decoration: none; color: inherit; }
         ul { list-style: none; }
@@ -68,10 +72,10 @@
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1px;
-            text-shadow: 0 0 10px rgba(46, 99, 215, 0.5);
+            text-shadow: 0 0 15px rgba(46, 99, 215, 0.8); /* Neon Glow */
         }
         
-        .section-title span { color: var(--accent-lime); }
+        .section-title span { color: var(--accent-lime); text-shadow: 0 0 10px rgba(214, 245, 60, 0.5); }
 
         .btn {
             display: inline-block;
@@ -88,31 +92,34 @@
         .btn-primary {
             background-color: var(--accent-lime);
             color: #000;
-            box-shadow: 0 0 15px rgba(214, 245, 60, 0.3);
+            box-shadow: 0 0 20px rgba(214, 245, 60, 0.4);
         }
 
         .btn-primary:hover {
             background-color: transparent;
             border-color: var(--accent-lime);
             color: var(--accent-lime);
+            box-shadow: 0 0 30px rgba(214, 245, 60, 0.6);
         }
 
         .btn-secondary {
             background-color: transparent;
             border: 2px solid var(--accent-blue);
             color: var(--text-light);
+            box-shadow: 0 0 15px rgba(46, 99, 215, 0.3);
         }
 
         .btn-secondary:hover {
             background-color: var(--accent-blue);
+            box-shadow: 0 0 25px rgba(46, 99, 215, 0.5);
         }
 
-        /* --- HEADER (Point 1: Side Panel) --- */
+        /* --- HEADER --- */
         .header {
             position: sticky;
             top: 0;
             z-index: 1000;
-            background-color: rgba(0, 0, 0, 0.9);
+            background-color: rgba(0, 0, 0, 0.95);
             backdrop-filter: blur(10px);
             padding: 10px 0;
             border-bottom: 1px solid rgba(255,255,255,0.1);
@@ -125,23 +132,21 @@
             height: 60px;
         }
 
-        .logo img {
-            height: 60px;
-            transition: var(--transition);
-        }
+        .logo img { height: 60px; transition: var(--transition); }
 
         .hamburger {
             cursor: pointer;
             font-size: 1.8rem;
             color: var(--accent-lime);
             z-index: 1100;
+            text-shadow: 0 0 10px var(--accent-lime);
         }
 
-        /* Side Panel Drawer */
+        /* Side Menu Drawer */
         .nav-menu {
             position: fixed;
             top: 0;
-            right: -280px; /* Hidden by default */
+            right: -280px;
             width: 260px;
             height: 100vh;
             background: #0d0f12;
@@ -151,8 +156,8 @@
             gap: 20px;
             transition: 0.3s ease-in-out;
             z-index: 1050;
-            box-shadow: -5px 0 15px rgba(0,0,0,0.5);
-            border-left: 1px solid rgba(255,255,255,0.1);
+            box-shadow: -5px 0 20px rgba(0,0,0,0.8);
+            border-left: 1px solid var(--accent-blue);
         }
 
         .nav-menu.active { right: 0; }
@@ -164,55 +169,65 @@
             padding: 10px 30px;
             border-bottom: 1px solid rgba(255,255,255,0.05);
         }
-
         .nav-link:hover { color: var(--accent-lime); padding-left: 40px; transition: 0.3s; }
 
-        /* Overlay to close menu */
         .menu-overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.7);
-            z-index: 1040;
-            display: none;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8); z-index: 1040; display: none;
         }
         .menu-overlay.active { display: block; }
 
-        /* --- HERO SECTION (Point 2: Original Video Size) --- */
+        /* --- HERO SECTION (Point 2: Desktop 60vh, Mobile Full) --- */
         .hero {
             position: relative;
             width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
             background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
         }
 
-        .hero-video-container {
-            width: 100%;
-            position: relative;
-            /* Allow video to determine height */
+        /* Desktop Height */
+        @media (min-width: 769px) {
+            .hero { height: 60vh; }
+        }
+        /* Mobile Height */
+        @media (max-width: 768px) {
+            .hero { height: 100vh; }
         }
 
         .hero-video {
-            width: 100%;
-            height: auto;
-            display: block;
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover; z-index: 0; opacity: 0.6;
+        }
+
+        /* Point 1: Overlay Content */
+        .hero-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.8));
+            z-index: 1;
         }
 
         .hero-content {
-            padding: 40px 20px;
-            background: var(--bg-gradient); /* Blend with body */
-            width: 100%;
+            position: relative; z-index: 2;
+            text-align: center;
+            padding: 20px;
+            max-width: 800px;
         }
 
-        .hero-content h1 { font-size: 2.5rem; margin-bottom: 15px; line-height: 1.2; text-transform: uppercase; }
-        .hero-content h1 span { color: var(--accent-blue); }
-        .hero-content p { font-size: 1rem; color: var(--text-gray); margin-bottom: 25px; }
+        .hero-content h1 {
+            font-size: 3rem; margin-bottom: 20px;
+            line-height: 1.2; text-transform: uppercase;
+            text-shadow: 0 0 20px rgba(0,0,0,0.8);
+        }
+        .hero-content h1 span { color: var(--accent-lime); text-shadow: 0 0 15px var(--accent-lime); }
         
-        .hero-buttons { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
+        .hero-buttons { display: flex; gap: 20px; justify-content: center; margin-top: 30px; flex-wrap: wrap; }
 
-        /* --- SERVICES (Point 3: 10 Features) --- */
+        /* --- SERVICES (Point 3 & 4: Updated Content) --- */
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -221,62 +236,86 @@
 
         .service-card {
             background: var(--card-bg);
-            border-radius: 10px;
-            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 15px;
+            border: 1px solid rgba(46, 99, 215, 0.2);
             padding: 30px;
             transition: var(--transition);
+            box-shadow: 0 0 15px rgba(0,0,0,0.5);
         }
 
         .service-card:hover {
             border-color: var(--accent-lime);
-            box-shadow: 0 0 20px rgba(214, 245, 60, 0.1);
+            box-shadow: 0 0 25px rgba(214, 245, 60, 0.2);
+            transform: translateY(-5px);
         }
 
-        .service-card h3 { font-size: 1.5rem; margin-bottom: 5px; color: #fff; }
-        .service-card .price { font-size: 1.2rem; color: var(--accent-lime); font-weight: 700; margin-bottom: 20px; display: block; }
+        /* Point 17: Realistic Icons feel via CSS Shadow */
+        .service-card h3 { 
+            font-size: 1.5rem; margin-bottom: 10px; color: #fff;
+            text-shadow: 0 0 10px rgba(255,255,255,0.3);
+        }
+        .service-card .price { font-size: 1.3rem; color: var(--accent-lime); font-weight: 700; margin-bottom: 20px; display: block; text-shadow: 0 0 5px var(--accent-lime); }
 
         .service-card ul li {
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             color: var(--text-gray);
-            display: flex;
-            align-items: center;
-            font-size: 0.85rem;
+            display: flex; align-items: center;
+            font-size: 0.9rem;
             border-bottom: 1px solid rgba(255,255,255,0.05);
-            padding-bottom: 5px;
+            padding-bottom: 8px;
         }
         .service-card ul li:last-child { border: none; }
-        .service-card ul li i { color: var(--accent-blue); margin-right: 10px; font-size: 0.8rem; }
+        .service-card ul li i { color: var(--accent-blue); margin-right: 10px; font-size: 1rem; text-shadow: 0 0 5px var(--accent-blue); }
         
         .hosting-highlight {
-            color: #fff !important;
-            font-weight: bold;
-            text-shadow: 0 0 5px var(--accent-lime);
+            color: #fff !important; font-weight: bold;
+            text-shadow: 0 0 8px var(--accent-lime);
         }
         .hosting-highlight i { color: var(--accent-lime) !important; }
 
-        /* --- PROCESS (Point 4: Grid in Mobile) --- */
+        /* --- PROCESS (Point 5: Blockchain & Mobile Full Width) --- */
         .process-row {
             display: flex;
             justify-content: center;
-            gap: 30px;
+            gap: 40px; /* Space for connecting lines */
             flex-wrap: wrap;
+            position: relative;
         }
 
         .process-step {
             width: 180px;
             text-align: center;
-            background: rgba(255,255,255,0.03);
+            background: rgba(0,0,0,0.6);
             padding: 20px;
             border-radius: 10px;
-            border: 1px solid rgba(255,255,255,0.1);
+            border: 1px solid rgba(46, 99, 215, 0.4);
             transition: var(--transition);
+            position: relative;
+            z-index: 2;
         }
 
-        .process-step:hover { border-color: var(--accent-lime); transform: translateY(-5px); }
-        .process-icon { font-size: 2rem; color: var(--accent-lime); margin-bottom: 10px; }
-        .process-step h4 { font-size: 1rem; margin-bottom: 5px; }
+        /* Point 5: Blockchain Lines (Desktop) */
+        .process-step::after {
+            content: ''; position: absolute;
+            top: 50%; right: -42px; width: 40px; height: 2px;
+            background: var(--accent-blue);
+            box-shadow: 0 0 5px var(--accent-blue);
+            z-index: 1;
+        }
+        .process-step:last-child::after { display: none; } /* No line after last */
 
-        /* --- STATS (Point 5: Grid in Mobile + Heading) --- */
+        .process-step:hover {
+            border-color: var(--accent-lime);
+            box-shadow: 0 0 20px rgba(214, 245, 60, 0.3);
+            transform: scale(1.05);
+        }
+        .process-icon { 
+            font-size: 2.5rem; color: var(--accent-lime); margin-bottom: 15px; 
+            text-shadow: 0 0 15px var(--accent-lime); /* Point 17: Realistic Glow */
+        }
+        .process-step h4 { font-size: 1.1rem; margin-bottom: 5px; color: #fff; }
+
+        /* --- STATS --- */
         .stats-row {
             display: flex;
             justify-content: center;
@@ -287,31 +326,34 @@
         .stat-box {
             width: 200px;
             text-align: center;
-            background: rgba(255,255,255,0.03);
+            background: rgba(0,0,0,0.6);
             padding: 25px 15px;
             border-radius: 10px;
-            border: 1px solid rgba(46, 99, 215, 0.3);
+            border: 1px solid rgba(46, 99, 215, 0.4);
+            box-shadow: 0 0 10px rgba(46, 99, 215, 0.1);
         }
+        .stat-box:hover { border-color: var(--accent-lime); box-shadow: 0 0 15px rgba(214, 245, 60, 0.2); }
 
-        .stat-box h3 { font-size: 2.5rem; color: var(--accent-blue); font-weight: 700; }
-        .stat-box p { color: var(--text-gray); font-size: 0.9rem; text-transform: uppercase; }
+        .stat-box h3 { font-size: 2.5rem; color: var(--accent-blue); font-weight: 700; text-shadow: 0 0 10px var(--accent-blue); }
+        .stat-box p { color: var(--text-gray); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* --- SUCCESS STORIES (Point 6: 10 Items + Auto Roll + Pause) --- */
+        /* --- SUCCESS STORIES (Point 6: Tap Logic) --- */
         .marquee-wrapper {
             overflow: hidden;
             background: rgba(0,0,0,0.3);
             padding: 30px 0;
+            cursor: pointer; /* Indication for tap */
         }
 
         .marquee-content {
             display: flex;
             gap: 20px;
             width: max-content;
-            animation: scroll-left 40s linear infinite;
+            animation: scroll-left 30s linear infinite;
         }
 
-        /* Point 6: Pause on Hover */
-        .marquee-content:hover { animation-play-state: paused; }
+        /* Point 6: Class to stop animation via JS */
+        .marquee-paused { animation-play-state: paused !important; }
 
         .story-card {
             width: 300px;
@@ -320,77 +362,77 @@
             border-radius: 10px;
             border-left: 3px solid var(--accent-lime);
             flex-shrink: 0;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
         }
-
         .story-card h3 { color: #fff; margin-bottom: 10px; font-size: 1.1rem; }
         .story-text { color: var(--text-gray); font-size: 0.9rem; }
 
-        /* --- CLIENTS (Point 7: Original Color + Roll Right to Left) --- */
+        /* --- CLIENTS & TECH (Point 7 & 8: Original Colors) --- */
         .client-marquee {
-            display: flex;
-            gap: 50px;
-            width: max-content;
-            animation: scroll-right 30s linear infinite;
+            display: flex; gap: 50px; width: max-content;
+            animation: scroll-right 25s linear infinite;
         }
-        
         .client-marquee img { 
-            height: 60px; 
-            filter: none; /* Point 7: Original Color */
+            height: 60px; filter: none; /* Point 7: Original Color */
             transition: 0.3s;
         }
-
-        /* --- TECH (Point 8: 20 Items + Roll Left to Right) --- */
-        .tech-marquee {
-            display: flex;
-            gap: 40px;
-            width: max-content;
-            animation: scroll-left 30s linear infinite;
-        }
-
-        .tech-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            color: #fff;
-            font-size: 0.8rem;
-        }
         
-        .tech-item i { font-size: 2.5rem; margin-bottom: 5px; color: var(--text-gray); }
-        .tech-item span { color: var(--text-gray); }
-
-        /* --- ANIMATIONS --- */
-        @keyframes scroll-left {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+        .tech-marquee {
+            display: flex; gap: 50px; width: max-content;
+            animation: scroll-left 25s linear infinite;
+        }
+        .tech-item {
+            display: flex; flex-direction: column; align-items: center;
+            color: #fff; font-size: 0.9rem;
+        }
+        .tech-item i { 
+            font-size: 3rem; margin-bottom: 10px; 
+            /* Point 8: Original Colors via inline style in HTML, fallback here */
+            text-shadow: 0 0 10px rgba(255,255,255,0.2);
         }
 
-        @keyframes scroll-right {
-            0% { transform: translateX(-50%); }
-            100% { transform: translateX(0); }
-        }
+        @keyframes scroll-left { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        @keyframes scroll-right { 0% { transform: translateX(-50%); } 100% { transform: translateX(0); } }
 
-        /* --- CONTACT (Point 9: Revert to Old Style) --- */
-        .contact-section { background: rgba(0,0,0,0.4); }
+        /* --- CONTACT (Point 9: Layout Desktop) --- */
+        .contact-section { background: rgba(0,0,0,0.5); border-top: 1px solid rgba(255,255,255,0.1); }
+        
         .contact-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 50px;
         }
 
-        .contact-details h4 { color: var(--accent-lime); margin-bottom: 15px; font-size: 1.2rem; }
-        .contact-row { display: flex; align-items: flex-start; margin-bottom: 20px; }
-        .contact-icon { font-size: 1.2rem; color: var(--accent-blue); margin-right: 15px; margin-top: 5px; width: 20px; }
-        .contact-text p { color: var(--text-gray); margin-bottom: 5px; }
-        .contact-text strong { color: #fff; }
+        /* Desktop: Form Left, Details Right */
+        @media (min-width: 769px) {
+            .contact-grid { grid-template-columns: 1fr 1fr; }
+            .contact-form-wrapper { order: 1; }
+            .contact-info-wrapper { order: 2; }
+        }
+        /* Mobile: Details Top, Form Bottom */
+        @media (max-width: 768px) {
+            .contact-grid { grid-template-columns: 1fr; }
+            .contact-info-wrapper { order: 1; margin-bottom: 30px; }
+            .contact-form-wrapper { order: 2; }
+        }
+
+        .contact-info h4 { color: var(--accent-lime); margin-bottom: 5px; font-size: 1.1rem; }
+        .contact-row { display: flex; align-items: flex-start; margin-bottom: 25px; }
+        /* Point 16: Universal Phone Icon styling */
+        .contact-icon { 
+            font-size: 1.4rem; color: var(--accent-blue); margin-right: 15px; margin-top: 5px; 
+            text-shadow: 0 0 5px var(--accent-blue);
+        }
+        /* Point 16: Fix Phone Icon Rotation if needed (fa-phone is standard) */
+        .contact-icon.fa-phone { transform: rotate(90deg); } /* Making it horizontal receiver */
 
         .form-control {
-            width: 100%; padding: 12px; margin-bottom: 15px;
-            background: #111; border: 1px solid #333;
-            color: #fff; border-radius: 5px;
+            width: 100%; padding: 15px; margin-bottom: 20px;
+            background: #0B0F14; border: 1px solid #333;
+            color: #fff; border-radius: 5px; font-size: 1rem;
         }
-        .form-control:focus { outline: none; border-color: var(--accent-lime); }
+        .form-control:focus { outline: none; border-color: var(--accent-lime); box-shadow: 0 0 10px rgba(214, 245, 60, 0.2); }
 
-        /* --- FOOTER (Point 10: Revert to Old Style) --- */
+        /* --- FOOTER (Point 11: About Knox) --- */
         footer {
             background: #000;
             padding: 60px 0 20px;
@@ -404,55 +446,66 @@
             margin-bottom: 40px;
         }
 
-        .footer-col h4 { color: #fff; margin-bottom: 20px; font-size: 1.1rem; }
+        .footer-col h4 { color: #fff; margin-bottom: 20px; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; }
         .footer-col ul li { margin-bottom: 10px; }
-        .footer-col ul li a { color: var(--text-gray); font-size: 0.9rem; }
-        .footer-col ul li a:hover { color: var(--accent-lime); }
+        .footer-col ul li a { color: var(--text-gray); font-size: 0.9rem; transition: 0.3s; }
+        .footer-col ul li a:hover { color: var(--accent-lime); text-shadow: 0 0 5px var(--accent-lime); }
 
         .social-links a {
-            display: inline-flex; width: 35px; height: 35px;
+            display: inline-flex; width: 40px; height: 40px;
             background: #222; color: #fff;
             align-items: center; justify-content: center;
             border-radius: 50%; margin-right: 10px;
+            transition: 0.3s;
         }
-        .social-links a:hover { background: var(--accent-blue); }
+        .social-links a:hover { background: var(--accent-blue); box-shadow: 0 0 15px var(--accent-blue); }
 
         .copyright {
-            text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid #222;
-            color: #666;
-            font-size: 0.85rem;
+            text-align: center; padding-top: 20px; border-top: 1px solid #222;
+            color: #666; font-size: 0.9rem;
         }
 
         /* --- FLOATING WHATSAPP --- */
         .float-wa {
-            position: fixed;
-            bottom: 20px; right: 20px;
+            position: fixed; bottom: 20px; right: 20px;
             background-color: #25d366; color: #FFF;
-            width: 55px; height: 55px;
-            border-radius: 50%;
+            width: 60px; height: 60px; border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
-            font-size: 28px; z-index: 2000;
+            font-size: 30px; z-index: 2000;
+            box-shadow: 0 0 15px rgba(37, 211, 102, 0.6);
             animation: pulse 2s infinite;
         }
-        
         @keyframes pulse {
             0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
-            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            70% { box-shadow: 0 0 0 20px rgba(37, 211, 102, 0); }
             100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
         }
 
-        /* --- MEDIA QUERIES (Point 4 & 5) --- */
+        /* --- MEDIA QUERIES (Point 5: Mobile Layout) --- */
         @media (max-width: 768px) {
-            .process-row, .stats-row {
+            /* Point 4 & 5: Process Grid Mobile */
+            .process-row {
                 display: grid;
-                grid-template-columns: repeat(2, 1fr); /* 2x2 Square Grid */
+                grid-template-columns: 1fr 1fr; /* 2x2 Grid */
                 gap: 15px;
             }
-            .process-step, .stat-box { width: 100%; }
-            .hero-content h1 { font-size: 1.8rem; }
-            .section-title { font-size: 1.5rem; }
+            .process-step { width: 100%; }
+            .process-step::after { display: none; } /* Hide lines in mobile */
+            
+            /* Point 5: Last Step (Delivery) Full Width */
+            .process-step:nth-child(5) {
+                grid-column: 1 / -1; /* Span full width */
+            }
+
+            /* Stats Grid Mobile */
+            .stats-row {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 15px;
+            }
+            .stat-box { width: 100%; }
+
+            .hero-content h1 { font-size: 2rem; }
         }
     </style>
 </head>
@@ -479,11 +532,11 @@
     </div>
 
     <section id="home" class="hero">
-        <div class="hero-video-container">
-            <video class="hero-video" autoplay muted loop playsinline>
-                <source src="images/topbanner.mp4" type="video/mp4">
-            </video>
-        </div>
+        <video class="hero-video" autoplay muted loop playsinline>
+            <source src="images/topbanner.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+        
         <div class="hero-content">
             <h1>Transform Ideas Into <br><span>Reality</span></h1>
             <div class="hero-buttons">
@@ -521,26 +574,26 @@
                     <ul>
                         <li><i class="fas fa-check"></i> Zoho / Outlook Setup</li>
                         <li><i class="fas fa-check"></i> Custom Domain Email</li>
-                        <li><i class="fas fa-check"></i> 50GB Storage</li>
-                        <li><i class="fas fa-check"></i> Spam Protection</li>
-                        <li><i class="fas fa-check"></i> Mobile App Access</li>
+                        <li><i class="fas fa-check"></i> 5GB Storage</li>
+                        <li><i class="fas fa-check"></i> Spam & Virus Protection</li>
+                        <li><i class="fas fa-check"></i> Mobile & Outlook Access</li>
                         <li><i class="fas fa-check"></i> Calendar Sync</li>
-                        <li><i class="fas fa-check"></i> SPF/DKIM Security</li>
+                        <li><i class="fas fa-check"></i> SPF / DKIM Security</li>
                         <li><i class="fas fa-check"></i> 99.9% Uptime</li>
-                        <li><i class="fas fa-check"></i> Admin Control Panel</li>
-                        <li><i class="fas fa-check"></i> Migration Support</li>
+                        <li><i class="fas fa-check"></i> Easy User Management</li>
+                        <li><i class="fas fa-check"></i> 24×7 Support</li>
                     </ul>
                 </div>
                 <div class="service-card">
                     <h3>Refurbished Laptops</h3>
                     <span class="price">Retail & Bulk</span>
                     <ul>
-                        <li><i class="fas fa-check"></i> Business Series (Dell/HP)</li>
-                        <li><i class="fas fa-check"></i> Core i5 / i7 Processors</li>
+                        <li><i class="fas fa-check"></i> Business Series (Dell/HP/Lenovo)</li>
+                        <li><i class="fas fa-check"></i> Core i3 / i5 / i7 Processors</li>
                         <li><i class="fas fa-check"></i> 8GB / 16GB RAM</li>
                         <li><i class="fas fa-check"></i> SSD Upgrades Available</li>
                         <li><i class="fas fa-check"></i> Windows 10/11 Pro</li>
-                        <li><i class="fas fa-check"></i> MS Office Support</li>
+                        <li><i class="fas fa-check"></i> MS Office Installed</li>
                         <li><i class="fas fa-check"></i> 1 Year Warranty</li>
                         <li><i class="fas fa-check"></i> Quality Check Tested</li>
                         <li><i class="fas fa-check"></i> Antivirus Installed</li>
@@ -607,8 +660,8 @@
         <div class="container">
             <h2 class="section-title">Success <span>Stories</span></h2>
         </div>
-        <div class="marquee-wrapper">
-            <div class="marquee-content">
+        <div class="marquee-wrapper" id="stories-marquee-wrapper">
+            <div class="marquee-content" id="stories-marquee-content">
                 <div class="story-card"><h3>School Website</h3><p class="story-text">Automated admissions & fees.</p></div>
                 <div class="story-card"><h3>Corp Email</h3><p class="story-text">Zero spam & 99.9% uptime.</p></div>
                 <div class="story-card"><h3>Startup Launch</h3><p class="story-text">Brand identity & first clients.</p></div>
@@ -627,9 +680,9 @@
 
     <section class="section-padding" style="background: rgba(255,255,255,0.02);">
         <div class="container">
-            <h2 class="section-title">Trusted <span>Clients</span></h2>
+            <h2 class="section-title">Our Valued <span>Clients</span></h2>
         </div>
-        <div class="marquee-wrapper" style="background: transparent;">
+        <div class="marquee-wrapper" style="background: transparent; cursor: default;">
             <div class="client-marquee">
                 <img src="images/client1.png" alt="Client">
                 <img src="images/client2.png" alt="Client">
@@ -649,30 +702,29 @@
         <div class="container">
             <h2 class="section-title">Technologies <span>We Use</span></h2>
         </div>
-        <div class="marquee-wrapper" style="background: transparent;">
+        <div class="marquee-wrapper" style="background: transparent; cursor: default;">
             <div class="tech-marquee">
-                <div class="tech-item"><i class="fab fa-html5"></i><span>HTML5</span></div>
-                <div class="tech-item"><i class="fab fa-css3-alt"></i><span>CSS3</span></div>
-                <div class="tech-item"><i class="fab fa-js"></i><span>JavaScript</span></div>
-                <div class="tech-item"><i class="fab fa-python"></i><span>Python</span></div>
-                <div class="tech-item"><i class="fab fa-react"></i><span>React</span></div>
-                <div class="tech-item"><i class="fab fa-node"></i><span>Node.js</span></div>
-                <div class="tech-item"><i class="fab fa-php"></i><span>PHP</span></div>
-                <div class="tech-item"><i class="fab fa-wordpress"></i><span>WordPress</span></div>
-                <div class="tech-item"><i class="fab fa-aws"></i><span>AWS</span></div>
-                <div class="tech-item"><i class="fab fa-google"></i><span>Google Cloud</span></div>
-                <div class="tech-item"><i class="fab fa-microsoft"></i><span>Azure</span></div>
-                <div class="tech-item"><i class="fab fa-docker"></i><span>Docker</span></div>
-                <div class="tech-item"><i class="fab fa-git-alt"></i><span>Git</span></div>
-                <div class="tech-item"><i class="fab fa-linux"></i><span>Linux</span></div>
-                <div class="tech-item"><i class="fas fa-database"></i><span>MySQL</span></div>
-                <div class="tech-item"><i class="fas fa-server"></i><span>Nginx</span></div>
-                <div class="tech-item"><i class="fab fa-android"></i><span>Android</span></div>
-                <div class="tech-item"><i class="fab fa-apple"></i><span>iOS</span></div>
-                <div class="tech-item"><i class="fab fa-shopify"></i><span>Shopify</span></div>
-                <div class="tech-item"><i class="fab fa-angular"></i><span>Angular</span></div>
-                <div class="tech-item"><i class="fab fa-html5"></i><span>HTML5</span></div>
-                <div class="tech-item"><i class="fab fa-css3-alt"></i><span>CSS3</span></div>
+                <div class="tech-item"><i class="fab fa-html5" style="color:#e34c26;"></i><span>HTML5</span></div>
+                <div class="tech-item"><i class="fab fa-css3-alt" style="color:#264de4;"></i><span>CSS3</span></div>
+                <div class="tech-item"><i class="fab fa-js" style="color:#f0db4f;"></i><span>JavaScript</span></div>
+                <div class="tech-item"><i class="fab fa-python" style="color:#4B8BBE;"></i><span>Python</span></div>
+                <div class="tech-item"><i class="fab fa-react" style="color:#61DBFB;"></i><span>React</span></div>
+                <div class="tech-item"><i class="fab fa-node" style="color:#68A063;"></i><span>Node.js</span></div>
+                <div class="tech-item"><i class="fab fa-php" style="color:#8993be;"></i><span>PHP</span></div>
+                <div class="tech-item"><i class="fab fa-wordpress" style="color:#21759b;"></i><span>WordPress</span></div>
+                <div class="tech-item"><i class="fab fa-aws" style="color:#FF9900;"></i><span>AWS</span></div>
+                <div class="tech-item"><i class="fab fa-google" style="color:#4285F4;"></i><span>Google Cloud</span></div>
+                <div class="tech-item"><i class="fab fa-microsoft" style="color:#00a4ef;"></i><span>Azure</span></div>
+                <div class="tech-item"><i class="fab fa-docker" style="color:#0db7ed;"></i><span>Docker</span></div>
+                <div class="tech-item"><i class="fab fa-git-alt" style="color:#f1502f;"></i><span>Git</span></div>
+                <div class="tech-item"><i class="fab fa-linux" style="color:#FCC624;"></i><span>Linux</span></div>
+                <div class="tech-item"><i class="fas fa-database" style="color:#00758F;"></i><span>MySQL</span></div>
+                <div class="tech-item"><i class="fas fa-server" style="color:#009639;"></i><span>Nginx</span></div>
+                <div class="tech-item"><i class="fab fa-android" style="color:#3DDC84;"></i><span>Android</span></div>
+                <div class="tech-item"><i class="fab fa-apple" style="color:#A2AAAD;"></i><span>iOS</span></div>
+                <div class="tech-item"><i class="fab fa-shopify" style="color:#96bf48;"></i><span>Shopify</span></div>
+                <div class="tech-item"><i class="fab fa-angular" style="color:#dd1b16;"></i><span>Angular</span></div>
+                <div class="tech-item"><i class="fab fa-html5" style="color:#e34c26;"></i><span>HTML5</span></div>
             </div>
         </div>
     </section>
@@ -681,41 +733,11 @@
         <div class="container">
             <h2 class="section-title">Contact <span>Us</span></h2>
             <div class="contact-grid">
-                <div class="contact-info">
-                    <div class="contact-row">
-                        <i class="fas fa-phone-alt contact-icon"></i>
-                        <div class="contact-text">
-                            <h4>Helpline</h4>
-                            <p><strong>8009262472</strong></p>
-                        </div>
-                    </div>
-                    <div class="contact-row">
-                        <i class="fas fa-envelope contact-icon"></i>
-                        <div class="contact-text">
-                            <h4>Email</h4>
-                            <p>Sales: sales@knoxit.in</p>
-                            <p>Support: support@knoxit.in</p>
-                        </div>
-                    </div>
-                    <div class="contact-row">
-                        <i class="fas fa-clock contact-icon"></i>
-                        <div class="contact-text">
-                            <h4>Working Hours</h4>
-                            <p>Mon – Sat | 11:00 AM – 6:00 PM</p>
-                        </div>
-                    </div>
-                    <div class="contact-row">
-                        <i class="fas fa-map-marker-alt contact-icon"></i>
-                        <div class="contact-text">
-                            <h4>Address</h4>
-                            <p>F-7 Hema Industrial Estate,<br>Andheri East, Mumbai – 400093</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="contact-form">
+                
+                <div class="contact-form-wrapper">
                     <form action="https://api.web3forms.com/submit" method="POST">
-                        <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
+                        <input type="hidden" name="access_key" value="94a17473-8d95-43ec-9b0e-e39d7f2cee6c">
+                        
                         <input type="text" name="name" class="form-control" placeholder="Your Name" required>
                         <input type="tel" name="phone" class="form-control" placeholder="Phone Number" required>
                         <input type="email" name="email" class="form-control" placeholder="Email Address" required>
@@ -728,6 +750,39 @@
                         <button type="submit" class="btn btn-primary" style="width:100%;">Send Message</button>
                     </form>
                 </div>
+
+                <div class="contact-info-wrapper contact-info">
+                    <div class="contact-row">
+                        <i class="fas fa-phone contact-icon"></i>
+                        <div class="contact-text">
+                            <h4>Helpline</h4>
+                            <p class="selectable-text"><strong>8009262472</strong></p>
+                        </div>
+                    </div>
+                    <div class="contact-row">
+                        <i class="fas fa-envelope contact-icon"></i>
+                        <div class="contact-text">
+                            <h4>Email</h4>
+                            <p class="selectable-text">Sales: sales@knoxit.in</p>
+                            <p class="selectable-text">Support: support@knoxit.in</p>
+                        </div>
+                    </div>
+                    <div class="contact-row">
+                        <i class="fas fa-clock contact-icon"></i>
+                        <div class="contact-text">
+                            <h4>Working Hours</h4>
+                            <p class="selectable-text">Mon – Sat | 11:00 AM – 6:00 PM</p>
+                        </div>
+                    </div>
+                    <div class="contact-row">
+                        <i class="fas fa-map-marker-alt contact-icon"></i>
+                        <div class="contact-text">
+                            <h4>Address</h4>
+                            <p class="selectable-text">F-7 Hema Industrial Estate,<br>Andheri East, Mumbai – 400093</p>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
@@ -736,7 +791,7 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-col">
-                    <h4>Knox IT Services</h4>
+                    <h4>About Knox IT Services</h4>
                     <p style="color:#666; font-size:0.9rem;">Providing top-tier IT solutions for businesses across India. Coding, Hosting, and Hardware under one roof.</p>
                 </div>
                 <div class="footer-col">
@@ -745,16 +800,13 @@
                         <li><a href="#services">Web Development</a></li>
                         <li><a href="#services">Business Email</a></li>
                         <li><a href="#services">Laptop Sales</a></li>
-                        <li><a href="#services">IT Consulting</a></li>
-                    </ul>
+                        </ul>
                 </div>
                 <div class="footer-col">
                     <h4>Connect</h4>
                     <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.facebook.com/share/14bCEnk7Etd/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/knoxit.in?igsh=M2xtcmljZjczOTMw" target="_blank"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
@@ -818,6 +870,32 @@
         }, { threshold: 0.5 });
 
         if(statsSection) statsObserver.observe(statsSection);
+
+        // 3. Success Stories Tap Logic (Point 6)
+        const storiesWrapper = document.getElementById('stories-marquee-wrapper');
+        const storiesContent = document.getElementById('stories-marquee-content');
+        let isPaused = false;
+
+        storiesWrapper.addEventListener('click', (e) => {
+            // Stop propagation to prevent body click from immediately resuming
+            e.stopPropagation();
+            
+            if (!isPaused) {
+                storiesContent.classList.add('marquee-paused');
+                isPaused = true;
+            } else {
+                storiesContent.classList.remove('marquee-paused');
+                isPaused = false;
+            }
+        });
+
+        // Resume if clicked anywhere else on body (optional based on "anywhere manually swipe")
+        document.body.addEventListener('click', () => {
+            if (isPaused) {
+                storiesContent.classList.remove('marquee-paused');
+                isPaused = false;
+            }
+        });
 
     </script>
 </body>
