@@ -2,15 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Knox IT Services - Transform Ideas Into Reality. Web Development, Business Email, and Refurbished Laptops. Trusted by 200+ businesses.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Knox IT Services - Web Development, Business Email, and Refurbished Laptops.">
     
-    <meta property="og:title" content="Knox IT Services - Premium IT Solutions">
-    <meta property="og:description" content="Web Development, Business Email & IT Hardware Solutions. Get a free consultation today.">
+    <meta property="og:title" content="Knox IT Services">
+    <meta property="og:description" content="Transform Ideas Into Reality.">
     <meta property="og:image" content="images/mylogo.png">
-    <meta property="og:url" content="https://knoxit.in">
     
-    <title>Knox IT Services | Web Development & IT Solutions</title>
+    <title>Knox IT Services</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,12 +19,13 @@
     <style>
         /* --- VARIABLES & RESET --- */
         :root {
-            --bg-color: #0B0F14;
+            /* Point 9: Radiant/Gradient Background Color */
+            --bg-gradient: linear-gradient(135deg, #05070a 0%, #0B0F14 40%, #161b2e 100%);
             --accent-lime: #D6F53C;
             --accent-blue: #2E63D7;
             --text-light: #ffffff;
             --text-gray: #a0a0a0;
-            --card-bg: #151a21;
+            --card-bg: rgba(21, 26, 33, 0.8);
             --font-main: 'Poppins', sans-serif;
             --transition: all 0.3s ease;
         }
@@ -34,11 +34,14 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            scroll-behavior: smooth;
+            -webkit-tap-highlight-color: transparent; /* Mobile fix */
         }
 
+        html { scroll-behavior: smooth; }
+
         body {
-            background-color: var(--bg-color);
+            background: var(--bg-gradient);
+            background-attachment: fixed; /* Parallax effect for gradient */
             color: var(--text-light);
             font-family: var(--font-main);
             overflow-x: hidden;
@@ -60,12 +63,14 @@
         
         .section-title {
             text-align: center;
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             margin-bottom: 50px;
             font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
         
-        .section-title span { color: var(--accent-lime); }
+        .section-title span { color: var(--accent-lime); text-shadow: 0 0 10px rgba(214, 245, 60, 0.3); }
 
         .btn {
             display: inline-block;
@@ -81,7 +86,7 @@
 
         .btn-primary {
             background-color: var(--accent-lime);
-            color: var(--bg-color);
+            color: #000;
             box-shadow: 0 0 15px rgba(214, 245, 60, 0.3);
         }
 
@@ -89,7 +94,6 @@
             background-color: transparent;
             border-color: var(--accent-lime);
             color: var(--accent-lime);
-            box-shadow: 0 0 25px rgba(214, 245, 60, 0.6);
         }
 
         .btn-secondary {
@@ -100,7 +104,6 @@
 
         .btn-secondary:hover {
             background-color: var(--accent-blue);
-            box-shadow: 0 0 20px rgba(46, 99, 215, 0.5);
         }
 
         /* --- ANIMATIONS --- */
@@ -110,75 +113,77 @@
             transition: opacity 0.8s ease, transform 0.8s ease;
         }
 
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
 
-        /* --- HEADER --- */
+        /* --- HEADER (Point 10 & 11) --- */
         .header {
             position: sticky;
             top: 0;
             z-index: 1000;
             background-color: rgba(11, 15, 20, 0.95);
             backdrop-filter: blur(10px);
-            padding: 15px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            transition: var(--transition);
-        }
-
-        .header.scrolled {
             padding: 10px 0;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
         }
 
         .nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            height: 70px;
         }
 
         .logo {
             display: flex;
             align-items: center;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--text-light);
         }
 
         .logo img {
-            height: 40px;
-            margin-right: 10px;
+            height: 65px; /* Point 10: Bigger Logo */
+            transition: var(--transition);
         }
+        
+        /* Removed "Knox IT Services" text as requested in Point 10 */
 
-        .nav-menu {
-            display: flex;
-            gap: 30px;
-        }
-
-        .nav-link {
-            font-weight: 500;
-            position: relative;
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -5px;
-            left: 0;
-            background-color: var(--accent-lime);
+        /* Point 11: Hamburger Menu Logic */
+        .hamburger {
+            cursor: pointer;
+            font-size: 1.8rem;
+            color: var(--accent-lime);
+            z-index: 1100;
             transition: var(--transition);
         }
 
-        .nav-link:hover::after { width: 100%; }
-
-        .hamburger {
-            display: none;
-            cursor: pointer;
-            font-size: 1.5rem;
+        .hamburger.active i::before {
+            content: "\f00d"; /* FontAwesome 'X' icon */
         }
+
+        .nav-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            height: 100vh;
+            background: rgba(5, 7, 10, 0.98);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            transition: 0.4s ease-in-out;
+            z-index: 1050;
+        }
+
+        .nav-menu.active { right: 0; }
+
+        .nav-link {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #fff;
+            text-transform: uppercase;
+        }
+
+        .nav-link:hover { color: var(--accent-lime); }
 
         /* --- HERO SECTION --- */
         .hero {
@@ -193,150 +198,24 @@
 
         .hero-video {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: -1;
-            opacity: 0.4;
+            top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover; z-index: -1; opacity: 0.4;
         }
 
         .hero-overlay {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, rgba(11,15,20,0.8), rgba(11,15,20,0.9));
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to bottom, rgba(5,7,10,0.6), rgba(5,7,10,0.9));
             z-index: -1;
         }
 
-        .hero-content h1 {
-            font-size: 3.5rem;
-            line-height: 1.2;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-        }
-
+        .hero-content h1 { font-size: 3rem; margin-bottom: 20px; line-height: 1.2; }
         .hero-content h1 span { color: var(--accent-blue); }
+        .hero-content p { font-size: 1.1rem; color: var(--text-gray); margin-bottom: 30px; }
         
-        .hero-content p.subtext {
-            font-size: 1.2rem;
-            color: var(--text-gray);
-            margin-bottom: 30px;
-        }
+        .hero-buttons { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-bottom: 20px; }
 
-        .hero-buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            margin-bottom: 25px;
-        }
-
-        .trust-line {
-            font-size: 0.9rem;
-            color: var(--accent-lime);
-            margin-bottom: 10px;
-            letter-spacing: 1px;
-        }
-
-        .promo-line {
-            font-size: 0.85rem;
-            color: #fff;
-            opacity: 0.8;
-            font-style: italic;
-        }
-
-        /* --- TRUST COUNTERS --- */
-        .stats {
-            background-color: #0f141a;
-            border-bottom: 1px solid #1f2630;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-            text-align: center;
-        }
-
-        .stat-item h3 {
-            font-size: 3rem;
-            color: var(--accent-blue);
-            margin-bottom: 5px;
-        }
-
-        .stat-item p {
-            color: var(--text-gray);
-            font-size: 1rem;
-        }
-
-        /* --- WHY CHOOSE KNOX --- */
-        .why-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
-
-        .why-card {
-            background: var(--card-bg);
-            padding: 30px;
-            border-radius: 10px;
-            border: 1px solid rgba(255,255,255,0.05);
-            transition: var(--transition);
-        }
-
-        .why-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--accent-lime);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-
-        .why-card i {
-            font-size: 2.5rem;
-            color: var(--accent-lime);
-            margin-bottom: 20px;
-        }
-
-        .why-card h4 {
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-        }
-
-        .why-card p {
-            font-size: 0.9rem;
-            color: var(--text-gray);
-        }
-
-        /* --- OUR PROCESS --- */
-        .process-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
-            position: relative;
-        }
-
-        .process-step {
-            text-align: center;
-            position: relative;
-            padding: 20px;
-        }
-
-        .step-number {
-            width: 50px;
-            height: 50px;
-            background: var(--accent-blue);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            margin: 0 auto 20px;
-            box-shadow: 0 0 15px rgba(46,99,215,0.5);
-        }
-
-        /* --- SERVICES --- */
+        /* --- SERVICES (Point 1) --- */
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -346,263 +225,247 @@
         .service-card {
             background: var(--card-bg);
             border-radius: 15px;
-            overflow: hidden;
             border: 1px solid rgba(255,255,255,0.05);
+            padding: 30px;
             transition: var(--transition);
             position: relative;
+            overflow: hidden;
         }
 
         .service-card:hover {
-            border-color: var(--accent-blue);
             transform: translateY(-5px);
+            border-color: var(--accent-lime);
+            box-shadow: 0 10px 30px rgba(214, 245, 60, 0.1);
         }
 
-        .service-header {
-            background: #1a2029;
-            padding: 30px;
-            text-align: center;
-        }
+        .service-card h3 { font-size: 1.5rem; margin-bottom: 10px; color: #fff; }
+        .service-card .price { font-size: 1.4rem; color: var(--accent-lime); font-weight: 700; margin-bottom: 20px; display: block; }
 
-        .service-header h3 { font-size: 1.5rem; margin-bottom: 10px; }
-        .price { font-size: 1.8rem; color: var(--accent-lime); font-weight: 700; }
-        .price span { font-size: 0.9rem; color: var(--text-gray); font-weight: 400; }
-
-        .service-body { padding: 30px; }
-        .service-body ul li {
-            margin-bottom: 12px;
+        .service-card ul li {
+            margin-bottom: 10px;
             color: var(--text-gray);
             display: flex;
             align-items: center;
+            font-size: 0.95rem;
         }
-        .service-body ul li i { color: var(--accent-lime); margin-right: 10px; }
-        
-        .highlight {
-            background: rgba(214, 245, 60, 0.1);
-            color: var(--accent-lime);
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-size: 0.8rem;
-            display: inline-block;
-            margin-top: 10px;
-        }
+        .service-card ul li i { color: var(--accent-blue); margin-right: 10px; }
 
-        /* --- SUCCESS STORIES --- */
-        .success-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        /* --- PROCESS (Point 2: Horizontal/Target Style) --- */
+        .process-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
             gap: 30px;
+            align-items: center;
         }
 
-        .success-card {
-            background: var(--card-bg);
-            padding: 30px;
-            border-left: 4px solid var(--accent-lime);
-        }
-
-        .story-flow {
-            margin-top: 20px;
-        }
-
-        .flow-item {
-            margin-bottom: 15px;
-        }
-        .flow-label {
-            font-size: 0.8rem;
-            color: var(--accent-blue);
-            text-transform: uppercase;
-            font-weight: 700;
-        }
-        .flow-text { color: var(--text-gray); font-size: 0.95rem; }
-
-        /* --- CLIENTS & PARTNERS (MARQUEE) --- */
-        .marquee-section {
-            padding: 40px 0;
-            background: #0f141a;
-            overflow: hidden;
-            margin-bottom: 20px;
-        }
-        
-        .marquee-heading {
+        .process-step {
+            flex: 1;
+            min-width: 200px;
+            max-width: 250px;
             text-align: center;
-            margin-bottom: 30px;
-            color: var(--text-gray);
-            font-weight: 600;
-        }
-
-        .marquee-container {
+            background: rgba(255,255,255,0.03);
+            padding: 20px;
+            border-radius: 50%; /* Target/Circle shape */
+            aspect-ratio: 1/1; /* Keeps it circular */
             display: flex;
-            overflow: hidden;
-            width: 100%;
-            position: relative;
-        }
-
-        .marquee-content {
-            display: flex;
-            gap: 50px;
-            animation: scroll 20s linear infinite;
-            min-width: 100%;
-        }
-        
-        .marquee-content.reverse {
-            animation: scroll-reverse 20s linear infinite;
-        }
-
-        .marquee-content img {
-            height: 60px; /* Adjust based on your logo files */
-            object-fit: contain;
-            filter: grayscale(100%) brightness(0.8);
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid rgba(46, 99, 215, 0.3);
             transition: var(--transition);
         }
 
-        .marquee-content img:hover { filter: grayscale(0) brightness(1); }
-
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-100%); }
+        .process-step:hover {
+            border-color: var(--accent-lime);
+            background: rgba(46, 99, 215, 0.1);
+            transform: scale(1.05);
         }
 
-        @keyframes scroll-reverse {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(0); }
+        .process-icon { font-size: 2rem; color: var(--accent-lime); margin-bottom: 10px; }
+        .process-step h4 { font-size: 1.1rem; margin-bottom: 5px; }
+
+        /* --- AUTO CALC / STATS (Point 3: Horizontal/Target Style) --- */
+        .stats-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
         }
 
-        /* --- FAQ --- */
-        .faq-container { max-width: 800px; margin: 0 auto; }
+        .stat-circle {
+            flex: 1;
+            min-width: 200px;
+            max-width: 250px;
+            text-align: center;
+            background: rgba(255,255,255,0.03);
+            padding: 20px;
+            border-radius: 10px; /* Rounded rectangle for variety, or use 50% for circles */
+            border: 1px solid rgba(255,255,255,0.1);
+            position: relative;
+        }
+
+        .stat-circle:hover { border-color: var(--accent-blue); }
+
+        .stat-circle h3 { font-size: 2.5rem; color: var(--accent-lime); font-weight: 700; margin-bottom: 5px; }
+        .stat-circle p { color: var(--text-gray); font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* --- SUCCESS STORIES (Point 4: Horizontal Auto Swipe) --- */
+        .stories-wrapper {
+            width: 100%;
+            overflow-x: hidden; /* Hide scrollbar */
+            position: relative;
+        }
+
+        .stories-container {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding: 20px 5px;
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
         
-        .faq-item {
+        .stories-container::-webkit-scrollbar { display: none; }
+
+        .story-card {
+            min-width: 300px;
+            max-width: 350px;
             background: var(--card-bg);
-            margin-bottom: 15px;
+            padding: 30px;
+            border-radius: 10px;
+            border-left: 4px solid var(--accent-blue);
+            flex-shrink: 0;
+            transition: var(--transition);
+        }
+
+        .story-card h3 { color: #fff; margin-bottom: 15px; font-size: 1.2rem; }
+        .story-label { color: var(--accent-lime); font-size: 0.8rem; text-transform: uppercase; font-weight: 700; display: block; margin-top: 10px; }
+        .story-text { color: var(--text-gray); font-size: 0.95rem; }
+
+        /* --- WHY CHOOSE (Point 5) --- */
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        .why-card {
+            text-align: center;
+            padding: 30px;
+            background: rgba(255,255,255,0.02);
+            border-radius: 10px;
+            border: 1px solid transparent;
+        }
+        .why-card:hover { border-color: var(--accent-lime); background: rgba(255,255,255,0.05); }
+        .why-card i { font-size: 2.5rem; color: var(--accent-blue); margin-bottom: 20px; }
+
+        /* --- FAQ (Point 6: 10 Questions) --- */
+        .faq-container { max-width: 800px; margin: 0 auto; }
+        .faq-item {
+            background: rgba(255,255,255,0.03);
+            margin-bottom: 10px;
             border-radius: 5px;
             overflow: hidden;
         }
-
         .faq-question {
-            padding: 20px;
+            padding: 15px 20px;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
             font-weight: 600;
-            transition: background 0.3s;
+            font-size: 0.95rem;
         }
-        
-        .faq-question:hover { background: #1a2029; }
-        
+        .faq-question:hover { background: rgba(255,255,255,0.05); color: var(--accent-lime); }
         .faq-answer {
             max-height: 0;
             overflow: hidden;
             padding: 0 20px;
             color: var(--text-gray);
-            transition: max-height 0.3s ease, padding 0.3s ease;
+            font-size: 0.9rem;
+            transition: 0.3s ease;
         }
-        
-        .faq-item.active .faq-answer {
-            padding: 0 20px 20px;
-            max-height: 200px;
-        }
-        
-        .faq-icon { transition: transform 0.3s; }
-        .faq-item.active .faq-icon { transform: rotate(180deg); color: var(--accent-lime); }
+        .faq-item.active .faq-answer { padding: 0 20px 20px; max-height: 300px; }
+        .faq-icon { transition: 0.3s; }
+        .faq-item.active .faq-icon { transform: rotate(180deg); }
 
-        /* --- CONTACT --- */
+        /* --- CLIENTS (Point 7: Right to Left) --- */
+        .marquee-section { padding: 50px 0; background: rgba(0,0,0,0.3); overflow: hidden; }
+        .marquee-track-right-left {
+            display: flex;
+            gap: 50px;
+            width: max-content;
+            animation: scroll-rl 25s linear infinite;
+        }
+        .marquee-track-right-left img { height: 60px; filter: grayscale(1); opacity: 0.7; transition: 0.3s; }
+        .marquee-track-right-left img:hover { filter: grayscale(0); opacity: 1; }
+
+        @keyframes scroll-rl {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); } /* Ensure content is duplicated to loop smooth */
+        }
+
+        /* --- TECH (Point 8: Left to Right) --- */
+        .marquee-track-left-right {
+            display: flex;
+            gap: 50px;
+            width: max-content;
+            animation: scroll-lr 25s linear infinite;
+        }
+        .tech-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--text-gray);
+        }
+        .tech-item i { font-size: 3rem; margin-bottom: 5px; color: #fff; }
+        
+        @keyframes scroll-lr {
+            0% { transform: translateX(-50%); }
+            100% { transform: translateX(0); }
+        }
+
+        /* --- CONTACT (Footer ke upar) --- */
+        .contact-section { background: rgba(13, 18, 24, 0.8); border-top: 1px solid rgba(255,255,255,0.05); }
         .contact-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 50px;
-        }
-
-        .contact-info-item {
-            display: flex;
-            margin-bottom: 30px;
-            align-items: flex-start;
-        }
-
-        .contact-icon {
-            font-size: 1.5rem;
-            color: var(--accent-blue);
-            margin-right: 20px;
-            min-width: 30px;
-        }
-
-        .contact-details h4 { margin-bottom: 5px; }
-        .contact-details p { color: var(--text-gray); }
-
-        .contact-form {
-            background: var(--card-bg);
-            padding: 40px;
-            border-radius: 10px;
-        }
-
-        .form-group { margin-bottom: 20px; }
-        
-        .form-control {
-            width: 100%;
-            padding: 12px;
-            background: #0B0F14;
-            border: 1px solid #2a323d;
-            border-radius: 5px;
-            color: #fff;
-            font-family: inherit;
-        }
-        
-        .form-control:focus {
-            outline: none;
-            border-color: var(--accent-lime);
-        }
-
-        textarea.form-control { resize: none; height: 120px; }
-
-        /* --- FINAL CTA --- */
-        .cta-section {
-            text-align: center;
-            background: linear-gradient(rgba(11,15,20,0.9), rgba(11,15,20,0.9)), url('images/hosting.gif');
-            background-size: cover;
-            padding: 100px 20px;
-            border-top: 1px solid var(--accent-lime);
-        }
-
-        /* --- FOOTER --- */
-        footer {
-            background: #05070a;
-            padding: 60px 0 20px;
-            border-top: 1px solid #1f2630;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 40px;
-            margin-bottom: 40px;
         }
-
-        .footer-col h4 { margin-bottom: 20px; color: #fff; }
-        .footer-col ul li { margin-bottom: 10px; }
-        .footer-col ul li a { color: var(--text-gray); transition: 0.3s; }
-        .footer-col ul li a:hover { color: var(--accent-lime); }
-        
-        .social-icons a {
-            display: inline-flex;
-            width: 40px;
-            height: 40px;
-            background: #1a2029;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            margin-right: 10px;
-            transition: 0.3s;
+        .contact-item { display: flex; align-items: flex-start; margin-bottom: 25px; }
+        .contact-icon-box {
+            width: 40px; height: 40px;
+            background: rgba(46, 99, 215, 0.1);
+            color: var(--accent-lime);
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 5px;
+            margin-right: 15px;
+            font-size: 1.2rem;
         }
-        
-        .social-icons a:hover { background: var(--accent-blue); }
+        /* Point: Fix Phone Icon */
+        .contact-icon-box i.fa-phone-alt { transform: scaleX(1); } 
 
-        .copyright {
+        .form-box { background: rgba(0,0,0,0.2); padding: 30px; border-radius: 10px; }
+        .form-group { margin-bottom: 15px; }
+        .form-input {
+            width: 100%; padding: 12px;
+            background: #0B0F14; border: 1px solid #2a323d;
+            border-radius: 5px; color: #fff;
+        }
+        .form-input:focus { outline: none; border-color: var(--accent-lime); }
+
+        /* --- FOOTER (Point 13) --- */
+        footer {
+            background: #000;
+            padding: 20px 0;
             text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid #1f2630;
-            color: var(--text-gray);
+            border-top: 1px solid #1a2029;
             font-size: 0.9rem;
+            color: var(--text-gray);
         }
 
-        /* --- FLOATING WHATSAPP --- */
+        /* --- FLOATING WHATSAPP (Wave & Auto Message) --- */
         .float-wa {
             position: fixed;
             bottom: 30px;
@@ -615,56 +478,45 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 30px;
-            box-shadow: 2px 2px 10px rgba(0,0,0,0.4);
+            font-size: 32px;
             z-index: 2000;
-            transition: 0.3s;
+            text-decoration: none;
+            /* Wave Animation */
+            animation: pulse-border 2s infinite;
         }
 
-        .float-wa:hover { transform: scale(1.1); }
-
-        /* --- MEDIA QUERIES --- */
+        @keyframes pulse-border {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 20px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+        
+        /* Mobile Tweaks */
         @media (max-width: 768px) {
-            .nav-menu {
-                position: fixed;
-                top: 70px;
-                right: -100%;
-                width: 100%;
-                height: calc(100vh - 70px);
-                background: var(--bg-color);
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                transition: 0.4s;
-            }
-            .nav-menu.active { right: 0; }
-            .hamburger { display: block; }
-            .hero-content h1 { font-size: 2.2rem; }
-            .hero-buttons { flex-direction: column; align-items: center; }
-            .btn { width: 100%; text-align: center; }
+            .process-row, .stats-row { flex-direction: column; }
+            .hero-content h1 { font-size: 2rem; }
         }
     </style>
 </head>
 <body>
 
     <header class="header">
-        <div class="container">
-            <nav class="nav">
-                <a href="#" class="logo">
-                    <img src="images/mylogo.png" alt="Knox Logo">
-                    Knox IT Services
-                </a>
-                <ul class="nav-menu">
-                    <li><a href="#home" class="nav-link">Home</a></li>
-                    <li><a href="#services" class="nav-link">Services</a></li>
-                    <li><a href="#stories" class="nav-link">Success Stories</a></li>
-                    <li><a href="#clients" class="nav-link">Clients</a></li>
-                    <li><a href="#contact" class="nav-link">Contact</a></li>
-                </ul>
-                <div class="hamburger">
-                    <i class="fas fa-bars"></i>
-                </div>
-            </nav>
+        <div class="container nav">
+            <a href="#" class="logo">
+                <img src="images/mylogo.png" alt="Knox Logo">
+            </a>
+            
+            <div class="hamburger" id="hamburger-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+        
+        <div class="nav-menu" id="nav-menu">
+            <a href="#home" class="nav-link">Home</a>
+            <a href="#services" class="nav-link">Services</a>
+            <a href="#process" class="nav-link">Process</a>
+            <a href="#stories" class="nav-link">Success Stories</a>
+            <a href="#contact" class="nav-link">Contact</a>
         </div>
     </header>
 
@@ -675,92 +527,14 @@
         <div class="hero-overlay"></div>
         <div class="container hero-content fade-in">
             <h1>Transform Ideas Into <br><span>Reality</span></h1>
-            <p class="subtext">Web Development • Business Email • Refurbished Laptops</p>
+            <p>Web Development • Business Email • Refurbished Laptops</p>
             <div class="hero-buttons">
-                <a href="https://wa.me/918009262472" class="btn btn-primary"><i class="fab fa-whatsapp"></i> Get Free Consultation</a>
+                <a href="https://wa.me/918009262472?text=Hello%20Knox%20IT,%20I%20am%20interested%20in%20your%20services.%20Please%20guide%20me.%0A%0ARef:%20Web-Lead" class="btn btn-primary" target="_blank">
+                    <i class="fab fa-whatsapp"></i> Get Free Consultation
+                </a>
                 <a href="tel:8009262472" class="btn btn-secondary">Call Now</a>
             </div>
-            <p class="trust-line">Trusted by 200+ businesses across India</p>
-            <p class="promo-line">Free 30-minute IT consultation for businesses</p>
-        </div>
-    </section>
-
-    <section class="stats section-padding">
-        <div class="container">
-            <div class="stats-grid">
-                <div class="stat-item fade-in">
-                    <h3 data-target="4">0</h3>
-                    <p>Years Experience</p>
-                </div>
-                <div class="stat-item fade-in">
-                    <h3 data-target="8000">0</h3>
-                    <p>Websites Developed</p>
-                </div>
-                <div class="stat-item fade-in">
-                    <h3 data-target="5000">0</h3>
-                    <p>Business Emails</p>
-                </div>
-                <div class="stat-item fade-in">
-                    <h3 data-target="1200">0</h3>
-                    <p>Laptops Delivered</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="why" class="section-padding">
-        <div class="container">
-            <h2 class="section-title">Why Choose <span>Knox</span></h2>
-            <div class="why-grid">
-                <div class="why-card fade-in">
-                    <i class="fas fa-headset"></i>
-                    <h4>Fast Response Support</h4>
-                    <p>We prioritize your business uptime with rapid technical assistance.</p>
-                </div>
-                <div class="why-card fade-in">
-                    <i class="fas fa-tags"></i>
-                    <h4>Affordable Pricing</h4>
-                    <p>Premium IT services priced specifically for growing businesses.</p>
-                </div>
-                <div class="why-card fade-in">
-                    <i class="fas fa-cubes"></i>
-                    <h4>One Stop Solution</h4>
-                    <p>From coding to hardware, we handle your entire IT infrastructure.</p>
-                </div>
-                <div class="why-card fade-in">
-                    <i class="fas fa-infinity"></i>
-                    <h4>Long Term Support</h4>
-                    <p>We don't just deliver; we maintain and upgrade your systems.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="section-padding" style="background: #0d1218;">
-        <div class="container">
-            <h2 class="section-title">Our <span>Process</span></h2>
-            <div class="process-grid">
-                <div class="process-step fade-in">
-                    <div class="step-number">1</div>
-                    <h4>Requirement</h4>
-                    <p>Discussion</p>
-                </div>
-                <div class="process-step fade-in">
-                    <div class="step-number">2</div>
-                    <h4>Planning &</h4>
-                    <p>Proposal</p>
-                </div>
-                <div class="process-step fade-in">
-                    <div class="step-number">3</div>
-                    <h4>Development</h4>
-                    <p>& Setup</p>
-                </div>
-                <div class="process-step fade-in">
-                    <div class="step-number">4</div>
-                    <h4>Delivery &</h4>
-                    <p>Support</p>
-                </div>
-            </div>
+            <p style="font-size: 0.8rem; color: #aaa; margin-top: 10px;">Free 30-minute IT consultation for businesses</p>
         </div>
     </section>
 
@@ -769,329 +543,372 @@
             <h2 class="section-title">Our <span>Services</span></h2>
             <div class="services-grid">
                 <div class="service-card fade-in">
-                    <div class="service-header">
-                        <h3>Website Development</h3>
-                        <p class="price">₹12,499 <span>/ Start</span></p>
-                    </div>
-                    <div class="service-body">
-                        <ul>
-                            <li><i class="fas fa-check"></i> Business websites</li>
-                            <li><i class="fas fa-check"></i> Mobile responsive design</li>
-                            <li><i class="fas fa-check"></i> SEO ready setup</li>
-                            <li><i class="fas fa-check"></i> Domain & hosting support</li>
-                        </ul>
-                        <div class="highlight">First Year Hosting FREE</div>
-                    </div>
+                    <h3>Website Development</h3>
+                    <span class="price">₹12,499 / Start</span>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Business websites</li>
+                        <li><i class="fas fa-check"></i> Mobile responsive</li>
+                        <li><i class="fas fa-check"></i> Free 1st Year Hosting</li>
+                    </ul>
                 </div>
-
                 <div class="service-card fade-in">
-                    <div class="service-header">
-                        <h3>Business Email</h3>
-                        <p class="price">Zoho / Outlook</p>
-                    </div>
-                    <div class="service-body">
-                        <ul>
-                            <li><i class="fas fa-check"></i> <strong>₹600</strong> / ID / Year (1-5 users)</li>
-                            <li><i class="fas fa-check"></i> <strong>₹900</strong> / ID / Year (6-50 users)</li>
-                            <li><i class="fas fa-check"></i> Domain email setup</li>
-                            <li><i class="fas fa-check"></i> SPF, DKIM, DMARC security</li>
-                        </ul>
-                        <div class="highlight">Zoho Channel Partner</div>
-                    </div>
+                    <h3>Business Email</h3>
+                    <span class="price">₹600 / ID / Start</span>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Zoho / Outlook Setup</li>
+                        <li><i class="fas fa-check"></i> SPF, DKIM, DMARC</li>
+                        <li><i class="fas fa-check"></i> Migration Support</li>
+                    </ul>
                 </div>
-
                 <div class="service-card fade-in">
-                    <div class="service-header">
-                        <h3>Refurbished Laptops</h3>
-                        <p class="price">Retail & Bulk</p>
-                    </div>
-                    <div class="service-body">
-                        <ul>
-                            <li><i class="fas fa-check"></i> Business grade laptops</li>
-                            <li><i class="fas fa-check"></i> 1 Year Warranty</li>
-                            <li><i class="fas fa-check"></i> Antivirus protected</li>
-                            <li><i class="fas fa-check"></i> SSD & RAM upgrades</li>
-                        </ul>
-                        <div class="highlight">Best for Office Setup</div>
-                    </div>
+                    <h3>Refurbished Laptops</h3>
+                    <span class="price">Retail & Bulk</span>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Business Series</li>
+                        <li><i class="fas fa-check"></i> 1 Year Warranty</li>
+                        <li><i class="fas fa-check"></i> Pan India Delivery</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="stories" class="section-padding" style="background: #0f141a;">
+    <section id="process" class="section-padding" style="background: rgba(0,0,0,0.2);">
+        <div class="container">
+            <h2 class="section-title">Our <span>Process</span></h2>
+            <div class="process-row">
+                <div class="process-step fade-in">
+                    <i class="fas fa-comments process-icon"></i>
+                    <h4>Discussion</h4>
+                    <p style="font-size:0.8rem; color:var(--text-gray);">Understand Needs</p>
+                </div>
+                <div class="process-step fade-in">
+                    <i class="fas fa-pencil-ruler process-icon"></i>
+                    <h4>Planning</h4>
+                    <p style="font-size:0.8rem; color:var(--text-gray);">Blueprint Strategy</p>
+                </div>
+                <div class="process-step fade-in">
+                    <i class="fas fa-code process-icon"></i>
+                    <h4>Development</h4>
+                    <p style="font-size:0.8rem; color:var(--text-gray);">Coding & Setup</p>
+                </div>
+                <div class="process-step fade-in">
+                    <i class="fas fa-rocket process-icon"></i>
+                    <h4>Delivery</h4>
+                    <p style="font-size:0.8rem; color:var(--text-gray);">Launch & Support</p>
+                </div>
+                <div class="process-step fade-in">
+                    <i class="fas fa-smile process-icon"></i>
+                    <h4>Success</h4>
+                    <p style="font-size:0.8rem; color:var(--text-gray);">Business Growth</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="stats" class="section-padding">
+        <div class="container">
+            <div class="stats-row">
+                <div class="stat-circle fade-in">
+                    <h3 data-target="4">0</h3>
+                    <p>Years Experience</p>
+                </div>
+                <div class="stat-circle fade-in">
+                    <h3 data-target="8000">0</h3>
+                    <p>Websites Live</p>
+                </div>
+                <div class="stat-circle fade-in">
+                    <h3 data-target="5000">0</h3>
+                    <p>Emails Managed</p>
+                </div>
+                <div class="stat-circle fade-in">
+                    <h3 data-target="1200">0</h3>
+                    <p>Laptops Sold</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="stories" class="section-padding" style="background: rgba(0,0,0,0.2);">
         <div class="container">
             <h2 class="section-title">Success <span>Stories</span></h2>
-            <div class="success-grid">
-                <div class="success-card fade-in">
-                    <h3>School Website + Email</h3>
-                    <div class="story-flow">
-                        <div class="flow-item"><span class="flow-label">Problem:</span> <span class="flow-text">No digital presence, manual communication.</span></div>
-                        <div class="flow-item"><span class="flow-label">Solution:</span> <span class="flow-text">Responsive site + 50 Staff Emails.</span></div>
-                        <div class="flow-item"><span class="flow-label">Result:</span> <span class="flow-text">Increased admissions & smooth operations.</span></div>
+            <div class="stories-wrapper">
+                <div class="stories-container" id="stories-scroll">
+                    <div class="story-card">
+                        <h3>School Website</h3>
+                        <span class="story-label">Problem</span>
+                        <p class="story-text">Manual admission process.</p>
+                        <span class="story-label">Solution</span>
+                        <p class="story-text">Automated Online Portal.</p>
+                        <span class="story-label">Result</span>
+                        <p class="story-text">300% Increase in applications.</p>
+                    </div>
+                    <div class="story-card">
+                        <h3>Corporate Email</h3>
+                        <span class="story-label">Problem</span>
+                        <p class="story-text">High spam rate in old mail.</p>
+                        <span class="story-label">Solution</span>
+                        <p class="story-text">Moved to Zoho Workplace.</p>
+                        <span class="story-label">Result</span>
+                        <p class="story-text">Zero spam & 99.9% Uptime.</p>
+                    </div>
+                    <div class="story-card">
+                        <h3>Startup Launch</h3>
+                        <span class="story-label">Problem</span>
+                        <p class="story-text">No brand identity.</p>
+                        <span class="story-label">Solution</span>
+                        <p class="story-text">Website + Logo + SEO.</p>
+                        <span class="story-label">Result</span>
+                        <p class="story-text">First 50 clients in 1 month.</p>
+                    </div>
+                    <div class="story-card">
+                        <h3>Call Center Setup</h3>
+                        <span class="story-label">Problem</span>
+                        <p class="story-text">Needed 50 laptops urgently.</p>
+                        <span class="story-label">Solution</span>
+                        <p class="story-text">Refurbished Bulk Supply.</p>
+                        <span class="story-label">Result</span>
+                        <p class="story-text">Saved 60% IT Cost.</p>
                     </div>
                 </div>
-                <div class="success-card fade-in">
-                    <h3>Corporate Email Migration</h3>
-                    <div class="story-flow">
-                        <div class="flow-item"><span class="flow-label">Problem:</span> <span class="flow-text">High spam & server downtime.</span></div>
-                        <div class="flow-item"><span class="flow-label">Solution:</span> <span class="flow-text">Migration to Zoho Workplace.</span></div>
-                        <div class="flow-item"><span class="flow-label">Result:</span> <span class="flow-text">99.9% Uptime & secured data.</span></div>
-                    </div>
-                </div>
-                <div class="success-card fade-in">
-                    <h3>Startup Website Launch</h3>
-                    <div class="story-flow">
-                        <div class="flow-item"><span class="flow-label">Problem:</span> <span class="flow-text">Limited budget, needed fast launch.</span></div>
-                        <div class="flow-item"><span class="flow-label">Solution:</span> <span class="flow-text">Single page animated site.</span></div>
-                        <div class="flow-item"><span class="flow-label">Result:</span> <span class="flow-text">Secured first 10 clients in 1 month.</span></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="clients" class="marquee-section">
-        <h4 class="marquee-heading">Trusted by Offices, Schools, Startups & Clinics</h4>
-        
-        <div class="marquee-container">
-            <div class="marquee-content">
-                <img src="images/client1.png" alt="Client 1">
-                <img src="images/client2.png" alt="Client 2">
-                <img src="images/client3.png" alt="Client 3">
-                <img src="images/client4.png" alt="Client 4">
-                <img src="images/client5.png" alt="Client 5">
-                <img src="images/client1.png" alt="Client 1">
-                <img src="images/client2.png" alt="Client 2">
-                <img src="images/client3.png" alt="Client 3">
-                <img src="images/client4.png" alt="Client 4">
-                <img src="images/client5.png" alt="Client 5">
-            </div>
-        </div>
-        
-        <br><br>
-
-        <div class="marquee-container">
-            <div class="marquee-content reverse">
-                <img src="images/partner1.png" alt="Partner 1">
-                <img src="images/partner2.png" alt="Partner 2">
-                <img src="images/partner3.png" alt="Partner 3">
-                <div style="color:white; font-weight:bold; font-size:20px; align-self:center;">ZOHO</div>
-                <div style="color:white; font-weight:bold; font-size:20px; align-self:center;">Google</div>
-                <div style="color:white; font-weight:bold; font-size:20px; align-self:center;">Microsoft</div>
-                <div style="color:white; font-weight:bold; font-size:20px; align-self:center;">DELL</div>
-                <img src="images/partner1.png" alt="Partner 1">
-                <img src="images/partner2.png" alt="Partner 2">
-                <img src="images/partner3.png" alt="Partner 3">
-                <div style="color:white; font-weight:bold; font-size:20px; align-self:center;">ZOHO</div>
-                <div style="color:white; font-weight:bold; font-size:20px; align-self:center;">Google</div>
             </div>
         </div>
     </section>
 
     <section class="section-padding">
         <div class="container">
-            <h2 class="section-title">Freqently Asked <span>Questions</span></h2>
-            <div class="faq-container">
-                <div class="faq-item fade-in">
-                    <div class="faq-question">How long does website development take? <i class="fas fa-chevron-down faq-icon"></i></div>
-                    <div class="faq-answer">Typically, a business website takes 5-7 working days depending on the requirements and content availability.</div>
+            <h2 class="section-title">Why Choose <span>Knox</span></h2>
+            <div class="why-grid">
+                <div class="why-card fade-in">
+                    <i class="fas fa-headset"></i>
+                    <h4>Fast Support</h4>
+                    <p style="color:var(--text-gray); font-size:0.9rem;">We are always just a call away.</p>
                 </div>
-                <div class="faq-item fade-in">
-                    <div class="faq-question">Do you provide support after delivery? <i class="fas fa-chevron-down faq-icon"></i></div>
-                    <div class="faq-answer">Yes, we provide dedicated technical support and maintenance packages to ensure your systems run smoothly.</div>
+                <div class="why-card fade-in">
+                    <i class="fas fa-wallet"></i>
+                    <h4>Affordable</h4>
+                    <p style="color:var(--text-gray); font-size:0.9rem;">Best pricing for Indian businesses.</p>
                 </div>
-                <div class="faq-item fade-in">
-                    <div class="faq-question">Do you provide invoice & GST? <i class="fas fa-chevron-down faq-icon"></i></div>
-                    <div class="faq-answer">Yes, we provide proper GST invoices for all our services and products.</div>
+                <div class="why-card fade-in">
+                    <i class="fas fa-layer-group"></i>
+                    <h4>All-in-One</h4>
+                    <p style="color:var(--text-gray); font-size:0.9rem;">Web, Mail, and Hardware.</p>
                 </div>
-                <div class="faq-item fade-in">
-                    <div class="faq-question">Can you handle bulk laptop orders? <i class="fas fa-chevron-down faq-icon"></i></div>
-                    <div class="faq-answer">Absolutely. We specialize in supplying refurbished business laptops for offices, call centers, and schools in bulk.</div>
-                </div>
-                <div class="faq-item fade-in">
-                    <div class="faq-question">Do you help with domain purchase? <i class="fas fa-chevron-down faq-icon"></i></div>
-                    <div class="faq-answer">Yes, we assist in finding the right domain name and managing the purchase and DNS settings for you.</div>
+                <div class="why-card fade-in">
+                    <i class="fas fa-shield-alt"></i>
+                    <h4>Secure</h4>
+                    <p style="color:var(--text-gray); font-size:0.9rem;">Data privacy is our priority.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="contact" class="section-padding" style="background: #0d1218;">
+    <section class="section-padding" style="background: rgba(0,0,0,0.2);">
+        <div class="container">
+            <h2 class="section-title">Frequent <span>Questions</span></h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">How long does website development take? <i class="fas fa-chevron-down faq-icon"></i></div>
+                    <div class="faq-answer">Usually 5-7 working days for business websites.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Do you provide support after delivery? <i class="fas fa-chevron-down faq-icon"></i></div>
+                    <div class="faq-answer">Yes, we provide 1 year of technical support with our packages.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Do you provide GST Invoice? <i class="fas fa-chevron-down faq-icon"></i></div>
+                    <div class="faq-answer">Yes, we provide valid GST invoices for all services and products.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Is the hosting free? <i class="fas fa-chevron-down faq-icon"></i></div>
+                    <div class="faq-answer">Yes, the first year of hosting is completely free with website development.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Can you handle bulk laptop orders? <i class="fas fa-chevron-down faq-icon"></i></div>
+                    <div class="faq-answer">Yes, we supply bulk refurbished laptops to offices and schools.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">What is the warranty on laptops? <i class="fas fa-chevron-down faq-icon"></i></div>
+                    <div class="faq-answer">We provide up to 1 year warranty on refurbished business series laptops.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Do you setup Outlook/Office 365? <i class="fas fa-chevron-down faq-icon"></i></div>
+                    <div class="faq-answer">Yes, we are partners with Microsoft and can setup Office 365 emails.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Will my website work on Mobile? <i class="fas fa-chevron-down faq-icon"></i></div>
+                    <div class="faq-answer">Absolutely. All our designs are 100% mobile responsive.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Do you write content for the website? <i class="fas fa-chevron-down faq-icon"></i></div>
+                    <div class="faq-answer">Basic content placement is included. Professional copywriting is an add-on.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">How do I pay? <i class="fas fa-chevron-down faq-icon"></i></div>
+                    <div class="faq-answer">We accept UPI, Bank Transfer, and Credit Cards.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="marquee-section">
+        <h3 style="text-align:center; margin-bottom:30px; color:#888;">Our Trusted Clients</h3>
+        <div class="marquee-track-right-left">
+            <img src="images/client1.png" alt="Client">
+            <img src="images/client2.png" alt="Client">
+            <img src="images/client3.png" alt="Client">
+            <img src="images/client4.png" alt="Client">
+            <img src="images/client5.png" alt="Client">
+            <img src="images/client1.png" alt="Client">
+            <img src="images/client2.png" alt="Client">
+            <img src="images/client3.png" alt="Client">
+            <img src="images/client4.png" alt="Client">
+            <img src="images/client5.png" alt="Client">
+        </div>
+    </section>
+
+    <section class="marquee-section" style="background: rgba(0,0,0,0.5);">
+        <h3 style="text-align:center; margin-bottom:30px; color:#888;">Technologies We Use</h3>
+        <div class="marquee-track-left-right">
+            <div class="tech-item"><i class="fab fa-html5" style="color:#e34c26;"></i><span>HTML5</span></div>
+            <div class="tech-item"><i class="fab fa-css3-alt" style="color:#264de4;"></i><span>CSS3</span></div>
+            <div class="tech-item"><i class="fab fa-js" style="color:#f0db4f;"></i><span>JS</span></div>
+            <div class="tech-item"><i class="fab fa-python" style="color:#4B8BBE;"></i><span>Python</span></div>
+            <div class="tech-item"><i class="fab fa-wordpress" style="color:#21759b;"></i><span>WordPress</span></div>
+            <div class="tech-item"><i class="fab fa-google" style="color:#4285F4;"></i><span>Google Cloud</span></div>
+            <div class="tech-item"><img src="images/webdev.gif" style="height:50px; width:auto; filter:none;" alt="WebDev"></div>
+            <div class="tech-item"><i class="fab fa-html5" style="color:#e34c26;"></i><span>HTML5</span></div>
+            <div class="tech-item"><i class="fab fa-css3-alt" style="color:#264de4;"></i><span>CSS3</span></div>
+            <div class="tech-item"><i class="fab fa-js" style="color:#f0db4f;"></i><span>JS</span></div>
+            <div class="tech-item"><i class="fab fa-python" style="color:#4B8BBE;"></i><span>Python</span></div>
+            <div class="tech-item"><i class="fab fa-wordpress" style="color:#21759b;"></i><span>WordPress</span></div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact-section section-padding">
         <div class="container">
             <h2 class="section-title">Contact <span>Us</span></h2>
             <div class="contact-grid">
-                <div class="contact-info fade-in">
-                    <div class="contact-info-item">
-                        <i class="fas fa-phone-alt contact-icon"></i>
-                        <div class="contact-details">
-                            <h4>Helpline</h4>
-                            <p>8009262472</p>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon-box">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div>
+                            <h4>Call Us</h4>
+                            <p style="color:var(--text-gray);">8009262472</p>
                         </div>
                     </div>
-                    <div class="contact-info-item">
-                        <i class="fas fa-envelope contact-icon"></i>
-                        <div class="contact-details">
+                    <div class="contact-item">
+                        <div class="contact-icon-box"><i class="fas fa-envelope"></i></div>
+                        <div>
                             <h4>Email</h4>
-                            <p>sales@knoxit.in</p>
-                            <p>support@knoxit.in</p>
+                            <p style="color:var(--text-gray);">sales@knoxit.in</p>
                         </div>
                     </div>
-                    <div class="contact-info-item">
-                        <i class="fas fa-clock contact-icon"></i>
-                        <div class="contact-details">
-                            <h4>Working Hours</h4>
-                            <p>Mon – Sat | 11:00 AM – 6:00 PM</p>
-                        </div>
-                    </div>
-                    <div class="contact-info-item">
-                        <i class="fas fa-map-marker-alt contact-icon"></i>
-                        <div class="contact-details">
-                            <h4>Address</h4>
-                            <p>F-7 Hema Industrial Estate,<br>Andheri East, Mumbai – 400093</p>
+                    <div class="contact-item">
+                        <div class="contact-icon-box"><i class="fas fa-map-marker-alt"></i></div>
+                        <div>
+                            <h4>Location</h4>
+                            <p style="color:var(--text-gray);">Andheri East, Mumbai</p>
                         </div>
                     </div>
                 </div>
-
-                <div class="contact-form fade-in">
+                
+                <div class="form-box">
                     <form action="https://api.web3forms.com/submit" method="POST">
                         <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
                         
                         <div class="form-group">
-                            <input type="text" name="name" class="form-control" placeholder="Your Name" required>
+                            <input type="text" name="name" class="form-input" placeholder="Your Name" required>
                         </div>
                         <div class="form-group">
-                            <input type="tel" name="phone" class="form-control" placeholder="Phone Number" required>
+                            <input type="tel" name="phone" class="form-input" placeholder="Phone Number" required>
                         </div>
                         <div class="form-group">
-                            <input type="email" name="email" class="form-control" placeholder="Email Address" required>
+                            <textarea name="message" class="form-input" placeholder="How can we help?" style="height:100px; resize:none;"></textarea>
                         </div>
-                        <div class="form-group">
-                            <select name="service" class="form-control">
-                                <option value="Website">Website Development</option>
-                                <option value="Email">Business Email</option>
-                                <option value="Laptops">Refurbished Laptops</option>
-                                <option value="Other">Other</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <textarea name="message" class="form-control" placeholder="Your Message"></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+                        <button type="submit" class="btn btn-primary" style="width:100%;">Send Message</button>
                     </form>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="cta-section">
-        <div class="container fade-in">
-            <h2 style="margin-bottom: 30px; font-size: 2rem;">Ready To Upgrade Your Business IT?</h2>
-            <div class="hero-buttons">
-                <a href="tel:8009262472" class="btn btn-primary">Call Now</a>
-                <a href="https://wa.me/918009262472" class="btn btn-secondary" style="background: #25d366; border-color: #25d366;">WhatsApp Now</a>
-            </div>
-        </div>
-    </section>
-
     <footer>
         <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <h4>Knox IT Services</h4>
-                    <p style="color: var(--text-gray);">Providing top-tier IT solutions for businesses across India. Coding, Hosting, and Hardware under one roof.</p>
-                </div>
-                <div class="footer-col">
-                    <h4>Services</h4>
-                    <ul>
-                        <li><a href="#services">Web Development</a></li>
-                        <li><a href="#services">Zoho/Outlook Email</a></li>
-                        <li><a href="#services">Laptop Sales</a></li>
-                        <li><a href="#services">IT Consulting</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Social</h4>
-                    <div class="social-icons">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="copyright">
-                &copy; 2025 Knox IT Services. All Rights Reserved.
-            </div>
+            <p>&copy; 2025 Knox IT Services. All Rights Reserved</p>
         </div>
     </footer>
 
-    <a href="https://wa.me/918009262472" class="float-wa" target="_blank">
+    <a href="https://wa.me/918009262472?text=Hello%20Knox%20IT,%20I%20am%20interested%20in%20your%20services.%20Please%20guide%20me.%0A%0ARef:%20Web-Lead" class="float-wa" target="_blank">
         <i class="fab fa-whatsapp"></i>
     </a>
 
     <script>
-        // 1. Sticky Header
-        window.addEventListener('scroll', function() {
-            const header = document.querySelector('.header');
-            header.classList.toggle('scrolled', window.scrollY > 50);
-        });
-
-        // 2. Mobile Menu
-        const hamburger = document.querySelector('.hamburger');
-        const navMenu = document.querySelector('.nav-menu');
+        // 1. Menu Logic (Click anywhere to close)
+        const hamburger = document.getElementById('hamburger-btn');
+        const navMenu = document.getElementById('nav-menu');
         const navLinks = document.querySelectorAll('.nav-link');
+        const body = document.body;
 
-        hamburger.addEventListener('click', () => {
+        function toggleMenu(e) {
+            e.stopPropagation(); // Prevent immediate closing
             navMenu.classList.toggle('active');
-        });
+            hamburger.classList.toggle('active');
+        }
 
+        function closeMenu() {
+            navMenu.classList.remove('active');
+            hamburger.classList.remove('active');
+        }
+
+        hamburger.addEventListener('click', toggleMenu);
+
+        // Close when clicking links
         navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('active');
-            });
+            link.addEventListener('click', closeMenu);
         });
 
-        // 3. Scroll Fade In Animation
-        const observerOptions = {
-            threshold: 0.2
-        };
+        // Close when clicking anywhere else on screen
+        document.addEventListener('click', (e) => {
+            if (navMenu.classList.contains('active') && !navMenu.contains(e.target) && !hamburger.contains(e.target)) {
+                closeMenu();
+            }
+        });
 
+        // 2. Fade In Animation
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
                 }
             });
-        }, observerOptions);
+        }, { threshold: 0.1 });
 
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
-        });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-        // 4. Number Counter Animation
-        const statsSection = document.querySelector('.stats');
+        // 3. Counter Animation
+        const statsSection = document.getElementById('stats');
         let statsAnimated = false;
 
         const statsObserver = new IntersectionObserver((entries) => {
             if (entries[0].isIntersecting && !statsAnimated) {
-                const counters = document.querySelectorAll('.stat-item h3');
-                counters.forEach(counter => {
+                document.querySelectorAll('.stat-circle h3').forEach(counter => {
                     const target = +counter.getAttribute('data-target');
-                    const duration = 2000; // 2 seconds
-                    const increment = target / (duration / 16); 
-                    
+                    const duration = 2000;
+                    const increment = target / (duration / 16);
                     let current = 0;
-                    const updateCounter = () => {
+                    
+                    const timer = setInterval(() => {
                         current += increment;
-                        if (current < target) {
-                            counter.innerText = Math.ceil(current) + "+";
-                            requestAnimationFrame(updateCounter);
-                        } else {
+                        if (current >= target) {
                             counter.innerText = target + "+";
+                            clearInterval(timer);
+                        } else {
+                            counter.innerText = Math.ceil(current) + "+";
                         }
-                    };
-                    updateCounter();
+                    }, 16);
                 });
                 statsAnimated = true;
             }
@@ -1099,13 +916,28 @@
 
         if(statsSection) statsObserver.observe(statsSection);
 
-        // 5. FAQ Accordion
-        const faqItems = document.querySelectorAll('.faq-item');
-        faqItems.forEach(item => {
-            item.querySelector('.faq-question').addEventListener('click', () => {
+        // 4. FAQ Toggle
+        document.querySelectorAll('.faq-question').forEach(q => {
+            q.addEventListener('click', () => {
+                const item = q.parentElement;
                 item.classList.toggle('active');
             });
         });
+
+        // 5. Success Stories Auto Scroll
+        const storiesContainer = document.getElementById('stories-scroll');
+        function autoScrollStories() {
+            if(storiesContainer) {
+                storiesContainer.scrollLeft += 1;
+                // Reset scroll if reached end (simple loop effect)
+                if(storiesContainer.scrollLeft >= (storiesContainer.scrollWidth - storiesContainer.clientWidth)) {
+                     storiesContainer.scrollLeft = 0;
+                }
+            }
+        }
+        // Adjust speed by changing interval time (20ms)
+        setInterval(autoScrollStories, 30);
+
     </script>
 </body>
 </html>
