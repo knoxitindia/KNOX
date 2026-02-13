@@ -19,13 +19,13 @@
     <style>
         /* --- VARIABLES & RESET --- */
         :root {
-            /* Point 9: Radiant/Gradient Background Color */
-            --bg-gradient: linear-gradient(135deg, #05070a 0%, #0B0F14 40%, #161b2e 100%);
+            /* Point 12: Neon Gradient Background */
+            --bg-gradient: linear-gradient(135deg, #020202 0%, #0d001a 50%, #000c1a 100%); 
             --accent-lime: #D6F53C;
             --accent-blue: #2E63D7;
             --text-light: #ffffff;
             --text-gray: #a0a0a0;
-            --card-bg: rgba(21, 26, 33, 0.8);
+            --card-bg: rgba(20, 20, 30, 0.6);
             --font-main: 'Poppins', sans-serif;
             --transition: all 0.3s ease;
         }
@@ -34,14 +34,14 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent; /* Mobile fix */
+            -webkit-tap-highlight-color: transparent;
         }
 
         html { scroll-behavior: smooth; }
 
         body {
             background: var(--bg-gradient);
-            background-attachment: fixed; /* Parallax effect for gradient */
+            background-attachment: fixed;
             color: var(--text-light);
             font-family: var(--font-main);
             overflow-x: hidden;
@@ -59,18 +59,19 @@
             padding: 0 20px;
         }
 
-        .section-padding { padding: 80px 0; }
+        .section-padding { padding: 60px 0; }
         
         .section-title {
             text-align: center;
-            font-size: 2.2rem;
-            margin-bottom: 50px;
+            font-size: 2rem;
+            margin-bottom: 40px;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1px;
+            text-shadow: 0 0 10px rgba(46, 99, 215, 0.5);
         }
         
-        .section-title span { color: var(--accent-lime); text-shadow: 0 0 10px rgba(214, 245, 60, 0.3); }
+        .section-title span { color: var(--accent-lime); }
 
         .btn {
             display: inline-block;
@@ -106,116 +107,112 @@
             background-color: var(--accent-blue);
         }
 
-        /* --- ANIMATIONS --- */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-
-        .fade-in.visible { opacity: 1; transform: translateY(0); }
-
-        /* --- HEADER (Point 10 & 11) --- */
+        /* --- HEADER (Point 1: Side Panel) --- */
         .header {
             position: sticky;
             top: 0;
             z-index: 1000;
-            background-color: rgba(11, 15, 20, 0.95);
+            background-color: rgba(0, 0, 0, 0.9);
             backdrop-filter: blur(10px);
             padding: 10px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
         }
 
         .nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 70px;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
+            height: 60px;
         }
 
         .logo img {
-            height: 65px; /* Point 10: Bigger Logo */
+            height: 60px;
             transition: var(--transition);
         }
-        
-        /* Removed "Knox IT Services" text as requested in Point 10 */
 
-        /* Point 11: Hamburger Menu Logic */
         .hamburger {
             cursor: pointer;
             font-size: 1.8rem;
             color: var(--accent-lime);
             z-index: 1100;
-            transition: var(--transition);
         }
 
-        .hamburger.active i::before {
-            content: "\f00d"; /* FontAwesome 'X' icon */
-        }
-
+        /* Side Panel Drawer */
         .nav-menu {
             position: fixed;
             top: 0;
-            right: -100%;
-            width: 100%;
+            right: -280px; /* Hidden by default */
+            width: 260px;
             height: 100vh;
-            background: rgba(5, 7, 10, 0.98);
+            background: #0d0f12;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 40px;
-            transition: 0.4s ease-in-out;
+            padding-top: 80px;
+            gap: 20px;
+            transition: 0.3s ease-in-out;
             z-index: 1050;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.5);
+            border-left: 1px solid rgba(255,255,255,0.1);
         }
 
         .nav-menu.active { right: 0; }
 
         .nav-link {
-            font-size: 1.5rem;
-            font-weight: 600;
+            font-size: 1.1rem;
+            font-weight: 500;
             color: #fff;
-            text-transform: uppercase;
+            padding: 10px 30px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
         }
 
-        .nav-link:hover { color: var(--accent-lime); }
+        .nav-link:hover { color: var(--accent-lime); padding-left: 40px; transition: 0.3s; }
 
-        /* --- HERO SECTION --- */
+        /* Overlay to close menu */
+        .menu-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 1040;
+            display: none;
+        }
+        .menu-overlay.active { display: block; }
+
+        /* --- HERO SECTION (Point 2: Original Video Size) --- */
         .hero {
             position: relative;
-            height: 100vh;
+            width: 100%;
             display: flex;
+            flex-direction: column;
             align-items: center;
-            justify-content: center;
             text-align: center;
-            overflow: hidden;
+            background: #000;
+        }
+
+        .hero-video-container {
+            width: 100%;
+            position: relative;
+            /* Allow video to determine height */
         }
 
         .hero-video {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            object-fit: cover; z-index: -1; opacity: 0.4;
+            width: 100%;
+            height: auto;
+            display: block;
         }
 
-        .hero-overlay {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(to bottom, rgba(5,7,10,0.6), rgba(5,7,10,0.9));
-            z-index: -1;
+        .hero-content {
+            padding: 40px 20px;
+            background: var(--bg-gradient); /* Blend with body */
+            width: 100%;
         }
 
-        .hero-content h1 { font-size: 3rem; margin-bottom: 20px; line-height: 1.2; }
+        .hero-content h1 { font-size: 2.5rem; margin-bottom: 15px; line-height: 1.2; text-transform: uppercase; }
         .hero-content h1 span { color: var(--accent-blue); }
-        .hero-content p { font-size: 1.1rem; color: var(--text-gray); margin-bottom: 30px; }
+        .hero-content p { font-size: 1rem; color: var(--text-gray); margin-bottom: 25px; }
         
-        .hero-buttons { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-bottom: 20px; }
+        .hero-buttons { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
 
-        /* --- SERVICES (Point 1) --- */
+        /* --- SERVICES (Point 3: 10 Features) --- */
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -224,277 +221,238 @@
 
         .service-card {
             background: var(--card-bg);
-            border-radius: 15px;
-            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.1);
             padding: 30px;
             transition: var(--transition);
-            position: relative;
-            overflow: hidden;
         }
 
         .service-card:hover {
-            transform: translateY(-5px);
             border-color: var(--accent-lime);
-            box-shadow: 0 10px 30px rgba(214, 245, 60, 0.1);
+            box-shadow: 0 0 20px rgba(214, 245, 60, 0.1);
         }
 
-        .service-card h3 { font-size: 1.5rem; margin-bottom: 10px; color: #fff; }
-        .service-card .price { font-size: 1.4rem; color: var(--accent-lime); font-weight: 700; margin-bottom: 20px; display: block; }
+        .service-card h3 { font-size: 1.5rem; margin-bottom: 5px; color: #fff; }
+        .service-card .price { font-size: 1.2rem; color: var(--accent-lime); font-weight: 700; margin-bottom: 20px; display: block; }
 
         .service-card ul li {
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             color: var(--text-gray);
             display: flex;
             align-items: center;
-            font-size: 0.95rem;
+            font-size: 0.85rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding-bottom: 5px;
         }
-        .service-card ul li i { color: var(--accent-blue); margin-right: 10px; }
+        .service-card ul li:last-child { border: none; }
+        .service-card ul li i { color: var(--accent-blue); margin-right: 10px; font-size: 0.8rem; }
+        
+        .hosting-highlight {
+            color: #fff !important;
+            font-weight: bold;
+            text-shadow: 0 0 5px var(--accent-lime);
+        }
+        .hosting-highlight i { color: var(--accent-lime) !important; }
 
-        /* --- PROCESS (Point 2: Horizontal/Target Style) --- */
+        /* --- PROCESS (Point 4: Grid in Mobile) --- */
         .process-row {
             display: flex;
-            flex-wrap: wrap;
             justify-content: center;
             gap: 30px;
-            align-items: center;
+            flex-wrap: wrap;
         }
 
         .process-step {
-            flex: 1;
-            min-width: 200px;
-            max-width: 250px;
+            width: 180px;
             text-align: center;
             background: rgba(255,255,255,0.03);
             padding: 20px;
-            border-radius: 50%; /* Target/Circle shape */
-            aspect-ratio: 1/1; /* Keeps it circular */
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            border: 2px solid rgba(46, 99, 215, 0.3);
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.1);
             transition: var(--transition);
         }
 
-        .process-step:hover {
-            border-color: var(--accent-lime);
-            background: rgba(46, 99, 215, 0.1);
-            transform: scale(1.05);
-        }
-
+        .process-step:hover { border-color: var(--accent-lime); transform: translateY(-5px); }
         .process-icon { font-size: 2rem; color: var(--accent-lime); margin-bottom: 10px; }
-        .process-step h4 { font-size: 1.1rem; margin-bottom: 5px; }
+        .process-step h4 { font-size: 1rem; margin-bottom: 5px; }
 
-        /* --- AUTO CALC / STATS (Point 3: Horizontal/Target Style) --- */
+        /* --- STATS (Point 5: Grid in Mobile + Heading) --- */
         .stats-row {
             display: flex;
-            flex-wrap: wrap;
             justify-content: center;
             gap: 30px;
+            flex-wrap: wrap;
         }
 
-        .stat-circle {
-            flex: 1;
-            min-width: 200px;
-            max-width: 250px;
+        .stat-box {
+            width: 200px;
             text-align: center;
             background: rgba(255,255,255,0.03);
-            padding: 20px;
-            border-radius: 10px; /* Rounded rectangle for variety, or use 50% for circles */
-            border: 1px solid rgba(255,255,255,0.1);
-            position: relative;
+            padding: 25px 15px;
+            border-radius: 10px;
+            border: 1px solid rgba(46, 99, 215, 0.3);
         }
 
-        .stat-circle:hover { border-color: var(--accent-blue); }
+        .stat-box h3 { font-size: 2.5rem; color: var(--accent-blue); font-weight: 700; }
+        .stat-box p { color: var(--text-gray); font-size: 0.9rem; text-transform: uppercase; }
 
-        .stat-circle h3 { font-size: 2.5rem; color: var(--accent-lime); font-weight: 700; margin-bottom: 5px; }
-        .stat-circle p { color: var(--text-gray); font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; }
-
-        /* --- SUCCESS STORIES (Point 4: Horizontal Auto Swipe) --- */
-        .stories-wrapper {
-            width: 100%;
-            overflow-x: hidden; /* Hide scrollbar */
-            position: relative;
+        /* --- SUCCESS STORIES (Point 6: 10 Items + Auto Roll + Pause) --- */
+        .marquee-wrapper {
+            overflow: hidden;
+            background: rgba(0,0,0,0.3);
+            padding: 30px 0;
         }
 
-        .stories-container {
+        .marquee-content {
             display: flex;
             gap: 20px;
-            overflow-x: auto;
-            scroll-behavior: smooth;
-            padding: 20px 5px;
-            -ms-overflow-style: none;  /* IE and Edge */
-            scrollbar-width: none;  /* Firefox */
+            width: max-content;
+            animation: scroll-left 40s linear infinite;
         }
-        
-        .stories-container::-webkit-scrollbar { display: none; }
+
+        /* Point 6: Pause on Hover */
+        .marquee-content:hover { animation-play-state: paused; }
 
         .story-card {
-            min-width: 300px;
-            max-width: 350px;
+            width: 300px;
             background: var(--card-bg);
-            padding: 30px;
+            padding: 25px;
             border-radius: 10px;
-            border-left: 4px solid var(--accent-blue);
+            border-left: 3px solid var(--accent-lime);
             flex-shrink: 0;
-            transition: var(--transition);
         }
 
-        .story-card h3 { color: #fff; margin-bottom: 15px; font-size: 1.2rem; }
-        .story-label { color: var(--accent-lime); font-size: 0.8rem; text-transform: uppercase; font-weight: 700; display: block; margin-top: 10px; }
-        .story-text { color: var(--text-gray); font-size: 0.95rem; }
+        .story-card h3 { color: #fff; margin-bottom: 10px; font-size: 1.1rem; }
+        .story-text { color: var(--text-gray); font-size: 0.9rem; }
 
-        /* --- WHY CHOOSE (Point 5) --- */
-        .why-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
-        .why-card {
-            text-align: center;
-            padding: 30px;
-            background: rgba(255,255,255,0.02);
-            border-radius: 10px;
-            border: 1px solid transparent;
-        }
-        .why-card:hover { border-color: var(--accent-lime); background: rgba(255,255,255,0.05); }
-        .why-card i { font-size: 2.5rem; color: var(--accent-blue); margin-bottom: 20px; }
-
-        /* --- FAQ (Point 6: 10 Questions) --- */
-        .faq-container { max-width: 800px; margin: 0 auto; }
-        .faq-item {
-            background: rgba(255,255,255,0.03);
-            margin-bottom: 10px;
-            border-radius: 5px;
-            overflow: hidden;
-        }
-        .faq-question {
-            padding: 15px 20px;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 600;
-            font-size: 0.95rem;
-        }
-        .faq-question:hover { background: rgba(255,255,255,0.05); color: var(--accent-lime); }
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            padding: 0 20px;
-            color: var(--text-gray);
-            font-size: 0.9rem;
-            transition: 0.3s ease;
-        }
-        .faq-item.active .faq-answer { padding: 0 20px 20px; max-height: 300px; }
-        .faq-icon { transition: 0.3s; }
-        .faq-item.active .faq-icon { transform: rotate(180deg); }
-
-        /* --- CLIENTS (Point 7: Right to Left) --- */
-        .marquee-section { padding: 50px 0; background: rgba(0,0,0,0.3); overflow: hidden; }
-        .marquee-track-right-left {
+        /* --- CLIENTS (Point 7: Original Color + Roll Right to Left) --- */
+        .client-marquee {
             display: flex;
             gap: 50px;
             width: max-content;
-            animation: scroll-rl 25s linear infinite;
+            animation: scroll-right 30s linear infinite;
         }
-        .marquee-track-right-left img { height: 60px; filter: grayscale(1); opacity: 0.7; transition: 0.3s; }
-        .marquee-track-right-left img:hover { filter: grayscale(0); opacity: 1; }
-
-        @keyframes scroll-rl {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); } /* Ensure content is duplicated to loop smooth */
+        
+        .client-marquee img { 
+            height: 60px; 
+            filter: none; /* Point 7: Original Color */
+            transition: 0.3s;
         }
 
-        /* --- TECH (Point 8: Left to Right) --- */
-        .marquee-track-left-right {
+        /* --- TECH (Point 8: 20 Items + Roll Left to Right) --- */
+        .tech-marquee {
             display: flex;
-            gap: 50px;
+            gap: 40px;
             width: max-content;
-            animation: scroll-lr 25s linear infinite;
+            animation: scroll-left 30s linear infinite;
         }
+
         .tech-item {
             display: flex;
             flex-direction: column;
             align-items: center;
-            color: var(--text-gray);
+            color: #fff;
+            font-size: 0.8rem;
         }
-        .tech-item i { font-size: 3rem; margin-bottom: 5px; color: #fff; }
         
-        @keyframes scroll-lr {
+        .tech-item i { font-size: 2.5rem; margin-bottom: 5px; color: var(--text-gray); }
+        .tech-item span { color: var(--text-gray); }
+
+        /* --- ANIMATIONS --- */
+        @keyframes scroll-left {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        @keyframes scroll-right {
             0% { transform: translateX(-50%); }
             100% { transform: translateX(0); }
         }
 
-        /* --- CONTACT (Footer ke upar) --- */
-        .contact-section { background: rgba(13, 18, 24, 0.8); border-top: 1px solid rgba(255,255,255,0.05); }
+        /* --- CONTACT (Point 9: Revert to Old Style) --- */
+        .contact-section { background: rgba(0,0,0,0.4); }
         .contact-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
+            gap: 50px;
         }
-        .contact-item { display: flex; align-items: flex-start; margin-bottom: 25px; }
-        .contact-icon-box {
-            width: 40px; height: 40px;
-            background: rgba(46, 99, 215, 0.1);
-            color: var(--accent-lime);
-            display: flex; align-items: center; justify-content: center;
-            border-radius: 5px;
-            margin-right: 15px;
-            font-size: 1.2rem;
-        }
-        /* Point: Fix Phone Icon */
-        .contact-icon-box i.fa-phone-alt { transform: scaleX(1); } 
 
-        .form-box { background: rgba(0,0,0,0.2); padding: 30px; border-radius: 10px; }
-        .form-group { margin-bottom: 15px; }
-        .form-input {
-            width: 100%; padding: 12px;
-            background: #0B0F14; border: 1px solid #2a323d;
-            border-radius: 5px; color: #fff;
-        }
-        .form-input:focus { outline: none; border-color: var(--accent-lime); }
+        .contact-details h4 { color: var(--accent-lime); margin-bottom: 15px; font-size: 1.2rem; }
+        .contact-row { display: flex; align-items: flex-start; margin-bottom: 20px; }
+        .contact-icon { font-size: 1.2rem; color: var(--accent-blue); margin-right: 15px; margin-top: 5px; width: 20px; }
+        .contact-text p { color: var(--text-gray); margin-bottom: 5px; }
+        .contact-text strong { color: #fff; }
 
-        /* --- FOOTER (Point 13) --- */
+        .form-control {
+            width: 100%; padding: 12px; margin-bottom: 15px;
+            background: #111; border: 1px solid #333;
+            color: #fff; border-radius: 5px;
+        }
+        .form-control:focus { outline: none; border-color: var(--accent-lime); }
+
+        /* --- FOOTER (Point 10: Revert to Old Style) --- */
         footer {
             background: #000;
-            padding: 20px 0;
-            text-align: center;
-            border-top: 1px solid #1a2029;
-            font-size: 0.9rem;
-            color: var(--text-gray);
+            padding: 60px 0 20px;
+            border-top: 1px solid #222;
         }
 
-        /* --- FLOATING WHATSAPP (Wave & Auto Message) --- */
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 { color: #fff; margin-bottom: 20px; font-size: 1.1rem; }
+        .footer-col ul li { margin-bottom: 10px; }
+        .footer-col ul li a { color: var(--text-gray); font-size: 0.9rem; }
+        .footer-col ul li a:hover { color: var(--accent-lime); }
+
+        .social-links a {
+            display: inline-flex; width: 35px; height: 35px;
+            background: #222; color: #fff;
+            align-items: center; justify-content: center;
+            border-radius: 50%; margin-right: 10px;
+        }
+        .social-links a:hover { background: var(--accent-blue); }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #222;
+            color: #666;
+            font-size: 0.85rem;
+        }
+
+        /* --- FLOATING WHATSAPP --- */
         .float-wa {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background-color: #25d366;
-            color: #FFF;
-            width: 60px;
-            height: 60px;
+            bottom: 20px; right: 20px;
+            background-color: #25d366; color: #FFF;
+            width: 55px; height: 55px;
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 32px;
-            z-index: 2000;
-            text-decoration: none;
-            /* Wave Animation */
-            animation: pulse-border 2s infinite;
-        }
-
-        @keyframes pulse-border {
-            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
-            70% { box-shadow: 0 0 0 20px rgba(37, 211, 102, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+            display: flex; align-items: center; justify-content: center;
+            font-size: 28px; z-index: 2000;
+            animation: pulse 2s infinite;
         }
         
-        /* Mobile Tweaks */
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        /* --- MEDIA QUERIES (Point 4 & 5) --- */
         @media (max-width: 768px) {
-            .process-row, .stats-row { flex-direction: column; }
-            .hero-content h1 { font-size: 2rem; }
+            .process-row, .stats-row {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr); /* 2x2 Square Grid */
+                gap: 15px;
+            }
+            .process-step, .stat-box { width: 100%; }
+            .hero-content h1 { font-size: 1.8rem; }
+            .section-title { font-size: 1.5rem; }
         }
     </style>
 </head>
@@ -505,36 +463,35 @@
             <a href="#" class="logo">
                 <img src="images/mylogo.png" alt="Knox Logo">
             </a>
-            
             <div class="hamburger" id="hamburger-btn">
                 <i class="fas fa-bars"></i>
             </div>
         </div>
-        
-        <div class="nav-menu" id="nav-menu">
-            <a href="#home" class="nav-link">Home</a>
-            <a href="#services" class="nav-link">Services</a>
-            <a href="#process" class="nav-link">Process</a>
-            <a href="#stories" class="nav-link">Success Stories</a>
-            <a href="#contact" class="nav-link">Contact</a>
-        </div>
     </header>
 
+    <div class="menu-overlay" id="menu-overlay"></div>
+    <div class="nav-menu" id="nav-menu">
+        <a href="#home" class="nav-link">Home</a>
+        <a href="#services" class="nav-link">Services</a>
+        <a href="#process" class="nav-link">Process</a>
+        <a href="#stories" class="nav-link">Success Stories</a>
+        <a href="#contact" class="nav-link">Contact</a>
+    </div>
+
     <section id="home" class="hero">
-        <video class="hero-video" autoplay muted loop playsinline poster="images/laptopsales.jpeg">
-            <source src="images/topbanner.mp4" type="video/mp4">
-        </video>
-        <div class="hero-overlay"></div>
-        <div class="container hero-content fade-in">
+        <div class="hero-video-container">
+            <video class="hero-video" autoplay muted loop playsinline>
+                <source src="images/topbanner.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="hero-content">
             <h1>Transform Ideas Into <br><span>Reality</span></h1>
-            <p>Web Development • Business Email • Refurbished Laptops</p>
             <div class="hero-buttons">
                 <a href="https://wa.me/918009262472?text=Hello%20Knox%20IT,%20I%20am%20interested%20in%20your%20services.%20Please%20guide%20me.%0A%0ARef:%20Web-Lead" class="btn btn-primary" target="_blank">
                     <i class="fab fa-whatsapp"></i> Get Free Consultation
                 </a>
                 <a href="tel:8009262472" class="btn btn-secondary">Call Now</a>
             </div>
-            <p style="font-size: 0.8rem; color: #aaa; margin-top: 10px;">Free 30-minute IT consultation for businesses</p>
         </div>
     </section>
 
@@ -542,30 +499,51 @@
         <div class="container">
             <h2 class="section-title">Our <span>Services</span></h2>
             <div class="services-grid">
-                <div class="service-card fade-in">
+                <div class="service-card">
                     <h3>Website Development</h3>
                     <span class="price">₹12,499 / Start</span>
                     <ul>
-                        <li><i class="fas fa-check"></i> Business websites</li>
-                        <li><i class="fas fa-check"></i> Mobile responsive</li>
-                        <li><i class="fas fa-check"></i> Free 1st Year Hosting</li>
+                        <li><i class="fas fa-check"></i> Custom Design</li>
+                        <li><i class="fas fa-check"></i> Mobile Responsive</li>
+                        <li><i class="fas fa-check"></i> SEO Optimization</li>
+                        <li class="hosting-highlight"><i class="fas fa-star"></i> 1 Year Free Hosting</li>
+                        <li><i class="fas fa-check"></i> Free SSL Certificate</li>
+                        <li><i class="fas fa-check"></i> Contact Form Integration</li>
+                        <li><i class="fas fa-check"></i> Social Media Links</li>
+                        <li><i class="fas fa-check"></i> Fast Page Loading</li>
+                        <li><i class="fas fa-check"></i> WhatsApp Button</li>
+                        <li><i class="fas fa-check"></i> 1 Month Support</li>
                     </ul>
                 </div>
-                <div class="service-card fade-in">
+                <div class="service-card">
                     <h3>Business Email</h3>
                     <span class="price">₹600 / ID / Start</span>
                     <ul>
                         <li><i class="fas fa-check"></i> Zoho / Outlook Setup</li>
-                        <li><i class="fas fa-check"></i> SPF, DKIM, DMARC</li>
+                        <li><i class="fas fa-check"></i> Custom Domain Email</li>
+                        <li><i class="fas fa-check"></i> 50GB Storage</li>
+                        <li><i class="fas fa-check"></i> Spam Protection</li>
+                        <li><i class="fas fa-check"></i> Mobile App Access</li>
+                        <li><i class="fas fa-check"></i> Calendar Sync</li>
+                        <li><i class="fas fa-check"></i> SPF/DKIM Security</li>
+                        <li><i class="fas fa-check"></i> 99.9% Uptime</li>
+                        <li><i class="fas fa-check"></i> Admin Control Panel</li>
                         <li><i class="fas fa-check"></i> Migration Support</li>
                     </ul>
                 </div>
-                <div class="service-card fade-in">
+                <div class="service-card">
                     <h3>Refurbished Laptops</h3>
                     <span class="price">Retail & Bulk</span>
                     <ul>
-                        <li><i class="fas fa-check"></i> Business Series</li>
+                        <li><i class="fas fa-check"></i> Business Series (Dell/HP)</li>
+                        <li><i class="fas fa-check"></i> Core i5 / i7 Processors</li>
+                        <li><i class="fas fa-check"></i> 8GB / 16GB RAM</li>
+                        <li><i class="fas fa-check"></i> SSD Upgrades Available</li>
+                        <li><i class="fas fa-check"></i> Windows 10/11 Pro</li>
+                        <li><i class="fas fa-check"></i> MS Office Support</li>
                         <li><i class="fas fa-check"></i> 1 Year Warranty</li>
+                        <li><i class="fas fa-check"></i> Quality Check Tested</li>
+                        <li><i class="fas fa-check"></i> Antivirus Installed</li>
                         <li><i class="fas fa-check"></i> Pan India Delivery</li>
                     </ul>
                 </div>
@@ -573,55 +551,51 @@
         </div>
     </section>
 
-    <section id="process" class="section-padding" style="background: rgba(0,0,0,0.2);">
+    <section id="process" class="section-padding">
         <div class="container">
             <h2 class="section-title">Our <span>Process</span></h2>
             <div class="process-row">
-                <div class="process-step fade-in">
+                <div class="process-step">
                     <i class="fas fa-comments process-icon"></i>
                     <h4>Discussion</h4>
-                    <p style="font-size:0.8rem; color:var(--text-gray);">Understand Needs</p>
                 </div>
-                <div class="process-step fade-in">
+                <div class="process-step">
                     <i class="fas fa-pencil-ruler process-icon"></i>
                     <h4>Planning</h4>
-                    <p style="font-size:0.8rem; color:var(--text-gray);">Blueprint Strategy</p>
                 </div>
-                <div class="process-step fade-in">
+                <div class="process-step">
                     <i class="fas fa-code process-icon"></i>
                     <h4>Development</h4>
-                    <p style="font-size:0.8rem; color:var(--text-gray);">Coding & Setup</p>
                 </div>
-                <div class="process-step fade-in">
+                <div class="process-step">
+                    <i class="fas fa-check-circle process-icon"></i>
+                    <h4>Testing</h4>
+                </div>
+                <div class="process-step">
                     <i class="fas fa-rocket process-icon"></i>
                     <h4>Delivery</h4>
-                    <p style="font-size:0.8rem; color:var(--text-gray);">Launch & Support</p>
-                </div>
-                <div class="process-step fade-in">
-                    <i class="fas fa-smile process-icon"></i>
-                    <h4>Success</h4>
-                    <p style="font-size:0.8rem; color:var(--text-gray);">Business Growth</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="stats" class="section-padding">
+    <section class="section-padding" style="background: rgba(255,255,255,0.02);">
         <div class="container">
+            <h2 class="section-title">Our <span>Achievements</span></h2>
             <div class="stats-row">
-                <div class="stat-circle fade-in">
+                <div class="stat-box">
                     <h3 data-target="4">0</h3>
                     <p>Years Experience</p>
                 </div>
-                <div class="stat-circle fade-in">
+                <div class="stat-box">
                     <h3 data-target="8000">0</h3>
                     <p>Websites Live</p>
                 </div>
-                <div class="stat-circle fade-in">
+                <div class="stat-box">
                     <h3 data-target="5000">0</h3>
                     <p>Emails Managed</p>
                 </div>
-                <div class="stat-circle fade-in">
+                <div class="stat-box">
                     <h3 data-target="1200">0</h3>
                     <p>Laptops Sold</p>
                 </div>
@@ -629,205 +603,128 @@
         </div>
     </section>
 
-    <section id="stories" class="section-padding" style="background: rgba(0,0,0,0.2);">
+    <section id="stories" class="section-padding">
         <div class="container">
             <h2 class="section-title">Success <span>Stories</span></h2>
-            <div class="stories-wrapper">
-                <div class="stories-container" id="stories-scroll">
-                    <div class="story-card">
-                        <h3>School Website</h3>
-                        <span class="story-label">Problem</span>
-                        <p class="story-text">Manual admission process.</p>
-                        <span class="story-label">Solution</span>
-                        <p class="story-text">Automated Online Portal.</p>
-                        <span class="story-label">Result</span>
-                        <p class="story-text">300% Increase in applications.</p>
-                    </div>
-                    <div class="story-card">
-                        <h3>Corporate Email</h3>
-                        <span class="story-label">Problem</span>
-                        <p class="story-text">High spam rate in old mail.</p>
-                        <span class="story-label">Solution</span>
-                        <p class="story-text">Moved to Zoho Workplace.</p>
-                        <span class="story-label">Result</span>
-                        <p class="story-text">Zero spam & 99.9% Uptime.</p>
-                    </div>
-                    <div class="story-card">
-                        <h3>Startup Launch</h3>
-                        <span class="story-label">Problem</span>
-                        <p class="story-text">No brand identity.</p>
-                        <span class="story-label">Solution</span>
-                        <p class="story-text">Website + Logo + SEO.</p>
-                        <span class="story-label">Result</span>
-                        <p class="story-text">First 50 clients in 1 month.</p>
-                    </div>
-                    <div class="story-card">
-                        <h3>Call Center Setup</h3>
-                        <span class="story-label">Problem</span>
-                        <p class="story-text">Needed 50 laptops urgently.</p>
-                        <span class="story-label">Solution</span>
-                        <p class="story-text">Refurbished Bulk Supply.</p>
-                        <span class="story-label">Result</span>
-                        <p class="story-text">Saved 60% IT Cost.</p>
-                    </div>
-                </div>
+        </div>
+        <div class="marquee-wrapper">
+            <div class="marquee-content">
+                <div class="story-card"><h3>School Website</h3><p class="story-text">Automated admissions & fees.</p></div>
+                <div class="story-card"><h3>Corp Email</h3><p class="story-text">Zero spam & 99.9% uptime.</p></div>
+                <div class="story-card"><h3>Startup Launch</h3><p class="story-text">Brand identity & first clients.</p></div>
+                <div class="story-card"><h3>Call Center</h3><p class="story-text">50 Laptops bulk supply.</p></div>
+                <div class="story-card"><h3>E-Commerce</h3><p class="story-text">Sales boosted by 200%.</p></div>
+                <div class="story-card"><h3>Dental Clinic</h3><p class="story-text">Online appointment booking.</p></div>
+                <div class="story-card"><h3>Real Estate</h3><p class="story-text">Property listing portal.</p></div>
+                <div class="story-card"><h3>NGO Website</h3><p class="story-text">Donation gateway integration.</p></div>
+                <div class="story-card"><h3>Logistics</h3><p class="story-text">Tracking system setup.</p></div>
+                <div class="story-card"><h3>Law Firm</h3><p class="story-text">Secure document portal.</p></div>
+                <div class="story-card"><h3>School Website</h3><p class="story-text">Automated admissions & fees.</p></div>
+                <div class="story-card"><h3>Corp Email</h3><p class="story-text">Zero spam & 99.9% uptime.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding" style="background: rgba(255,255,255,0.02);">
+        <div class="container">
+            <h2 class="section-title">Trusted <span>Clients</span></h2>
+        </div>
+        <div class="marquee-wrapper" style="background: transparent;">
+            <div class="client-marquee">
+                <img src="images/client1.png" alt="Client">
+                <img src="images/client2.png" alt="Client">
+                <img src="images/client3.png" alt="Client">
+                <img src="images/client4.png" alt="Client">
+                <img src="images/client5.png" alt="Client">
+                <img src="images/client1.png" alt="Client">
+                <img src="images/client2.png" alt="Client">
+                <img src="images/client3.png" alt="Client">
+                <img src="images/client4.png" alt="Client">
+                <img src="images/client5.png" alt="Client">
             </div>
         </div>
     </section>
 
     <section class="section-padding">
         <div class="container">
-            <h2 class="section-title">Why Choose <span>Knox</span></h2>
-            <div class="why-grid">
-                <div class="why-card fade-in">
-                    <i class="fas fa-headset"></i>
-                    <h4>Fast Support</h4>
-                    <p style="color:var(--text-gray); font-size:0.9rem;">We are always just a call away.</p>
-                </div>
-                <div class="why-card fade-in">
-                    <i class="fas fa-wallet"></i>
-                    <h4>Affordable</h4>
-                    <p style="color:var(--text-gray); font-size:0.9rem;">Best pricing for Indian businesses.</p>
-                </div>
-                <div class="why-card fade-in">
-                    <i class="fas fa-layer-group"></i>
-                    <h4>All-in-One</h4>
-                    <p style="color:var(--text-gray); font-size:0.9rem;">Web, Mail, and Hardware.</p>
-                </div>
-                <div class="why-card fade-in">
-                    <i class="fas fa-shield-alt"></i>
-                    <h4>Secure</h4>
-                    <p style="color:var(--text-gray); font-size:0.9rem;">Data privacy is our priority.</p>
-                </div>
+            <h2 class="section-title">Technologies <span>We Use</span></h2>
+        </div>
+        <div class="marquee-wrapper" style="background: transparent;">
+            <div class="tech-marquee">
+                <div class="tech-item"><i class="fab fa-html5"></i><span>HTML5</span></div>
+                <div class="tech-item"><i class="fab fa-css3-alt"></i><span>CSS3</span></div>
+                <div class="tech-item"><i class="fab fa-js"></i><span>JavaScript</span></div>
+                <div class="tech-item"><i class="fab fa-python"></i><span>Python</span></div>
+                <div class="tech-item"><i class="fab fa-react"></i><span>React</span></div>
+                <div class="tech-item"><i class="fab fa-node"></i><span>Node.js</span></div>
+                <div class="tech-item"><i class="fab fa-php"></i><span>PHP</span></div>
+                <div class="tech-item"><i class="fab fa-wordpress"></i><span>WordPress</span></div>
+                <div class="tech-item"><i class="fab fa-aws"></i><span>AWS</span></div>
+                <div class="tech-item"><i class="fab fa-google"></i><span>Google Cloud</span></div>
+                <div class="tech-item"><i class="fab fa-microsoft"></i><span>Azure</span></div>
+                <div class="tech-item"><i class="fab fa-docker"></i><span>Docker</span></div>
+                <div class="tech-item"><i class="fab fa-git-alt"></i><span>Git</span></div>
+                <div class="tech-item"><i class="fab fa-linux"></i><span>Linux</span></div>
+                <div class="tech-item"><i class="fas fa-database"></i><span>MySQL</span></div>
+                <div class="tech-item"><i class="fas fa-server"></i><span>Nginx</span></div>
+                <div class="tech-item"><i class="fab fa-android"></i><span>Android</span></div>
+                <div class="tech-item"><i class="fab fa-apple"></i><span>iOS</span></div>
+                <div class="tech-item"><i class="fab fa-shopify"></i><span>Shopify</span></div>
+                <div class="tech-item"><i class="fab fa-angular"></i><span>Angular</span></div>
+                <div class="tech-item"><i class="fab fa-html5"></i><span>HTML5</span></div>
+                <div class="tech-item"><i class="fab fa-css3-alt"></i><span>CSS3</span></div>
             </div>
         </div>
     </section>
 
-    <section class="section-padding" style="background: rgba(0,0,0,0.2);">
-        <div class="container">
-            <h2 class="section-title">Frequent <span>Questions</span></h2>
-            <div class="faq-container">
-                <div class="faq-item">
-                    <div class="faq-question">How long does website development take? <i class="fas fa-chevron-down faq-icon"></i></div>
-                    <div class="faq-answer">Usually 5-7 working days for business websites.</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">Do you provide support after delivery? <i class="fas fa-chevron-down faq-icon"></i></div>
-                    <div class="faq-answer">Yes, we provide 1 year of technical support with our packages.</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">Do you provide GST Invoice? <i class="fas fa-chevron-down faq-icon"></i></div>
-                    <div class="faq-answer">Yes, we provide valid GST invoices for all services and products.</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">Is the hosting free? <i class="fas fa-chevron-down faq-icon"></i></div>
-                    <div class="faq-answer">Yes, the first year of hosting is completely free with website development.</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">Can you handle bulk laptop orders? <i class="fas fa-chevron-down faq-icon"></i></div>
-                    <div class="faq-answer">Yes, we supply bulk refurbished laptops to offices and schools.</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">What is the warranty on laptops? <i class="fas fa-chevron-down faq-icon"></i></div>
-                    <div class="faq-answer">We provide up to 1 year warranty on refurbished business series laptops.</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">Do you setup Outlook/Office 365? <i class="fas fa-chevron-down faq-icon"></i></div>
-                    <div class="faq-answer">Yes, we are partners with Microsoft and can setup Office 365 emails.</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">Will my website work on Mobile? <i class="fas fa-chevron-down faq-icon"></i></div>
-                    <div class="faq-answer">Absolutely. All our designs are 100% mobile responsive.</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">Do you write content for the website? <i class="fas fa-chevron-down faq-icon"></i></div>
-                    <div class="faq-answer">Basic content placement is included. Professional copywriting is an add-on.</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">How do I pay? <i class="fas fa-chevron-down faq-icon"></i></div>
-                    <div class="faq-answer">We accept UPI, Bank Transfer, and Credit Cards.</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="marquee-section">
-        <h3 style="text-align:center; margin-bottom:30px; color:#888;">Our Trusted Clients</h3>
-        <div class="marquee-track-right-left">
-            <img src="images/client1.png" alt="Client">
-            <img src="images/client2.png" alt="Client">
-            <img src="images/client3.png" alt="Client">
-            <img src="images/client4.png" alt="Client">
-            <img src="images/client5.png" alt="Client">
-            <img src="images/client1.png" alt="Client">
-            <img src="images/client2.png" alt="Client">
-            <img src="images/client3.png" alt="Client">
-            <img src="images/client4.png" alt="Client">
-            <img src="images/client5.png" alt="Client">
-        </div>
-    </section>
-
-    <section class="marquee-section" style="background: rgba(0,0,0,0.5);">
-        <h3 style="text-align:center; margin-bottom:30px; color:#888;">Technologies We Use</h3>
-        <div class="marquee-track-left-right">
-            <div class="tech-item"><i class="fab fa-html5" style="color:#e34c26;"></i><span>HTML5</span></div>
-            <div class="tech-item"><i class="fab fa-css3-alt" style="color:#264de4;"></i><span>CSS3</span></div>
-            <div class="tech-item"><i class="fab fa-js" style="color:#f0db4f;"></i><span>JS</span></div>
-            <div class="tech-item"><i class="fab fa-python" style="color:#4B8BBE;"></i><span>Python</span></div>
-            <div class="tech-item"><i class="fab fa-wordpress" style="color:#21759b;"></i><span>WordPress</span></div>
-            <div class="tech-item"><i class="fab fa-google" style="color:#4285F4;"></i><span>Google Cloud</span></div>
-            <div class="tech-item"><img src="images/webdev.gif" style="height:50px; width:auto; filter:none;" alt="WebDev"></div>
-            <div class="tech-item"><i class="fab fa-html5" style="color:#e34c26;"></i><span>HTML5</span></div>
-            <div class="tech-item"><i class="fab fa-css3-alt" style="color:#264de4;"></i><span>CSS3</span></div>
-            <div class="tech-item"><i class="fab fa-js" style="color:#f0db4f;"></i><span>JS</span></div>
-            <div class="tech-item"><i class="fab fa-python" style="color:#4B8BBE;"></i><span>Python</span></div>
-            <div class="tech-item"><i class="fab fa-wordpress" style="color:#21759b;"></i><span>WordPress</span></div>
-        </div>
-    </section>
-
-    <section id="contact" class="contact-section section-padding">
+    <section id="contact" class="section-padding contact-section">
         <div class="container">
             <h2 class="section-title">Contact <span>Us</span></h2>
             <div class="contact-grid">
                 <div class="contact-info">
-                    <div class="contact-item">
-                        <div class="contact-icon-box">
-                            <i class="fas fa-phone-alt"></i>
-                        </div>
-                        <div>
-                            <h4>Call Us</h4>
-                            <p style="color:var(--text-gray);">8009262472</p>
+                    <div class="contact-row">
+                        <i class="fas fa-phone-alt contact-icon"></i>
+                        <div class="contact-text">
+                            <h4>Helpline</h4>
+                            <p><strong>8009262472</strong></p>
                         </div>
                     </div>
-                    <div class="contact-item">
-                        <div class="contact-icon-box"><i class="fas fa-envelope"></i></div>
-                        <div>
+                    <div class="contact-row">
+                        <i class="fas fa-envelope contact-icon"></i>
+                        <div class="contact-text">
                             <h4>Email</h4>
-                            <p style="color:var(--text-gray);">sales@knoxit.in</p>
+                            <p>Sales: sales@knoxit.in</p>
+                            <p>Support: support@knoxit.in</p>
                         </div>
                     </div>
-                    <div class="contact-item">
-                        <div class="contact-icon-box"><i class="fas fa-map-marker-alt"></i></div>
-                        <div>
-                            <h4>Location</h4>
-                            <p style="color:var(--text-gray);">Andheri East, Mumbai</p>
+                    <div class="contact-row">
+                        <i class="fas fa-clock contact-icon"></i>
+                        <div class="contact-text">
+                            <h4>Working Hours</h4>
+                            <p>Mon – Sat | 11:00 AM – 6:00 PM</p>
+                        </div>
+                    </div>
+                    <div class="contact-row">
+                        <i class="fas fa-map-marker-alt contact-icon"></i>
+                        <div class="contact-text">
+                            <h4>Address</h4>
+                            <p>F-7 Hema Industrial Estate,<br>Andheri East, Mumbai – 400093</p>
                         </div>
                     </div>
                 </div>
-                
-                <div class="form-box">
+
+                <div class="contact-form">
                     <form action="https://api.web3forms.com/submit" method="POST">
                         <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
-                        
-                        <div class="form-group">
-                            <input type="text" name="name" class="form-input" placeholder="Your Name" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="tel" name="phone" class="form-input" placeholder="Phone Number" required>
-                        </div>
-                        <div class="form-group">
-                            <textarea name="message" class="form-input" placeholder="How can we help?" style="height:100px; resize:none;"></textarea>
-                        </div>
+                        <input type="text" name="name" class="form-control" placeholder="Your Name" required>
+                        <input type="tel" name="phone" class="form-control" placeholder="Phone Number" required>
+                        <input type="email" name="email" class="form-control" placeholder="Email Address" required>
+                        <select name="service" class="form-control">
+                            <option value="Website">Website Development</option>
+                            <option value="Email">Business Email</option>
+                            <option value="Laptops">Refurbished Laptops</option>
+                        </select>
+                        <textarea name="message" class="form-control" placeholder="Message" style="height:100px; resize:none;"></textarea>
                         <button type="submit" class="btn btn-primary" style="width:100%;">Send Message</button>
                     </form>
                 </div>
@@ -837,7 +734,33 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2025 Knox IT Services. All Rights Reserved</p>
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Knox IT Services</h4>
+                    <p style="color:#666; font-size:0.9rem;">Providing top-tier IT solutions for businesses across India. Coding, Hosting, and Hardware under one roof.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#services">Web Development</a></li>
+                        <li><a href="#services">Business Email</a></li>
+                        <li><a href="#services">Laptop Sales</a></li>
+                        <li><a href="#services">IT Consulting</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Connect</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                Copyright © 2025 Knox IT Services. All Rights Reserved
+            </div>
         </div>
     </footer>
 
@@ -846,60 +769,40 @@
     </a>
 
     <script>
-        // 1. Menu Logic (Click anywhere to close)
+        // 1. Menu Logic
         const hamburger = document.getElementById('hamburger-btn');
         const navMenu = document.getElementById('nav-menu');
+        const overlay = document.getElementById('menu-overlay');
         const navLinks = document.querySelectorAll('.nav-link');
-        const body = document.body;
 
-        function toggleMenu(e) {
-            e.stopPropagation(); // Prevent immediate closing
-            navMenu.classList.toggle('active');
-            hamburger.classList.toggle('active');
+        function openMenu() {
+            navMenu.classList.add('active');
+            overlay.classList.add('active');
         }
 
         function closeMenu() {
             navMenu.classList.remove('active');
-            hamburger.classList.remove('active');
+            overlay.classList.remove('active');
         }
 
-        hamburger.addEventListener('click', toggleMenu);
+        hamburger.addEventListener('click', openMenu);
+        overlay.addEventListener('click', closeMenu);
 
-        // Close when clicking links
         navLinks.forEach(link => {
             link.addEventListener('click', closeMenu);
         });
 
-        // Close when clicking anywhere else on screen
-        document.addEventListener('click', (e) => {
-            if (navMenu.classList.contains('active') && !navMenu.contains(e.target) && !hamburger.contains(e.target)) {
-                closeMenu();
-            }
-        });
-
-        // 2. Fade In Animation
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
-        // 3. Counter Animation
-        const statsSection = document.getElementById('stats');
+        // 2. Stats Animation
+        const statsSection = document.querySelector('.stats-row');
         let statsAnimated = false;
 
         const statsObserver = new IntersectionObserver((entries) => {
             if (entries[0].isIntersecting && !statsAnimated) {
-                document.querySelectorAll('.stat-circle h3').forEach(counter => {
+                document.querySelectorAll('.stat-box h3').forEach(counter => {
                     const target = +counter.getAttribute('data-target');
                     const duration = 2000;
                     const increment = target / (duration / 16);
                     let current = 0;
-                    
                     const timer = setInterval(() => {
                         current += increment;
                         if (current >= target) {
@@ -915,28 +818,6 @@
         }, { threshold: 0.5 });
 
         if(statsSection) statsObserver.observe(statsSection);
-
-        // 4. FAQ Toggle
-        document.querySelectorAll('.faq-question').forEach(q => {
-            q.addEventListener('click', () => {
-                const item = q.parentElement;
-                item.classList.toggle('active');
-            });
-        });
-
-        // 5. Success Stories Auto Scroll
-        const storiesContainer = document.getElementById('stories-scroll');
-        function autoScrollStories() {
-            if(storiesContainer) {
-                storiesContainer.scrollLeft += 1;
-                // Reset scroll if reached end (simple loop effect)
-                if(storiesContainer.scrollLeft >= (storiesContainer.scrollWidth - storiesContainer.clientWidth)) {
-                     storiesContainer.scrollLeft = 0;
-                }
-            }
-        }
-        // Adjust speed by changing interval time (20ms)
-        setInterval(autoScrollStories, 30);
 
     </script>
 </body>
