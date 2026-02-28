@@ -43,7 +43,7 @@
         :root {
             /* Corporate Color Scheme */
             --primary: #0E4BCF;      /* Bright Blue */
-            --primary-dark: #0A2540; /* Darker Blue for Contrast */
+            --primary-dark: #0A2540; /* Darker Blue */
             --accent-teal: #00A8A8;  /* Teal Highlight */
             --bg-white: #FFFFFF;
             --bg-grey: #F5F8FC;      /* Light Grey */
@@ -89,6 +89,7 @@
         }
 
         .section-padding { padding: 80px 0; }
+        .section-padding-compact { padding: 40px 0; } /* Reduced height for marquee */
         
         .section-title {
             text-align: center;
@@ -97,6 +98,7 @@
             font-weight: 700;
             color: var(--primary);
             position: relative;
+            white-space: nowrap; /* Force single line on desktop */
         }
         
         .section-title::after {
@@ -185,7 +187,7 @@
 
         @keyframes blink { 50% { opacity: 0.4; } }
 
-        /* HAMBURGER MENU ANIMATION */
+        /* HAMBURGER MENU ANIMATION (3 Lines to X) */
         .hamburger {
             width: 30px;
             height: 24px;
@@ -195,6 +197,7 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            transition: transform 0.3s ease;
         }
 
         .hamburger span {
@@ -204,33 +207,37 @@
             background-color: var(--text-light);
             border-radius: 3px;
             transition: all 0.3s ease-in-out;
+            transform-origin: center;
         }
 
+        /* Transform to X */
         .hamburger.active span:nth-child(1) {
             transform: translateY(10.5px) rotate(45deg);
+            background-color: var(--primary); /* Dark color when on white menu */
         }
         .hamburger.active span:nth-child(2) {
             opacity: 0;
         }
         .hamburger.active span:nth-child(3) {
             transform: translateY(-10.5px) rotate(-45deg);
+            background-color: var(--primary); /* Dark color when on white menu */
         }
 
-        /* Menu Drawer */
+        /* Menu Sidebar (White) */
         .nav-menu {
             position: fixed;
             top: 0;
-            right: -300px;
-            width: 280px;
+            right: -320px; /* Hidden initially */
+            width: 300px; /* Only covers sidebar width */
             height: 100vh;
-            background: var(--primary);
+            background: var(--bg-white); /* White Background */
             display: flex;
             flex-direction: column;
             padding-top: 100px;
             gap: 0;
             transition: 0.4s cubic-bezier(0.77, 0, 0.175, 1);
             z-index: 1050;
-            box-shadow: -5px 0 20px rgba(0,0,0,0.3);
+            box-shadow: -5px 0 20px rgba(0,0,0,0.1);
         }
 
         .nav-menu.active { right: 0; }
@@ -238,37 +245,57 @@
         .nav-link {
             font-size: 1.1rem;
             font-weight: 500;
-            color: rgba(255,255,255,0.9);
+            color: var(--text-dark); /* Dark Text on White */
             padding: 20px 40px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
             transition: 0.3s;
         }
         .nav-link:hover { 
-            color: var(--bg-white); 
-            background: rgba(255,255,255,0.1);
+            color: var(--primary); 
+            background: rgba(14, 75, 207, 0.05);
             padding-left: 50px; 
         }
 
         .menu-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(14, 75, 207, 0.8); z-index: 1040; display: none;
-            backdrop-filter: blur(3px);
+            background: rgba(0, 0, 0, 0.5); z-index: 1040; display: none;
+            backdrop-filter: blur(2px);
         }
         .menu-overlay.active { display: block; }
 
         /* HERO SECTION */
         .hero {
+            position: relative;
             background-color: var(--primary);
             padding: 100px 0;
             text-align: center;
             color: var(--text-light);
-            position: relative;
+            height: 90vh; /* Taller hero to show video */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
         }
         
-        /* Video Background (Optional - currently using solid blue per request, but keeping video hidden just in case or overlay logic) */
-        /* Since "Hero section should look modern and professional" and "code background white use karo" generally applies to body, keeping Hero blue */
+        /* Video Background */
+        .hero-video {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover;
+            z-index: 0;
+            filter: blur(8px); /* Blur Effect */
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(14, 75, 207, 0.7); /* Blue Overlay */
+            z-index: 1;
+        }
 
         .hero-content {
+            position: relative;
+            z-index: 2;
             max-width: 900px;
             margin: 0 auto;
         }
@@ -279,18 +306,20 @@
             margin-bottom: 20px;
             line-height: 1.2;
             letter-spacing: -1px;
+            text-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
         .hero-subtext {
             font-size: 1.2rem;
-            color: #e0e0e0;
+            color: #ffffff;
             margin-bottom: 40px;
-            font-weight: 300;
+            font-weight: 400;
         }
 
         .hero-subtext span {
             padding: 0 15px;
             position: relative;
+            display: inline-block;
         }
         
         .hero-subtext span:not(:last-child)::after {
@@ -301,9 +330,7 @@
         }
 
         /* SERVICES SECTION */
-        .services-section {
-            background-color: var(--bg-white);
-        }
+        .services-section { background-color: var(--bg-white); }
 
         .services-grid {
             display: grid;
@@ -353,9 +380,7 @@
         }
 
         /* ACHIEVEMENTS */
-        .achievements-section {
-            background-color: var(--bg-grey);
-        }
+        .achievements-section { background-color: var(--bg-grey); }
         .stats-row {
             display: flex;
             justify-content: center;
@@ -374,7 +399,7 @@
         .stat-box h3 { font-size: 2.5rem; color: var(--primary); font-weight: 700; }
         .stat-box p { color: var(--text-grey); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* PROCESS (Blockchain Style) */
+        /* PROCESS */
         .process-section { background-color: var(--bg-white); }
         .process-row {
             display: flex;
@@ -435,7 +460,7 @@
         .marquee-wrapper {
             overflow: hidden;
             background: var(--bg-grey);
-            padding: 40px 0;
+            padding: 30px 0;
             cursor: pointer; 
         }
 
@@ -461,9 +486,7 @@
         .story-text { color: var(--text-grey); font-size: 0.9rem; }
 
         /* WHY CHOOSE US */
-        .why-choose-section {
-            background-color: var(--bg-white);
-        }
+        .why-choose-section { background-color: var(--bg-white); }
 
         .features-grid {
             display: grid;
@@ -478,30 +501,17 @@
             border-radius: 10px;
             transition: var(--transition);
         }
-
         .feature-box:hover { transform: translateY(-5px); background: #eef4fc; }
-
-        .feature-icon {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 20px;
-            display: inline-block;
-        }
-
-        .feature-box h4 {
-            color: var(--primary);
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-        }
-
+        .feature-icon { font-size: 2.5rem; color: var(--primary); margin-bottom: 20px; display: inline-block; }
+        .feature-box h4 { color: var(--primary); font-size: 1.2rem; margin-bottom: 10px; }
         .feature-box p { color: var(--text-grey); font-size: 0.9rem; }
 
-        /* CLIENTS & TECH (Original Colors) */
+        /* CLIENTS & TECH (Original Colors, Compact) */
         .clients-section { background: var(--bg-grey); }
         .tech-section { background: var(--bg-white); }
         
         .client-marquee img { 
-            height: 60px; 
+            height: 50px; /* Smaller height */
             width: auto; 
             object-fit: contain; 
             filter: none !important; /* ORIGINAL COLORS */
@@ -509,13 +519,12 @@
             transition: 0.3s;
         }
         
-        .tech-item i { font-size: 3rem; margin-bottom: 10px; color: inherit; } 
-        /* Specific colors for tech icons if not images, otherwise use original colors */
-        .tech-item span { color: var(--text-dark); font-weight: 500;}
+        .tech-item i { font-size: 2.5rem; margin-bottom: 10px; color: inherit; } 
+        .tech-item span { color: var(--text-dark); font-weight: 500; font-size: 0.85rem;}
 
         @keyframes scroll-left { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-        /* CONTACT (Separated) */
+        /* CONTACT */
         .contact-section { background: var(--bg-white); }
         
         .contact-grid { display: grid; gap: 40px; }
@@ -533,7 +542,7 @@
         }
 
         .contact-info-wrapper {
-            background: #F0F6FF; /* Different light blue background */
+            background: #F0F6FF;
             padding: 30px;
             border-radius: 10px;
             border: 1px solid #dbeafe;
@@ -542,10 +551,7 @@
         
         .contact-info h4 { color: var(--primary); margin-bottom: 5px; font-size: 1.1rem; }
         .contact-row { display: flex; align-items: flex-start; margin-bottom: 25px; }
-        
-        .contact-icon { 
-            font-size: 1.5rem; color: var(--accent-teal); margin-right: 20px; margin-top: 5px; 
-        }
+        .contact-icon { font-size: 1.5rem; color: var(--accent-teal); margin-right: 20px; margin-top: 5px; }
         .contact-text p { color: var(--text-dark); }
 
         .form-control {
@@ -589,24 +595,6 @@
             color: #dcebff; font-size: 0.9rem;
         }
 
-        /* MOBILE OPTIMIZATION */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.2rem; }
-            .hero-subtext { font-size: 1rem; }
-            .hero-subtext span { display: block; padding: 5px 0; }
-            .hero-subtext span:not(:last-child)::after { display: none; }
-            
-            .process-row { flex-direction: column; align-items: center; gap: 40px; }
-            .process-step::before {
-                width: 2px; height: 40px;
-                top: auto; bottom: -42px; left: 50%; transform: translateX(-50%);
-                background: linear-gradient(180deg, var(--primary), transparent);
-            }
-            .process-step::after { top: auto; bottom: -6px; left: 50%; transform: translateX(-50%); }
-            
-            .contact-grid { grid-template-columns: 1fr; }
-        }
-
         /* Float WhatsApp */
         .float-wa {
             position: fixed; bottom: 25px; right: 25px;
@@ -621,6 +609,40 @@
             0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
             70% { transform: scale(1); box-shadow: 0 0 0 20px rgba(37, 211, 102, 0); }
             100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        /* MOBILE OPTIMIZATION */
+        @media (max-width: 768px) {
+            /* Force Single Line Headings */
+            .section-title { 
+                font-size: clamp(1.5rem, 5vw, 2.2rem);
+                white-space: nowrap;
+            }
+            .hero h1 { 
+                font-size: clamp(1.8rem, 6vw, 3.5rem); 
+                white-space: nowrap; 
+            }
+            .hero-subtext { 
+                font-size: 0.9rem; 
+            }
+            .hero-subtext span { 
+                display: block; 
+                padding: 2px 0; 
+            }
+            .hero-subtext span:not(:last-child)::after { display: none; }
+            
+            .process-row { flex-direction: column; align-items: center; gap: 40px; }
+            .process-step::before {
+                width: 2px; height: 40px;
+                top: auto; bottom: -42px; left: 50%; transform: translateX(-50%);
+                background: linear-gradient(180deg, var(--primary), transparent);
+            }
+            .process-step::after { top: auto; bottom: -6px; left: 50%; transform: translateX(-50%); }
+            
+            .contact-grid { grid-template-columns: 1fr; }
+            
+            /* Compact Marquee on Mobile */
+            .section-padding-compact { padding: 30px 0; }
         }
     </style>
 </head>
@@ -659,12 +681,14 @@
     </div>
 
     <section id="home" class="hero">
-        <video style="display:none;" muted loop playsinline>
+        <video class="hero-video" autoplay muted loop playsinline>
             <source src="images/topbanner.mp4" type="video/mp4">
         </video>
+        <div class="hero-overlay"></div>
         
         <div class="container hero-content">
-            <h1>Complete IT Solutions <br> For Businesses</h1>
+            <h1>Complete IT Solutions</h1>
+            <h1>For Businesses</h1>
             <div class="hero-subtext">
                 <span>Web Development</span>
                 <span>Business E-Mail</span>
@@ -826,11 +850,11 @@
         </div>
     </section>
 
-    <section class="section-padding clients-section">
+    <section class="section-padding-compact clients-section">
         <div class="container">
             <h2 class="section-title">Valued Customers</h2>
         </div>
-        <div class="marquee-wrapper" style="background: transparent; cursor: default; border: none;">
+        <div class="marquee-wrapper" style="background: transparent; cursor: default; border: none; padding: 20px 0;">
             <div class="marquee-content" style="animation: scroll-left 25s linear infinite;">
                 <div class="client-marquee" style="display:flex; gap:50px; align-items:center;">
                     <img src="images/client1.png" alt="Client">
@@ -846,11 +870,11 @@
         </div>
     </section>
 
-    <section class="section-padding tech-section">
+    <section class="section-padding-compact tech-section">
         <div class="container">
             <h2 class="section-title">Technologies We Use</h2>
         </div>
-        <div class="marquee-wrapper" style="background: transparent; cursor: default; border: none;">
+        <div class="marquee-wrapper" style="background: transparent; cursor: default; border: none; padding: 20px 0;">
             <div class="marquee-content" style="animation: scroll-left 30s linear infinite;">
                 <div class="tech-item" style="display:flex; gap:60px; align-items:center; min-width:max-content;">
                     <div style="text-align:center;"><i class="fab fa-html5" style="color:#E34F26;"></i><br><span>HTML5</span></div>
@@ -864,8 +888,6 @@
                     <div style="text-align:center;"><i class="fab fa-google" style="color:#4285F4;"></i><br><span>Google</span></div>
                     <div style="text-align:center;"><i class="fab fa-microsoft" style="color:#00A4EF;"></i><br><span>Azure</span></div>
                     <div style="text-align:center;"><i class="fab fa-python" style="color:#3776AB;"></i><br><span>Python</span></div>
-                     <div style="text-align:center;"><i class="fab fa-html5" style="color:#E34F26;"></i><br><span>HTML5</span></div>
-                    <div style="text-align:center;"><i class="fab fa-css3-alt" style="color:#1572B6;"></i><br><span>CSS3</span></div>
                 </div>
             </div>
         </div>
@@ -966,25 +988,19 @@
     <script>
         // VISITOR COUNTER LOGIC (Slow Fluctuation)
         const visitorCountElement = document.getElementById('visitor-count');
-        // Initial random start
         let currentVisitors = Math.floor(Math.random() * (1277 - 10 + 1) + 10);
         visitorCountElement.innerText = currentVisitors;
         
         setInterval(() => {
-            // Decide to add or subtract a small amount (1 to 5)
             const change = Math.floor(Math.random() * 5) + 1;
             const direction = Math.random() < 0.5 ? -1 : 1;
-            
             currentVisitors += (change * direction);
-
-            // Clamp between 10 and 1277
             if(currentVisitors < 10) currentVisitors = 10 + Math.floor(Math.random() * 5);
             if(currentVisitors > 1277) currentVisitors = 1277 - Math.floor(Math.random() * 5);
-
             visitorCountElement.innerText = currentVisitors;
         }, 2000); 
 
-        // MENU LOGIC
+        // MENU LOGIC (White Sidebar + Animation)
         const hamburger = document.getElementById('hamburger-btn');
         const navMenu = document.getElementById('nav-menu');
         const overlay = document.getElementById('menu-overlay');
