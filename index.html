@@ -41,15 +41,21 @@
 
     <style>
         :root {
-            /* Deep Gradient Background */
-            --bg-gradient: linear-gradient(135deg, #000000 0%, #0a0a0a 40%, #1a0033 100%);
-            /* Accent Colors */
-            --accent-lime: #D6F53C; /* Standard accent */
-            --accent-green: #39FF14; /* Pure Neon Green for Achievements */
-            --accent-blue: #2E63D7;
-            --text-light: #ffffff;
-            --text-gray: #a0a0a0;
-            --card-bg: rgba(20, 20, 30, 0.9);
+            /* Updated Color Scheme */
+            --primary: #0E4BCF;
+            --secondary: #1A73E8;
+            --dark: #081F4D;
+            --light: #F5F9FF;
+            --white: #FFFFFF;
+            
+            /* Backgrounds */
+            --bg-gradient: linear-gradient(135deg, var(--dark) 0%, #051333 100%);
+            --card-bg: rgba(255, 255, 255, 0.03);
+            
+            /* Text */
+            --text-light: var(--white);
+            --text-gray: #b0c4de;
+            
             --font-main: 'Poppins', sans-serif;
             --transition: all 0.3s ease;
         }
@@ -59,13 +65,13 @@
             padding: 0;
             box-sizing: border-box;
             -webkit-tap-highlight-color: transparent;
-            user-select: none; /* Disable selection globally */
+            user-select: none;
         }
 
         html { 
             scroll-behavior: smooth; 
-            background-color: #000; /* Fix footer white bar */
-            overscroll-behavior-y: none; /* Prevent bounce */
+            background-color: var(--dark);
+            overscroll-behavior-y: none;
         }
 
         body {
@@ -75,12 +81,10 @@
             font-family: var(--font-main);
             overflow-x: hidden;
             line-height: 1.6;
-            background-color: #000; /* Fix footer white bar */
+            background-color: var(--dark);
         }
 
-        /* Allow selection only on specific class */
         .selectable-text { user-select: text !important; cursor: text; }
-
         a { text-decoration: none; color: inherit; }
         ul { list-style: none; }
         img { max-width: 100%; display: block; }
@@ -100,8 +104,9 @@
             font-weight: 700;
         }
         
-        .section-title span { color: var(--accent-lime); }
+        .section-title span { color: var(--secondary); }
 
+        /* Buttons */
         .btn {
             display: inline-block;
             padding: 12px 30px;
@@ -115,24 +120,26 @@
         }
 
         .btn-primary {
-            background-color: var(--accent-lime);
-            color: #000;
+            background-color: var(--primary);
+            color: var(--white);
+            box-shadow: 0 4px 15px rgba(14, 75, 207, 0.4);
         }
 
         .btn-primary:hover {
             background-color: transparent;
-            border-color: var(--accent-lime);
-            color: var(--accent-lime);
+            border-color: var(--primary);
+            color: var(--primary);
         }
 
         .btn-secondary {
             background-color: transparent;
-            border: 2px solid var(--accent-blue);
-            color: var(--text-light);
+            border: 2px solid var(--white);
+            color: var(--white);
         }
 
         .btn-secondary:hover {
-            background-color: var(--accent-blue);
+            background-color: var(--white);
+            color: var(--dark);
         }
 
         /* HEADER */
@@ -140,9 +147,10 @@
             position: sticky;
             top: 0;
             z-index: 1000;
-            background-color: rgba(0, 0, 0, 0.95);
+            background-color: rgba(8, 31, 77, 0.95);
             padding: 10px 0;
             border-bottom: 1px solid rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
         }
 
         .nav {
@@ -154,10 +162,39 @@
 
         .logo img { height: 60px; }
 
+        /* Visitor Counter & Menu Wrapper */
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .live-visitor {
+            background: rgba(255,255,255,0.1);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: var(--secondary);
+            border: 1px solid var(--secondary);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 600;
+        }
+        
+        .live-dot {
+            width: 8px; height: 8px;
+            background: red;
+            border-radius: 50%;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink { 50% { opacity: 0.4; } }
+
         .hamburger {
             cursor: pointer;
             font-size: 1.8rem;
-            color: var(--accent-lime);
+            color: var(--white);
             z-index: 1100;
         }
 
@@ -168,14 +205,15 @@
             right: -280px;
             width: 260px;
             height: 100vh;
-            background: #0d0f12;
+            background: var(--dark);
             display: flex;
             flex-direction: column;
             padding-top: 80px;
             gap: 20px;
             transition: 0.3s ease-in-out;
             z-index: 1050;
-            border-left: 1px solid #333;
+            border-left: 1px solid rgba(255,255,255,0.1);
+            box-shadow: -5px 0 15px rgba(0,0,0,0.5);
         }
 
         .nav-menu.active { right: 0; }
@@ -183,11 +221,11 @@
         .nav-link {
             font-size: 1.1rem;
             font-weight: 500;
-            color: #fff;
+            color: var(--white);
             padding: 10px 30px;
             border-bottom: 1px solid rgba(255,255,255,0.05);
         }
-        .nav-link:hover { color: var(--accent-lime); padding-left: 40px; }
+        .nav-link:hover { color: var(--secondary); padding-left: 40px; }
 
         .menu-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -207,13 +245,15 @@
         .hero-video {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            object-fit: cover; z-index: 0; opacity: 0.6;
+            object-fit: cover; z-index: 0;
         }
 
         .hero-overlay {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.4);
+            background: rgba(8, 31, 77, 0.6); /* Blue Tint */
+            backdrop-filter: blur(8px); /* 50% Blur Effect */
+            -webkit-backdrop-filter: blur(8px);
             z-index: 1;
         }
 
@@ -230,8 +270,9 @@
         .hero-content h1 {
             font-size: 3rem; margin-bottom: 20px;
             line-height: 1.2;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.5);
         }
-        .hero-content h1 span { color: var(--accent-lime); }
+        .hero-content h1 span { color: var(--secondary); }
         
         .hero-buttons { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
 
@@ -245,20 +286,21 @@
         .service-card {
             background: var(--card-bg);
             border-radius: 15px;
-            border: 1px solid #333;
+            border: 1px solid rgba(255,255,255,0.1);
             padding: 30px;
             transition: var(--transition);
         }
 
         .service-card:hover {
-            border-color: var(--accent-lime);
+            border-color: var(--secondary);
+            background: rgba(26, 115, 232, 0.05);
             transform: translateY(-5px);
         }
 
         .service-card h3 { 
-            font-size: 1.5rem; margin-bottom: 10px; color: #fff;
+            font-size: 1.5rem; margin-bottom: 10px; color: var(--white);
         }
-        .service-card .price { font-size: 1.3rem; color: var(--accent-lime); font-weight: 700; margin-bottom: 20px; display: block; }
+        .service-card .price { font-size: 1.3rem; color: var(--secondary); font-weight: 700; margin-bottom: 20px; display: block; }
 
         .service-card ul li {
             margin-bottom: 10px;
@@ -269,48 +311,83 @@
             padding-bottom: 8px;
         }
         .service-card ul li:last-child { border: none; }
-        .service-card ul li i { color: var(--accent-blue); margin-right: 10px; font-size: 1rem; }
+        .service-card ul li i { color: var(--secondary); margin-right: 10px; font-size: 1rem; }
         
-        .hosting-highlight { color: #fff !important; font-weight: bold; }
-        .hosting-highlight i { color: var(--accent-lime) !important; }
+        .hosting-highlight { color: var(--white) !important; font-weight: bold; }
+        .hosting-highlight i { color: gold !important; }
 
-        /* PROCESS */
+        /* PROCESS (Blockchain Style) */
         .process-row {
             display: flex;
             justify-content: center;
-            gap: 40px; 
+            gap: 50px; 
             flex-wrap: wrap;
             position: relative;
+            padding: 20px 0;
         }
 
         .process-step {
-            width: 180px;
+            width: 160px;
             text-align: center;
-            background: #111;
+            background: rgba(14, 75, 207, 0.1);
             padding: 20px;
-            border-radius: 10px;
-            border: 1px solid #333;
-            transition: var(--transition);
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.1);
             position: relative;
             z-index: 2;
+            /* Spring Animation */
+            animation: spring-float 3s ease-in-out infinite;
         }
 
-        .process-step::after {
-            content: ''; position: absolute;
-            top: 50%; right: -42px; width: 40px; height: 2px;
-            background: var(--accent-blue);
+        /* Blockchain connector line */
+        .process-step::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: -52px;
+            width: 50px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--secondary), transparent);
             z-index: 1;
+        }
+        .process-step:last-child::before { display: none; }
+
+        /* Connecting Nodes */
+        .process-step::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: -6px;
+            width: 10px;
+            height: 10px;
+            background: var(--secondary);
+            border-radius: 50%;
+            transform: translateY(-50%);
+            box-shadow: 0 0 10px var(--secondary);
         }
         .process-step:last-child::after { display: none; }
 
         .process-step:hover {
-            border-color: var(--accent-lime);
-            transform: scale(1.05);
+            border-color: var(--secondary);
+            box-shadow: 0 0 20px rgba(26, 115, 232, 0.2);
         }
+
         .process-icon { 
-            font-size: 2.5rem; color: var(--accent-lime); margin-bottom: 15px; 
+            font-size: 2rem; color: var(--secondary); margin-bottom: 15px; 
         }
-        .process-step h4 { font-size: 1.1rem; margin-bottom: 5px; color: #fff; }
+        .process-step h4 { font-size: 1rem; margin-bottom: 5px; color: var(--white); }
+
+        @keyframes spring-float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        /* Staggered Animation Delays */
+        .process-step:nth-child(1) { animation-delay: 0s; }
+        .process-step:nth-child(2) { animation-delay: 0.2s; }
+        .process-step:nth-child(3) { animation-delay: 0.4s; }
+        .process-step:nth-child(4) { animation-delay: 0.6s; }
+        .process-step:nth-child(5) { animation-delay: 0.8s; }
 
         /* ACHIEVEMENTS */
         .stats-row {
@@ -323,27 +400,26 @@
         .stat-box {
             width: 200px;
             text-align: center;
-            background: #111;
+            background: rgba(255,255,255,0.05);
             padding: 25px 15px;
             border-radius: 10px;
-            border: 1px solid #333;
+            border: 1px solid rgba(255,255,255,0.1);
         }
-        .stat-box:hover { border-color: var(--accent-green); }
+        .stat-box:hover { border-color: var(--secondary); }
 
-        /* Achievements Heading: Our (White) Achievements (Green) */
-        .achieve-title span.white-text { color: #fff !important; }
-        .achieve-title span.green-text { color: var(--accent-green) !important; }
+        .achieve-title span { color: var(--secondary) !important; }
         
-        /* Counters: Neon Green */
-        .stat-box h3 { font-size: 2.5rem; color: var(--accent-green); font-weight: 700; }
+        .stat-box h3 { font-size: 2.5rem; color: var(--secondary); font-weight: 700; }
         .stat-box p { color: var(--text-gray); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
 
         /* SUCCESS STORIES */
         .marquee-wrapper {
             overflow: hidden;
-            background: rgba(0,0,0,0.3);
+            background: rgba(0,0,0,0.2);
             padding: 30px 0;
             cursor: pointer; 
+            border-top: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
         }
 
         .marquee-content {
@@ -351,7 +427,7 @@
             gap: 20px;
             width: max-content;
             animation: scroll-left 30s linear infinite;
-            will-change: transform; /* Performance optimization */
+            will-change: transform;
         }
 
         .marquee-paused { animation-play-state: paused !important; }
@@ -361,20 +437,20 @@
             background: var(--card-bg);
             padding: 25px;
             border-radius: 10px;
-            border-left: 3px solid var(--accent-lime);
+            border-left: 3px solid var(--secondary);
             flex-shrink: 0;
         }
-        .story-card h3 { color: #fff; margin-bottom: 10px; font-size: 1.1rem; }
+        .story-card h3 { color: var(--white); margin-bottom: 10px; font-size: 1.1rem; }
         .story-text { color: var(--text-gray); font-size: 0.9rem; }
 
         /* FAQ */
         .faq-container { max-width: 800px; margin: 0 auto; }
         .faq-item {
-            background: #111;
+            background: rgba(255,255,255,0.03);
             margin-bottom: 10px;
             border-radius: 5px;
             overflow: hidden;
-            border: 1px solid #333;
+            border: 1px solid rgba(255,255,255,0.1);
         }
         .faq-question {
             padding: 15px 20px;
@@ -384,9 +460,9 @@
             align-items: center;
             font-weight: 600;
             font-size: 1rem;
-            color: #fff;
+            color: var(--white);
         }
-        .faq-question:hover { background: #222; color: var(--accent-lime); }
+        .faq-question:hover { background: rgba(255,255,255,0.05); color: var(--secondary); }
         .faq-answer {
             max-height: 0;
             overflow: hidden;
@@ -402,39 +478,42 @@
         /* CLIENTS */
         .client-marquee {
             display: flex; gap: 50px; width: max-content;
-            /* Right to Left Animation */
             animation: scroll-left 25s linear infinite; 
             will-change: transform;
+            align-items: center;
         }
         
         .client-marquee img { 
-            /* Medium Size */
-            height: 70px; 
+            height: 60px; 
             width: auto;
             object-fit: contain;
-            filter: none; 
+            filter: brightness(0) invert(1) opacity(0.8); /* White logos */
+            transition: 0.3s;
         }
+        .client-marquee img:hover { filter: none; opacity: 1; }
         
         /* TECHNOLOGIES */
         .tech-marquee {
-            display: flex; gap: 50px; width: max-content;
-            /* Left to Right Animation */
-            animation: scroll-right 25s linear infinite;
+            display: flex; gap: 60px; width: max-content;
+            animation: scroll-right 35s linear infinite;
             will-change: transform;
+            align-items: center;
         }
         .tech-item {
             display: flex; flex-direction: column; align-items: center;
-            color: #fff; font-size: 0.9rem;
+            color: var(--text-gray); font-size: 0.85rem; font-weight: 600;
+            min-width: 80px;
         }
         .tech-item i { 
-            font-size: 3rem; margin-bottom: 10px; 
+            font-size: 2.5rem; margin-bottom: 10px; color: var(--secondary);
         }
+        .tech-item:hover i { color: var(--white); }
 
         @keyframes scroll-left { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
         @keyframes scroll-right { 0% { transform: translateX(-50%); } 100% { transform: translateX(0); } }
 
         /* CONTACT */
-        .contact-section { background: rgba(0,0,0,0.5); border-top: 1px solid rgba(255,255,255,0.1); }
+        .contact-section { background: rgba(0,0,0,0.2); border-top: 1px solid rgba(255,255,255,0.1); }
         
         .contact-grid { display: grid; gap: 50px; }
 
@@ -447,28 +526,48 @@
             .contact-grid { grid-template-columns: 1fr; }
             .contact-info-wrapper { order: 1; margin-bottom: 30px; }
             .contact-form-wrapper { order: 2; }
+            
+            /* Mobile Process Reset */
+            .process-row {
+                flex-direction: column; 
+                align-items: center;
+                gap: 40px; 
+            }
+            .process-step::before {
+                width: 2px; height: 40px;
+                top: auto; bottom: -42px;
+                left: 50%; right: auto;
+                transform: translateX(-50%);
+                background: linear-gradient(180deg, var(--secondary), transparent);
+            }
+            .process-step::after {
+                top: auto; bottom: -6px;
+                left: 50%; right: auto;
+                transform: translateX(-50%);
+            }
+            .hero-content h1 { font-size: 1.8rem; }
         }
 
-        .contact-info h4 { color: var(--accent-lime); margin-bottom: 5px; font-size: 1.1rem; }
+        .contact-info h4 { color: var(--secondary); margin-bottom: 5px; font-size: 1.1rem; }
         .contact-row { display: flex; align-items: flex-start; margin-bottom: 25px; }
         
         .contact-icon { 
-            font-size: 1.4rem; color: var(--accent-blue); margin-right: 15px; margin-top: 5px; 
-            transform: none !important; 
+            font-size: 1.4rem; color: var(--primary); margin-right: 15px; margin-top: 5px; 
         }
 
         .form-control {
             width: 100%; padding: 15px; margin-bottom: 20px;
-            background: #0B0F14; border: 1px solid #333;
-            color: #fff; border-radius: 5px; font-size: 1rem;
+            background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+            color: var(--white); border-radius: 5px; font-size: 1rem;
         }
-        .form-control:focus { outline: none; border-color: var(--accent-lime); }
+        .form-control:focus { outline: none; border-color: var(--secondary); background: rgba(255,255,255,0.1); }
+        option { background: var(--dark); }
 
         /* FOOTER */
         footer {
-            background: #000;
+            background: #051333;
             padding: 60px 0 20px;
-            border-top: 1px solid #222;
+            border-top: 1px solid rgba(255,255,255,0.05);
         }
 
         .footer-grid {
@@ -478,26 +577,25 @@
             margin-bottom: 40px;
         }
 
-        .footer-col h4 { color: #fff; margin-bottom: 20px; font-size: 1.1rem; }
+        .footer-col h4 { color: var(--white); margin-bottom: 20px; font-size: 1.1rem; }
         .footer-col ul li { margin-bottom: 10px; }
         .footer-col ul li a { color: var(--text-gray); font-size: 0.9rem; transition: 0.3s; }
-        .footer-col ul li a:hover { color: var(--accent-lime); }
+        .footer-col ul li a:hover { color: var(--secondary); }
 
         .social-links a {
             display: inline-flex; width: 40px; height: 40px;
-            background: #222; color: #fff;
+            background: rgba(255,255,255,0.1); color: var(--white);
             align-items: center; justify-content: center;
             border-radius: 50%; margin-right: 10px;
             transition: 0.3s;
         }
-        .social-links a:hover { background: var(--accent-blue); }
+        .social-links a:hover { background: var(--secondary); }
 
         .copyright {
-            text-align: center; padding-top: 20px; border-top: 1px solid #222;
+            text-align: center; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.05);
             color: #666; font-size: 0.9rem;
         }
 
-        /* WHATSAPP WAVE */
         .float-wa {
             position: fixed; bottom: 20px; right: 20px;
             background-color: #25d366; color: #FFF;
@@ -513,64 +611,6 @@
             70% { transform: scale(1); box-shadow: 0 0 0 20px rgba(37, 211, 102, 0); }
             100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
         }
-
-        /* MOBILE MEDIA QUERIES */
-        @media (max-width: 768px) {
-            .hero { 
-                height: auto; 
-                min-height: auto;
-                display: block;
-            }
-            .hero-video {
-                position: relative; 
-                width: 100%;
-                height: auto; 
-                opacity: 0.8;
-            }
-            .hero-overlay { display: none; }
-            
-            .hero-content {
-                position: absolute;
-                top: 50%; left: 50%;
-                transform: translate(-50%, -50%);
-                width: 100%;
-                padding: 10px;
-            }
-            .hero-content h1 { font-size: 1.5rem; margin-bottom: 10px; }
-            .btn { padding: 8px 15px; font-size: 0.7rem; }
-
-            /* Mobile Process: Vertical Chain */
-            .process-row {
-                flex-direction: column; 
-                align-items: center;
-                gap: 50px; 
-            }
-            .process-step { 
-                width: 80%; 
-            }
-            
-            /* Vertical Connecting Line */
-            .process-step::after {
-                content: '';
-                position: absolute;
-                bottom: -52px; 
-                left: 50%; 
-                transform: translateX(-50%);
-                width: 2px; 
-                height: 50px;
-                top: auto; right: auto; 
-                background: var(--accent-blue);
-                display: block;
-            }
-            .process-step:last-child::after { display: none; }
-
-            .stats-row {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                gap: 15px;
-            }
-            .stat-box { width: 100%; }
-        }
     </style>
 </head>
 <body>
@@ -580,8 +620,16 @@
             <a href="#" class="logo">
                 <img src="images/mylogo.png" alt="Knox Logo">
             </a>
-            <div class="hamburger" id="hamburger-btn">
-                <i class="fas fa-bars"></i>
+            
+            <div class="nav-right">
+                <div class="live-visitor">
+                    <div class="live-dot"></div>
+                    <span>Live:</span>
+                    <span id="visitor-count">107</span>
+                </div>
+                <div class="hamburger" id="hamburger-btn">
+                    <i class="fas fa-bars"></i>
+                </div>
             </div>
         </div>
     </header>
@@ -697,7 +745,7 @@
 
     <section class="section-padding" style="background: rgba(255,255,255,0.02);">
         <div class="container">
-            <h2 class="section-title achieve-title"><span class="white-text">Our</span> <span class="green-text">Achievements</span></h2>
+            <h2 class="section-title achieve-title">Our <span>Achievements</span></h2>
             <div class="stats-row">
                 <div class="stat-box">
                     <h3 data-target="4">0</h3>
@@ -777,14 +825,6 @@
                     <div class="faq-question">Will my website work on Mobile? <i class="fas fa-chevron-down faq-icon"></i></div>
                     <div class="faq-answer">Absolutely. All our designs are 100% mobile responsive.</div>
                 </div>
-                <div class="faq-item">
-                    <div class="faq-question">Do you write content for the website? <i class="fas fa-chevron-down faq-icon"></i></div>
-                    <div class="faq-answer">Basic content placement is included. Professional writing is extra.</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">What are the payment modes? <i class="fas fa-chevron-down faq-icon"></i></div>
-                    <div class="faq-answer">We accept UPI, Bank Transfer, and Credit Cards.</div>
-                </div>
             </div>
         </div>
     </section>
@@ -793,18 +833,18 @@
         <div class="container">
             <h2 class="section-title">Our Valued <span>Clients</span></h2>
         </div>
-        <div class="marquee-wrapper" style="background: transparent; cursor: default;">
+        <div class="marquee-wrapper" style="background: transparent; cursor: default; border: none;">
             <div class="client-marquee">
-                <img src="images/client1.png" alt="Client" loading="lazy">
-                <img src="images/client2.png" alt="Client" loading="lazy">
-                <img src="images/client3.png" alt="Client" loading="lazy">
-                <img src="images/client4.png" alt="Client" loading="lazy">
-                <img src="images/client5.png" alt="Client" loading="lazy">
-                <img src="images/client1.png" alt="Client" loading="lazy">
-                <img src="images/client2.png" alt="Client" loading="lazy">
-                <img src="images/client3.png" alt="Client" loading="lazy">
-                <img src="images/client4.png" alt="Client" loading="lazy">
-                <img src="images/client5.png" alt="Client" loading="lazy">
+                <img src="images/client1.png" alt="Client 1">
+                <img src="images/client2.png" alt="Client 2">
+                <img src="images/client3.png" alt="Client 3">
+                <img src="images/client4.png" alt="Client 4">
+                <img src="images/client5.png" alt="Client 5">
+                <img src="images/client1.png" alt="Client 1">
+                <img src="images/client2.png" alt="Client 2">
+                <img src="images/client3.png" alt="Client 3">
+                <img src="images/client4.png" alt="Client 4">
+                <img src="images/client5.png" alt="Client 5">
             </div>
         </div>
     </section>
@@ -813,29 +853,30 @@
         <div class="container">
             <h2 class="section-title">Technologies <span>We Use</span></h2>
         </div>
-        <div class="marquee-wrapper" style="background: transparent; cursor: default;">
+        <div class="marquee-wrapper" style="background: transparent; cursor: default; border: none;">
             <div class="tech-marquee">
-                <div class="tech-item"><i class="fab fa-html5" style="color:#e34c26;"></i><span>HTML5</span></div>
-                <div class="tech-item"><i class="fab fa-css3-alt" style="color:#264de4;"></i><span>CSS3</span></div>
-                <div class="tech-item"><i class="fab fa-js" style="color:#f0db4f;"></i><span>JavaScript</span></div>
-                <div class="tech-item"><i class="fab fa-python" style="color:#4B8BBE;"></i><span>Python</span></div>
-                <div class="tech-item"><i class="fab fa-react" style="color:#61DBFB;"></i><span>React</span></div>
-                <div class="tech-item"><i class="fab fa-node" style="color:#68A063;"></i><span>Node.js</span></div>
-                <div class="tech-item"><i class="fab fa-php" style="color:#8993be;"></i><span>PHP</span></div>
-                <div class="tech-item"><i class="fab fa-wordpress" style="color:#21759b;"></i><span>WordPress</span></div>
-                <div class="tech-item"><i class="fab fa-aws" style="color:#FF9900;"></i><span>AWS</span></div>
-                <div class="tech-item"><i class="fab fa-google" style="color:#4285F4;"></i><span>Google Cloud</span></div>
-                <div class="tech-item"><i class="fab fa-microsoft" style="color:#00a4ef;"></i><span>Azure</span></div>
-                <div class="tech-item"><i class="fab fa-docker" style="color:#0db7ed;"></i><span>Docker</span></div>
-                <div class="tech-item"><i class="fab fa-git-alt" style="color:#f1502f;"></i><span>Git</span></div>
-                <div class="tech-item"><i class="fab fa-linux" style="color:#FCC624;"></i><span>Linux</span></div>
-                <div class="tech-item"><i class="fas fa-database" style="color:#00758F;"></i><span>MySQL</span></div>
-                <div class="tech-item"><i class="fas fa-server" style="color:#009639;"></i><span>Nginx</span></div>
-                <div class="tech-item"><i class="fab fa-android" style="color:#3DDC84;"></i><span>Android</span></div>
-                <div class="tech-item"><i class="fab fa-apple" style="color:#A2AAAD;"></i><span>iOS</span></div>
-                <div class="tech-item"><i class="fab fa-shopify" style="color:#96bf48;"></i><span>Shopify</span></div>
-                <div class="tech-item"><i class="fab fa-angular" style="color:#dd1b16;"></i><span>Angular</span></div>
-                <div class="tech-item"><i class="fab fa-html5" style="color:#e34c26;"></i><span>HTML5</span></div>
+                <div class="tech-item"><i class="fas fa-envelope-open-text"></i><span>Zoho</span></div>
+                <div class="tech-item"><i class="fab fa-google"></i><span>Workspace</span></div>
+                <div class="tech-item"><i class="fab fa-microsoft"></i><span>Azure</span></div>
+                <div class="tech-item"><i class="fas fa-database"></i><span>Oracle</span></div>
+                <div class="tech-item"><i class="fab fa-aws"></i><span>AWS</span></div>
+                <div class="tech-item"><i class="fas fa-server"></i><span>GoDaddy</span></div>
+                <div class="tech-item"><i class="fas fa-globe"></i><span>Hostinger</span></div>
+                <div class="tech-item"><i class="fab fa-docker"></i><span>Docker</span></div>
+                <div class="tech-item"><i class="fab fa-wordpress"></i><span>WordPress</span></div>
+                <div class="tech-item"><i class="fab fa-html5"></i><span>HTML5</span></div>
+                <div class="tech-item"><i class="fab fa-css3-alt"></i><span>CSS3</span></div>
+                <div class="tech-item"><i class="fab fa-js"></i><span>JavaScript</span></div>
+                <div class="tech-item"><i class="fab fa-react"></i><span>React</span></div>
+                <div class="tech-item"><i class="fab fa-node"></i><span>Node.js</span></div>
+                <div class="tech-item"><i class="fab fa-php"></i><span>PHP</span></div>
+                <div class="tech-item"><i class="fab fa-python"></i><span>Python</span></div>
+                <div class="tech-item"><i class="fab fa-linux"></i><span>Linux</span></div>
+                <div class="tech-item"><i class="fas fa-database"></i><span>MySQL</span></div>
+                <div class="tech-item"><i class="fab fa-shopify"></i><span>Shopify</span></div>
+                <div class="tech-item"><i class="fab fa-android"></i><span>Android</span></div>
+                <div class="tech-item"><i class="fas fa-envelope-open-text"></i><span>Zoho</span></div>
+                <div class="tech-item"><i class="fab fa-google"></i><span>Workspace</span></div>
             </div>
         </div>
     </section>
@@ -903,7 +944,7 @@
             <div class="footer-grid">
                 <div class="footer-col">
                     <h4>About Knox IT Services</h4>
-                    <p style="color:#666; font-size:0.9rem;">Providing top-tier IT solutions for businesses across India. Coding, Hosting, and Hardware under one roof.</p>
+                    <p style="color:var(--text-gray); font-size:0.9rem;">Providing top-tier IT solutions for businesses across India. Coding, Hosting, and Hardware under one roof.</p>
                 </div>
                 <div class="footer-col">
                     <h4>Services</h4>
@@ -932,6 +973,15 @@
     </a>
 
     <script>
+        // Random Visitor Counter Logic
+        const visitorCountElement = document.getElementById('visitor-count');
+        
+        setInterval(() => {
+            // Generate random number between 10 and 1277
+            const randomVisitors = Math.floor(Math.random() * (1277 - 10 + 1) + 10);
+            visitorCountElement.innerText = randomVisitors;
+        }, 1000); // Update every second
+
         // Menu Logic
         const hamburger = document.getElementById('hamburger-btn');
         const navMenu = document.getElementById('nav-menu');
