@@ -11,7 +11,7 @@
     <meta property="og:description" content="Transform your business with our premium IT solutions.">
     <meta property="og:image" content="images/mylogo.png">
     
-    <link rel="icon" href="images/favicon.jpg" type="image/jpg">
+    <link rel="icon" href="images/favicon.png" type="image/png">
     
     <title>Knox IT Services | Complete IT Solutions</title>
     
@@ -42,7 +42,8 @@
     <style>
         :root {
             /* Corporate Color Scheme */
-            --primary-dark: #0A2540; /* Dark Blue */
+            --primary: #0E4BCF;      /* Bright Blue */
+            --primary-dark: #0A2540; /* Darker Blue for Contrast */
             --accent-teal: #00A8A8;  /* Teal Highlight */
             --bg-white: #FFFFFF;
             --bg-grey: #F5F8FC;      /* Light Grey */
@@ -53,7 +54,7 @@
             --font-main: 'Poppins', sans-serif;
             --transition: all 0.3s ease;
             --shadow-card: 0 10px 30px rgba(0,0,0,0.08);
-            --shadow-hover: 0 15px 40px rgba(0,168,168,0.15);
+            --shadow-hover: 0 15px 40px rgba(14, 75, 207, 0.15);
         }
 
         * {
@@ -94,11 +95,10 @@
             font-size: 2.2rem;
             margin-bottom: 50px;
             font-weight: 700;
-            color: var(--primary-dark);
+            color: var(--primary);
             position: relative;
         }
         
-        /* Underline effect for titles */
         .section-title::after {
             content: '';
             display: block;
@@ -130,24 +130,13 @@
         }
 
         .btn-teal:hover {
-            background-color: #008f8f; /* Slightly darker teal */
+            background-color: #008f8f;
             transform: translateY(-2px);
-        }
-
-        .btn-outline {
-            background-color: transparent;
-            border: 2px solid var(--accent-teal);
-            color: var(--accent-teal);
-        }
-        
-        .btn-outline:hover {
-            background: var(--accent-teal);
-            color: white;
         }
 
         /* HEADER */
         .header {
-            background-color: var(--primary-dark);
+            background-color: var(--primary);
             padding: 15px 0;
             position: sticky;
             top: 0;
@@ -164,7 +153,7 @@
 
         .logo img { 
             height: 50px; 
-            filter: none !important; /* Original Colors */
+            filter: none !important; 
         }
 
         .nav-right {
@@ -196,18 +185,6 @@
 
         @keyframes blink { 50% { opacity: 0.4; } }
 
-        /* Header Call Button */
-        .btn-header-call {
-            background-color: var(--accent-teal);
-            color: var(--text-light);
-            padding: 10px 20px;
-            border-radius: 4px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            display: flex; align-items: center; gap: 8px;
-        }
-        .btn-header-call:hover { background-color: #008f8f; }
-
         /* HAMBURGER MENU ANIMATION */
         .hamburger {
             width: 30px;
@@ -229,7 +206,6 @@
             transition: all 0.3s ease-in-out;
         }
 
-        /* Active State (X Shape) */
         .hamburger.active span:nth-child(1) {
             transform: translateY(10.5px) rotate(45deg);
         }
@@ -247,7 +223,7 @@
             right: -300px;
             width: 280px;
             height: 100vh;
-            background: var(--primary-dark);
+            background: var(--primary);
             display: flex;
             flex-direction: column;
             padding-top: 100px;
@@ -262,32 +238,35 @@
         .nav-link {
             font-size: 1.1rem;
             font-weight: 500;
-            color: rgba(255,255,255,0.8);
+            color: rgba(255,255,255,0.9);
             padding: 20px 40px;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
             transition: 0.3s;
         }
         .nav-link:hover { 
-            color: var(--accent-teal); 
-            background: rgba(255,255,255,0.02);
+            color: var(--bg-white); 
+            background: rgba(255,255,255,0.1);
             padding-left: 50px; 
         }
 
         .menu-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(10, 37, 64, 0.6); z-index: 1040; display: none;
+            background: rgba(14, 75, 207, 0.8); z-index: 1040; display: none;
             backdrop-filter: blur(3px);
         }
         .menu-overlay.active { display: block; }
 
         /* HERO SECTION */
         .hero {
-            background-color: var(--primary-dark);
+            background-color: var(--primary);
             padding: 100px 0;
             text-align: center;
             color: var(--text-light);
             position: relative;
         }
+        
+        /* Video Background (Optional - currently using solid blue per request, but keeping video hidden just in case or overlay logic) */
+        /* Since "Hero section should look modern and professional" and "code background white use karo" generally applies to body, keeping Hero blue */
 
         .hero-content {
             max-width: 900px;
@@ -304,7 +283,7 @@
 
         .hero-subtext {
             font-size: 1.2rem;
-            color: #b0c4de;
+            color: #e0e0e0;
             margin-bottom: 40px;
             font-weight: 300;
         }
@@ -338,7 +317,7 @@
             padding: 40px;
             box-shadow: var(--shadow-card);
             transition: var(--transition);
-            border-top: 4px solid var(--accent-teal);
+            border-top: 4px solid var(--primary);
             position: relative;
             overflow: hidden;
         }
@@ -349,7 +328,7 @@
         }
 
         .service-card h3 { 
-            font-size: 1.5rem; margin-bottom: 10px; color: var(--primary-dark);
+            font-size: 1.5rem; margin-bottom: 10px; color: var(--primary);
         }
         
         .service-card .price { 
@@ -368,49 +347,35 @@
         }
         
         .service-card ul li i { 
-            color: var(--accent-teal); 
+            color: var(--primary); 
             margin-right: 12px; 
             font-size: 1.1rem; 
         }
 
-        /* WHY CHOOSE US */
-        .why-choose-section {
+        /* ACHIEVEMENTS */
+        .achievements-section {
             background-color: var(--bg-grey);
         }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        .stats-row {
+            display: flex;
+            justify-content: center;
             gap: 30px;
+            flex-wrap: wrap;
         }
 
-        .feature-box {
+        .stat-box {
+            width: 200px;
             text-align: center;
-            padding: 30px;
+            padding: 25px 15px;
             background: var(--bg-white);
             border-radius: 10px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
-
-        .feature-box:hover { transform: translateY(-5px); }
-
-        .feature-icon {
-            font-size: 2.5rem;
-            color: var(--accent-teal);
-            margin-bottom: 20px;
-            display: inline-block;
-        }
-
-        .feature-box h4 {
-            color: var(--primary-dark);
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-        }
-
-        .feature-box p { color: var(--text-grey); font-size: 0.9rem; }
+        .stat-box h3 { font-size: 2.5rem; color: var(--primary); font-weight: 700; }
+        .stat-box p { color: var(--text-grey); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
 
         /* PROCESS (Blockchain Style) */
+        .process-section { background-color: var(--bg-white); }
         .process-row {
             display: flex;
             justify-content: center;
@@ -437,7 +402,7 @@
             content: '';
             position: absolute;
             top: 50%; right: -52px; width: 50px; height: 2px;
-            background: linear-gradient(90deg, var(--accent-teal), transparent);
+            background: linear-gradient(90deg, var(--primary), transparent);
             z-index: 1;
         }
         .process-step:last-child::before { display: none; }
@@ -446,14 +411,14 @@
             content: '';
             position: absolute;
             top: 50%; right: -6px; width: 10px; height: 10px;
-            background: var(--accent-teal);
+            background: var(--primary);
             border-radius: 50%;
             transform: translateY(-50%);
         }
         .process-step:last-child::after { display: none; }
 
-        .process-icon { font-size: 2rem; color: var(--accent-teal); margin-bottom: 15px; }
-        .process-step h4 { font-size: 1rem; color: var(--primary-dark); }
+        .process-icon { font-size: 2rem; color: var(--primary); margin-bottom: 15px; }
+        .process-step h4 { font-size: 1rem; color: var(--text-dark); }
 
         @keyframes spring-float {
             0%, 100% { transform: translateY(0); }
@@ -492,25 +457,94 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
             flex-shrink: 0;
         }
-        .story-card h3 { color: var(--primary-dark); margin-bottom: 8px; font-size: 1.1rem; }
+        .story-card h3 { color: var(--primary); margin-bottom: 8px; font-size: 1.1rem; }
         .story-text { color: var(--text-grey); font-size: 0.9rem; }
 
-        /* CONTACT */
-        .contact-section { background: var(--bg-white); }
-        
-        .contact-grid { display: grid; gap: 60px; }
+        /* WHY CHOOSE US */
+        .why-choose-section {
+            background-color: var(--bg-white);
+        }
 
-        @media (min-width: 769px) {
-            .contact-grid { grid-template-columns: 1fr 1fr; }
-            .contact-form-wrapper { order: 1; }
-            .contact-info-wrapper { order: 2; }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-box {
+            text-align: center;
+            padding: 30px;
+            background: var(--bg-grey);
+            border-radius: 10px;
+            transition: var(--transition);
+        }
+
+        .feature-box:hover { transform: translateY(-5px); background: #eef4fc; }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .feature-box h4 {
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .feature-box p { color: var(--text-grey); font-size: 0.9rem; }
+
+        /* CLIENTS & TECH (Original Colors) */
+        .clients-section { background: var(--bg-grey); }
+        .tech-section { background: var(--bg-white); }
+        
+        .client-marquee img { 
+            height: 60px; 
+            width: auto; 
+            object-fit: contain; 
+            filter: none !important; /* ORIGINAL COLORS */
+            opacity: 1 !important; 
+            transition: 0.3s;
         }
         
-        .contact-info h4 { color: var(--accent-teal); margin-bottom: 5px; font-size: 1.1rem; }
-        .contact-row { display: flex; align-items: flex-start; margin-bottom: 30px; }
+        .tech-item i { font-size: 3rem; margin-bottom: 10px; color: inherit; } 
+        /* Specific colors for tech icons if not images, otherwise use original colors */
+        .tech-item span { color: var(--text-dark); font-weight: 500;}
+
+        @keyframes scroll-left { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        /* CONTACT (Separated) */
+        .contact-section { background: var(--bg-white); }
+        
+        .contact-grid { display: grid; gap: 40px; }
+
+        @media (min-width: 769px) {
+            .contact-grid { grid-template-columns: 1.2fr 0.8fr; }
+        }
+
+        .contact-form-wrapper {
+            background: var(--bg-white);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+            border: 1px solid #eee;
+        }
+
+        .contact-info-wrapper {
+            background: #F0F6FF; /* Different light blue background */
+            padding: 30px;
+            border-radius: 10px;
+            border: 1px solid #dbeafe;
+            height: fit-content;
+        }
+        
+        .contact-info h4 { color: var(--primary); margin-bottom: 5px; font-size: 1.1rem; }
+        .contact-row { display: flex; align-items: flex-start; margin-bottom: 25px; }
         
         .contact-icon { 
-            font-size: 1.4rem; color: var(--primary-dark); margin-right: 20px; margin-top: 5px; 
+            font-size: 1.5rem; color: var(--accent-teal); margin-right: 20px; margin-top: 5px; 
         }
         .contact-text p { color: var(--text-dark); }
 
@@ -520,11 +554,11 @@
             color: var(--text-dark); border-radius: 5px; font-size: 1rem;
             font-family: var(--font-main);
         }
-        .form-control:focus { outline: none; border-color: var(--accent-teal); background: #fff; }
+        .form-control:focus { outline: none; border-color: var(--primary); background: #fff; }
 
         /* FOOTER */
         footer {
-            background: var(--primary-dark);
+            background: var(--primary);
             padding: 80px 0 30px;
             color: var(--text-light);
         }
@@ -538,12 +572,12 @@
 
         .footer-col h4 { color: var(--text-light); margin-bottom: 25px; font-size: 1.2rem; }
         .footer-col ul li { margin-bottom: 12px; }
-        .footer-col ul li a { color: #b0c4de; font-size: 0.95rem; transition: 0.3s; }
+        .footer-col ul li a { color: #dcebff; font-size: 0.95rem; transition: 0.3s; }
         .footer-col ul li a:hover { color: var(--accent-teal); padding-left: 5px; }
 
         .social-links a {
             display: inline-flex; width: 45px; height: 45px;
-            background: rgba(255,255,255,0.1); color: var(--text-light);
+            background: rgba(255,255,255,0.2); color: var(--text-light);
             align-items: center; justify-content: center;
             border-radius: 50%; margin-right: 12px;
             transition: 0.3s;
@@ -551,17 +585,9 @@
         .social-links a:hover { background: var(--accent-teal); transform: translateY(-3px); }
 
         .copyright {
-            text-align: center; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1);
-            color: #889bb0; font-size: 0.9rem;
+            text-align: center; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.2);
+            color: #dcebff; font-size: 0.9rem;
         }
-
-        /* CLIENTS & TECH */
-        .client-marquee img { height: 50px; width: auto; object-fit: contain; filter: grayscale(100%); opacity: 0.7; transition: 0.3s; }
-        .client-marquee img:hover { filter: none; opacity: 1; }
-        .tech-item i { font-size: 2.5rem; margin-bottom: 10px; color: var(--accent-teal); }
-        .tech-item span { color: var(--text-dark); }
-
-        @keyframes scroll-left { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
         /* MOBILE OPTIMIZATION */
         @media (max-width: 768px) {
@@ -570,21 +596,15 @@
             .hero-subtext span { display: block; padding: 5px 0; }
             .hero-subtext span:not(:last-child)::after { display: none; }
             
-            .nav-right { gap: 15px; }
-            .btn-header-call span { display: none; } /* Show icon only on mobile */
-            .btn-header-call { padding: 10px; }
-            
             .process-row { flex-direction: column; align-items: center; gap: 40px; }
             .process-step::before {
                 width: 2px; height: 40px;
                 top: auto; bottom: -42px; left: 50%; transform: translateX(-50%);
-                background: linear-gradient(180deg, var(--accent-teal), transparent);
+                background: linear-gradient(180deg, var(--primary), transparent);
             }
             .process-step::after { top: auto; bottom: -6px; left: 50%; transform: translateX(-50%); }
             
             .contact-grid { grid-template-columns: 1fr; }
-            .contact-info-wrapper { order: 1; }
-            .contact-form-wrapper { order: 2; }
         }
 
         /* Float WhatsApp */
@@ -619,10 +639,6 @@
                     <span id="visitor-count">107</span>
                 </div>
                 
-                <a href="tel:8009262472" class="btn-header-call">
-                    <i class="fas fa-phone-alt"></i> <span>Call Now</span>
-                </a>
-
                 <div class="hamburger" id="hamburger-btn">
                     <span></span>
                     <span></span>
@@ -636,12 +652,17 @@
     <div class="nav-menu" id="nav-menu">
         <a href="#home" class="nav-link">Home</a>
         <a href="#services" class="nav-link">Services</a>
+        <a href="#achievements" class="nav-link">Achievements</a>
         <a href="#process" class="nav-link">Process</a>
         <a href="#stories" class="nav-link">Success Stories</a>
         <a href="#contact" class="nav-link">Contact</a>
     </div>
 
     <section id="home" class="hero">
+        <video style="display:none;" muted loop playsinline>
+            <source src="images/topbanner.mp4" type="video/mp4">
+        </video>
+        
         <div class="container hero-content">
             <h1>Complete IT Solutions <br> For Businesses</h1>
             <div class="hero-subtext">
@@ -668,7 +689,7 @@
                         <li><i class="fas fa-check-circle"></i> Custom Corporate Design</li>
                         <li><i class="fas fa-check-circle"></i> Mobile Responsive & Fast</li>
                         <li><i class="fas fa-check-circle"></i> SEO Friendly Structure</li>
-                        <li style="color:var(--primary-dark); font-weight:600;"><i class="fas fa-star" style="color:gold;"></i> 1 Year Free Hosting</li>
+                        <li style="color:var(--text-dark); font-weight:600;"><i class="fas fa-star" style="color:gold;"></i> 1 Year Free Hosting</li>
                         <li><i class="fas fa-check-circle"></i> Free SSL Security</li>
                         <li><i class="fas fa-check-circle"></i> Contact Form Integration</li>
                         <li><i class="fas fa-check-circle"></i> Social Media Integration</li>
@@ -707,35 +728,31 @@
         </div>
     </section>
 
-    <section class="section-padding why-choose-section">
+    <section id="achievements" class="section-padding achievements-section">
         <div class="container">
-            <h2 class="section-title">Why Choose Knox IT</h2>
-            <div class="features-grid">
-                <div class="feature-box">
-                    <i class="fas fa-headset feature-icon"></i>
-                    <h4>Fast Support</h4>
-                    <p>Dedicated team available to resolve queries instantly.</p>
+            <h2 class="section-title">Our Achievements</h2>
+            <div class="stats-row">
+                <div class="stat-box">
+                    <h3 data-target="4">0</h3>
+                    <p>Years Experience</p>
                 </div>
-                <div class="feature-box">
-                    <i class="fas fa-users-cog feature-icon"></i>
-                    <h4>Experienced Teams</h4>
-                    <p>Skilled professionals delivering top-notch solutions.</p>
+                <div class="stat-box">
+                    <h3 data-target="8000">0</h3>
+                    <p>Websites Live</p>
                 </div>
-                <div class="feature-box">
-                    <i class="fas fa-tags feature-icon"></i>
-                    <h4>Best Pricing</h4>
-                    <p>Premium services at the most competitive market rates.</p>
+                <div class="stat-box">
+                    <h3 data-target="5000">0</h3>
+                    <p>Emails Managed</p>
                 </div>
-                <div class="feature-box">
-                    <i class="fas fa-handshake feature-icon"></i>
-                    <h4>Trusted IT Partner</h4>
-                    <p>Serving 100+ corporate clients with reliability.</p>
+                <div class="stat-box">
+                    <h3 data-target="1200">0</h3>
+                    <p>Laptops Sold</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="process" class="section-padding" style="background: white;">
+    <section id="process" class="section-padding process-section">
         <div class="container">
             <h2 class="section-title">Our Process</h2>
             <div class="process-row">
@@ -781,9 +798,37 @@
         </div>
     </section>
 
-    <section class="section-padding" style="background: white;">
+    <section class="section-padding why-choose-section">
         <div class="container">
-            <h2 class="section-title">Our Valued Clients</h2>
+            <h2 class="section-title">Why Choose Knox IT</h2>
+            <div class="features-grid">
+                <div class="feature-box">
+                    <i class="fas fa-headset feature-icon"></i>
+                    <h4>Fast Support</h4>
+                    <p>Dedicated team available to resolve queries instantly.</p>
+                </div>
+                <div class="feature-box">
+                    <i class="fas fa-users-cog feature-icon"></i>
+                    <h4>Experienced Teams</h4>
+                    <p>Skilled professionals delivering top-notch solutions.</p>
+                </div>
+                <div class="feature-box">
+                    <i class="fas fa-tags feature-icon"></i>
+                    <h4>Best Pricing</h4>
+                    <p>Premium services at the most competitive market rates.</p>
+                </div>
+                <div class="feature-box">
+                    <i class="fas fa-handshake feature-icon"></i>
+                    <h4>Trusted IT Partner</h4>
+                    <p>Serving 100+ corporate clients with reliability.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding clients-section">
+        <div class="container">
+            <h2 class="section-title">Valued Customers</h2>
         </div>
         <div class="marquee-wrapper" style="background: transparent; cursor: default; border: none;">
             <div class="marquee-content" style="animation: scroll-left 25s linear infinite;">
@@ -796,6 +841,31 @@
                     <img src="images/client1.png" alt="Client">
                     <img src="images/client2.png" alt="Client">
                     <img src="images/client3.png" alt="Client">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding tech-section">
+        <div class="container">
+            <h2 class="section-title">Technologies We Use</h2>
+        </div>
+        <div class="marquee-wrapper" style="background: transparent; cursor: default; border: none;">
+            <div class="marquee-content" style="animation: scroll-left 30s linear infinite;">
+                <div class="tech-item" style="display:flex; gap:60px; align-items:center; min-width:max-content;">
+                    <div style="text-align:center;"><i class="fab fa-html5" style="color:#E34F26;"></i><br><span>HTML5</span></div>
+                    <div style="text-align:center;"><i class="fab fa-css3-alt" style="color:#1572B6;"></i><br><span>CSS3</span></div>
+                    <div style="text-align:center;"><i class="fab fa-js" style="color:#F7DF1E;"></i><br><span>JavaScript</span></div>
+                    <div style="text-align:center;"><i class="fab fa-wordpress" style="color:#21759B;"></i><br><span>WordPress</span></div>
+                    <div style="text-align:center;"><i class="fab fa-react" style="color:#61DAFB;"></i><br><span>React</span></div>
+                    <div style="text-align:center;"><i class="fab fa-php" style="color:#777BB4;"></i><br><span>PHP</span></div>
+                    <div style="text-align:center;"><i class="fas fa-database" style="color:#4479A1;"></i><br><span>MySQL</span></div>
+                    <div style="text-align:center;"><i class="fab fa-aws" style="color:#FF9900;"></i><br><span>AWS</span></div>
+                    <div style="text-align:center;"><i class="fab fa-google" style="color:#4285F4;"></i><br><span>Google</span></div>
+                    <div style="text-align:center;"><i class="fab fa-microsoft" style="color:#00A4EF;"></i><br><span>Azure</span></div>
+                    <div style="text-align:center;"><i class="fab fa-python" style="color:#3776AB;"></i><br><span>Python</span></div>
+                     <div style="text-align:center;"><i class="fab fa-html5" style="color:#E34F26;"></i><br><span>HTML5</span></div>
+                    <div style="text-align:center;"><i class="fab fa-css3-alt" style="color:#1572B6;"></i><br><span>CSS3</span></div>
                 </div>
             </div>
         </div>
@@ -825,7 +895,7 @@
 
                 <div class="contact-info-wrapper contact-info">
                     <div class="contact-row">
-                        <i class="fas fa-phone-alt contact-icon"></i>
+                        <i class="fas fa-mobile-screen contact-icon"></i>
                         <div class="contact-text">
                             <h4>Helpline</h4>
                             <p class="selectable-text">8009262472</p>
@@ -864,7 +934,7 @@
             <div class="footer-grid">
                 <div class="footer-col">
                     <h4>Knox IT Services</h4>
-                    <p style="color:#b0c4de; font-size:0.9rem;">Providing top-tier IT solutions for businesses across India. Coding, Hosting, and Hardware under one roof.</p>
+                    <p style="color:#dcebff; font-size:0.9rem;">Providing top-tier IT solutions for businesses across India. Coding, Hosting, and Hardware under one roof.</p>
                 </div>
                 <div class="footer-col">
                     <h4>Quick Links</h4>
@@ -894,16 +964,27 @@
     </a>
 
     <script>
-        // VISITOR COUNTER LOGIC (Update every 2 seconds)
+        // VISITOR COUNTER LOGIC (Slow Fluctuation)
         const visitorCountElement = document.getElementById('visitor-count');
+        // Initial random start
+        let currentVisitors = Math.floor(Math.random() * (1277 - 10 + 1) + 10);
+        visitorCountElement.innerText = currentVisitors;
         
         setInterval(() => {
-            // Generate random number between 10 and 1277
-            const randomVisitors = Math.floor(Math.random() * (1277 - 10 + 1) + 10);
-            visitorCountElement.innerText = randomVisitors;
+            // Decide to add or subtract a small amount (1 to 5)
+            const change = Math.floor(Math.random() * 5) + 1;
+            const direction = Math.random() < 0.5 ? -1 : 1;
+            
+            currentVisitors += (change * direction);
+
+            // Clamp between 10 and 1277
+            if(currentVisitors < 10) currentVisitors = 10 + Math.floor(Math.random() * 5);
+            if(currentVisitors > 1277) currentVisitors = 1277 - Math.floor(Math.random() * 5);
+
+            visitorCountElement.innerText = currentVisitors;
         }, 2000); 
 
-        // MENU LOGIC (Hamburger Animation & Drawer)
+        // MENU LOGIC
         const hamburger = document.getElementById('hamburger-btn');
         const navMenu = document.getElementById('nav-menu');
         const overlay = document.getElementById('menu-overlay');
@@ -928,7 +1009,34 @@
             link.addEventListener('click', closeMenu);
         });
 
-        // SUCCESS STORIES PAUSE ON CLICK
+        // STATS ANIMATION
+        const statsSection = document.querySelector('.stats-row');
+        let statsAnimated = false;
+
+        const statsObserver = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting && !statsAnimated) {
+                document.querySelectorAll('.stat-box h3').forEach(counter => {
+                    const target = +counter.getAttribute('data-target');
+                    const duration = 2000;
+                    const increment = target / (duration / 16);
+                    let current = 0;
+                    const timer = setInterval(() => {
+                        current += increment;
+                        if (current >= target) {
+                            counter.innerText = target + "+";
+                            clearInterval(timer);
+                        } else {
+                            counter.innerText = Math.ceil(current) + "+";
+                        }
+                    }, 16);
+                });
+                statsAnimated = true;
+            }
+        }, { threshold: 0.5 });
+
+        if(statsSection) statsObserver.observe(statsSection);
+
+        // PAUSE STORIES ON CLICK
         const storiesWrapper = document.getElementById('stories-marquee-wrapper');
         const storiesContent = document.getElementById('stories-marquee-content');
         let isPaused = false;
