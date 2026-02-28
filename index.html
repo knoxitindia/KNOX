@@ -3,21 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="description" content="Knox IT Services - Web Development, Business Email, and Refurbished Laptops. Transform your business with our IT solutions.">
-    <meta name="keywords" content="Web Development, Business Email, Refurbished Laptops, IT Services, Mumbai, Knox IT, Zoho Email, Website Design">
+    <meta name="description" content="Knox IT Services - Complete IT Solutions. Web Development, Business Email, and Refurbished Laptops.">
+    <meta name="keywords" content="Web Development, Business Email, Refurbished Laptops, IT Services, Mumbai, Knox IT, Corporate IT">
     <meta name="robots" content="index, follow">
     
-    <meta property="og:title" content="Knox IT Services">
-    <meta property="og:description" content="Transform Ideas Into Reality.">
+    <meta property="og:title" content="Knox IT Services - Corporate IT Solutions">
+    <meta property="og:description" content="Transform your business with our premium IT solutions.">
     <meta property="og:image" content="images/mylogo.png">
     
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌐</text></svg>">
+    <link rel="icon" href="images/favicon.jpg" type="image/jpg">
     
-    <title>Knox IT Services</title>
+    <title>Knox IT Services | Complete IT Solutions</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <script type="application/ld+json">
@@ -41,23 +41,19 @@
 
     <style>
         :root {
-            /* Updated Color Scheme */
-            --primary: #0E4BCF;
-            --secondary: #1A73E8;
-            --dark: #081F4D;
-            --light: #F5F9FF;
-            --white: #FFFFFF;
-            
-            /* Backgrounds */
-            --bg-gradient: linear-gradient(135deg, var(--dark) 0%, #051333 100%);
-            --card-bg: rgba(255, 255, 255, 0.03);
-            
-            /* Text */
-            --text-light: var(--white);
-            --text-gray: #b0c4de;
+            /* Corporate Color Scheme */
+            --primary-dark: #0A2540; /* Dark Blue */
+            --accent-teal: #00A8A8;  /* Teal Highlight */
+            --bg-white: #FFFFFF;
+            --bg-grey: #F5F8FC;      /* Light Grey */
+            --text-dark: #1a1a1a;
+            --text-light: #ffffff;
+            --text-grey: #666666;
             
             --font-main: 'Poppins', sans-serif;
             --transition: all 0.3s ease;
+            --shadow-card: 0 10px 30px rgba(0,0,0,0.08);
+            --shadow-hover: 0 15px 40px rgba(0,168,168,0.15);
         }
 
         * {
@@ -70,18 +66,14 @@
 
         html { 
             scroll-behavior: smooth; 
-            background-color: var(--dark);
-            overscroll-behavior-y: none;
         }
 
         body {
-            background: var(--bg-gradient);
-            background-attachment: fixed;
-            color: var(--text-light);
             font-family: var(--font-main);
-            overflow-x: hidden;
+            color: var(--text-dark);
             line-height: 1.6;
-            background-color: var(--dark);
+            background-color: var(--bg-white);
+            overflow-x: hidden;
         }
 
         .selectable-text { user-select: text !important; cursor: text; }
@@ -95,125 +87,174 @@
             padding: 0 20px;
         }
 
-        .section-padding { padding: 60px 0; }
+        .section-padding { padding: 80px 0; }
         
         .section-title {
             text-align: center;
-            font-size: 2rem;
-            margin-bottom: 40px;
+            font-size: 2.2rem;
+            margin-bottom: 50px;
             font-weight: 700;
+            color: var(--primary-dark);
+            position: relative;
         }
         
-        .section-title span { color: var(--secondary); }
+        /* Underline effect for titles */
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--accent-teal);
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
 
         /* Buttons */
         .btn {
             display: inline-block;
-            padding: 12px 30px;
-            border-radius: 5px;
+            padding: 14px 35px;
+            border-radius: 6px;
             font-weight: 600;
             transition: var(--transition);
             cursor: pointer;
             border: 2px solid transparent;
             text-transform: uppercase;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
         }
 
-        .btn-primary {
-            background-color: var(--primary);
-            color: var(--white);
-            box-shadow: 0 4px 15px rgba(14, 75, 207, 0.4);
+        .btn-teal {
+            background-color: var(--accent-teal);
+            color: var(--text-light);
+            box-shadow: 0 4px 15px rgba(0, 168, 168, 0.3);
         }
 
-        .btn-primary:hover {
+        .btn-teal:hover {
+            background-color: #008f8f; /* Slightly darker teal */
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
             background-color: transparent;
-            border-color: var(--primary);
-            color: var(--primary);
+            border: 2px solid var(--accent-teal);
+            color: var(--accent-teal);
         }
-
-        .btn-secondary {
-            background-color: transparent;
-            border: 2px solid var(--white);
-            color: var(--white);
-        }
-
-        .btn-secondary:hover {
-            background-color: var(--white);
-            color: var(--dark);
+        
+        .btn-outline:hover {
+            background: var(--accent-teal);
+            color: white;
         }
 
         /* HEADER */
         .header {
+            background-color: var(--primary-dark);
+            padding: 15px 0;
             position: sticky;
             top: 0;
             z-index: 1000;
-            background-color: rgba(8, 31, 77, 0.95);
-            padding: 10px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
         .nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 60px;
+            height: 50px;
         }
 
-        .logo img { height: 60px; }
+        .logo img { 
+            height: 50px; 
+            filter: none !important; /* Original Colors */
+        }
 
-        /* Visitor Counter & Menu Wrapper */
         .nav-right {
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 25px;
         }
 
+        /* Live Visitor Counter */
         .live-visitor {
             background: rgba(255,255,255,0.1);
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            color: var(--secondary);
-            border: 1px solid var(--secondary);
+            padding: 6px 15px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            color: var(--text-light);
+            border: 1px solid rgba(255,255,255,0.2);
             display: flex;
             align-items: center;
-            gap: 6px;
-            font-weight: 600;
+            gap: 8px;
+            font-weight: 500;
         }
         
         .live-dot {
             width: 8px; height: 8px;
-            background: red;
+            background: #FF4D4D;
             border-radius: 50%;
-            animation: blink 1s infinite;
+            animation: blink 1.5s infinite;
         }
 
         @keyframes blink { 50% { opacity: 0.4; } }
 
+        /* Header Call Button */
+        .btn-header-call {
+            background-color: var(--accent-teal);
+            color: var(--text-light);
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: flex; align-items: center; gap: 8px;
+        }
+        .btn-header-call:hover { background-color: #008f8f; }
+
+        /* HAMBURGER MENU ANIMATION */
         .hamburger {
+            width: 30px;
+            height: 24px;
+            position: relative;
             cursor: pointer;
-            font-size: 1.8rem;
-            color: var(--white);
             z-index: 1100;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 100%;
+            height: 3px;
+            background-color: var(--text-light);
+            border-radius: 3px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Active State (X Shape) */
+        .hamburger.active span:nth-child(1) {
+            transform: translateY(10.5px) rotate(45deg);
+        }
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.active span:nth-child(3) {
+            transform: translateY(-10.5px) rotate(-45deg);
         }
 
         /* Menu Drawer */
         .nav-menu {
             position: fixed;
             top: 0;
-            right: -280px;
-            width: 260px;
+            right: -300px;
+            width: 280px;
             height: 100vh;
-            background: var(--dark);
+            background: var(--primary-dark);
             display: flex;
             flex-direction: column;
-            padding-top: 80px;
-            gap: 20px;
-            transition: 0.3s ease-in-out;
+            padding-top: 100px;
+            gap: 0;
+            transition: 0.4s cubic-bezier(0.77, 0, 0.175, 1);
             z-index: 1050;
-            border-left: 1px solid rgba(255,255,255,0.1);
-            box-shadow: -5px 0 15px rgba(0,0,0,0.5);
+            box-shadow: -5px 0 20px rgba(0,0,0,0.3);
         }
 
         .nav-menu.active { right: 0; }
@@ -221,100 +262,153 @@
         .nav-link {
             font-size: 1.1rem;
             font-weight: 500;
-            color: var(--white);
-            padding: 10px 30px;
+            color: rgba(255,255,255,0.8);
+            padding: 20px 40px;
             border-bottom: 1px solid rgba(255,255,255,0.05);
+            transition: 0.3s;
         }
-        .nav-link:hover { color: var(--secondary); padding-left: 40px; }
+        .nav-link:hover { 
+            color: var(--accent-teal); 
+            background: rgba(255,255,255,0.02);
+            padding-left: 50px; 
+        }
 
         .menu-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.8); z-index: 1040; display: none;
+            background: rgba(10, 37, 64, 0.6); z-index: 1040; display: none;
+            backdrop-filter: blur(3px);
         }
         .menu-overlay.active { display: block; }
 
         /* HERO SECTION */
         .hero {
+            background-color: var(--primary-dark);
+            padding: 100px 0;
+            text-align: center;
+            color: var(--text-light);
             position: relative;
-            width: 100%;
-            background: #000;
-            height: 60vh; 
-            overflow: hidden;
-        }
-
-        .hero-video {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            object-fit: cover; z-index: 0;
-        }
-
-        .hero-overlay {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(8, 31, 77, 0.6); /* Blue Tint */
-            backdrop-filter: blur(8px); /* 50% Blur Effect */
-            -webkit-backdrop-filter: blur(8px);
-            z-index: 1;
         }
 
         .hero-content {
-            position: absolute;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 2;
-            text-align: center;
-            width: 90%;
-            max-width: 800px;
+            max-width: 900px;
+            margin: 0 auto;
         }
 
-        .hero-content h1 {
-            font-size: 3rem; margin-bottom: 20px;
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
             line-height: 1.2;
-            text-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            letter-spacing: -1px;
         }
-        .hero-content h1 span { color: var(--secondary); }
-        
-        .hero-buttons { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
 
-        /* SERVICES */
+        .hero-subtext {
+            font-size: 1.2rem;
+            color: #b0c4de;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        .hero-subtext span {
+            padding: 0 15px;
+            position: relative;
+        }
+        
+        .hero-subtext span:not(:last-child)::after {
+            content: '|';
+            position: absolute;
+            right: 0;
+            color: var(--accent-teal);
+        }
+
+        /* SERVICES SECTION */
+        .services-section {
+            background-color: var(--bg-white);
+        }
+
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
         }
 
         .service-card {
-            background: var(--card-bg);
-            border-radius: 15px;
-            border: 1px solid rgba(255,255,255,0.1);
-            padding: 30px;
+            background: var(--bg-white);
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: var(--shadow-card);
             transition: var(--transition);
+            border-top: 4px solid var(--accent-teal);
+            position: relative;
+            overflow: hidden;
         }
 
         .service-card:hover {
-            border-color: var(--secondary);
-            background: rgba(26, 115, 232, 0.05);
-            transform: translateY(-5px);
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
         }
 
         .service-card h3 { 
-            font-size: 1.5rem; margin-bottom: 10px; color: var(--white);
+            font-size: 1.5rem; margin-bottom: 10px; color: var(--primary-dark);
         }
-        .service-card .price { font-size: 1.3rem; color: var(--secondary); font-weight: 700; margin-bottom: 20px; display: block; }
+        
+        .service-card .price { 
+            font-size: 1.25rem; 
+            color: var(--accent-teal); 
+            font-weight: 700; 
+            margin-bottom: 25px; 
+            display: block; 
+        }
 
         .service-card ul li {
-            margin-bottom: 10px;
-            color: var(--text-gray);
+            margin-bottom: 12px;
+            color: var(--text-grey);
             display: flex; align-items: center;
-            font-size: 0.9rem;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            padding-bottom: 8px;
+            font-size: 0.95rem;
         }
-        .service-card ul li:last-child { border: none; }
-        .service-card ul li i { color: var(--secondary); margin-right: 10px; font-size: 1rem; }
         
-        .hosting-highlight { color: var(--white) !important; font-weight: bold; }
-        .hosting-highlight i { color: gold !important; }
+        .service-card ul li i { 
+            color: var(--accent-teal); 
+            margin-right: 12px; 
+            font-size: 1.1rem; 
+        }
+
+        /* WHY CHOOSE US */
+        .why-choose-section {
+            background-color: var(--bg-grey);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-box {
+            text-align: center;
+            padding: 30px;
+            background: var(--bg-white);
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            transition: var(--transition);
+        }
+
+        .feature-box:hover { transform: translateY(-5px); }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--accent-teal);
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .feature-box h4 {
+            color: var(--primary-dark);
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .feature-box p { color: var(--text-grey); font-size: 0.9rem; }
 
         /* PROCESS (Blockchain Style) */
         .process-row {
@@ -329,283 +423,180 @@
         .process-step {
             width: 160px;
             text-align: center;
-            background: rgba(14, 75, 207, 0.1);
+            background: var(--bg-white);
             padding: 20px;
             border-radius: 12px;
-            border: 1px solid rgba(255,255,255,0.1);
+            border: 1px solid #eee;
+            box-shadow: var(--shadow-card);
             position: relative;
             z-index: 2;
-            /* Spring Animation */
             animation: spring-float 3s ease-in-out infinite;
         }
 
-        /* Blockchain connector line */
         .process-step::before {
             content: '';
             position: absolute;
-            top: 50%;
-            right: -52px;
-            width: 50px;
-            height: 2px;
-            background: linear-gradient(90deg, var(--secondary), transparent);
+            top: 50%; right: -52px; width: 50px; height: 2px;
+            background: linear-gradient(90deg, var(--accent-teal), transparent);
             z-index: 1;
         }
         .process-step:last-child::before { display: none; }
 
-        /* Connecting Nodes */
         .process-step::after {
             content: '';
             position: absolute;
-            top: 50%;
-            right: -6px;
-            width: 10px;
-            height: 10px;
-            background: var(--secondary);
+            top: 50%; right: -6px; width: 10px; height: 10px;
+            background: var(--accent-teal);
             border-radius: 50%;
             transform: translateY(-50%);
-            box-shadow: 0 0 10px var(--secondary);
         }
         .process-step:last-child::after { display: none; }
 
-        .process-step:hover {
-            border-color: var(--secondary);
-            box-shadow: 0 0 20px rgba(26, 115, 232, 0.2);
-        }
-
-        .process-icon { 
-            font-size: 2rem; color: var(--secondary); margin-bottom: 15px; 
-        }
-        .process-step h4 { font-size: 1rem; margin-bottom: 5px; color: var(--white); }
+        .process-icon { font-size: 2rem; color: var(--accent-teal); margin-bottom: 15px; }
+        .process-step h4 { font-size: 1rem; color: var(--primary-dark); }
 
         @keyframes spring-float {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
+            50% { transform: translateY(-10px); }
         }
-
-        /* Staggered Animation Delays */
+        
         .process-step:nth-child(1) { animation-delay: 0s; }
         .process-step:nth-child(2) { animation-delay: 0.2s; }
         .process-step:nth-child(3) { animation-delay: 0.4s; }
         .process-step:nth-child(4) { animation-delay: 0.6s; }
         .process-step:nth-child(5) { animation-delay: 0.8s; }
 
-        /* ACHIEVEMENTS */
-        .stats-row {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            flex-wrap: wrap;
-        }
-
-        .stat-box {
-            width: 200px;
-            text-align: center;
-            background: rgba(255,255,255,0.05);
-            padding: 25px 15px;
-            border-radius: 10px;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-        .stat-box:hover { border-color: var(--secondary); }
-
-        .achieve-title span { color: var(--secondary) !important; }
-        
-        .stat-box h3 { font-size: 2.5rem; color: var(--secondary); font-weight: 700; }
-        .stat-box p { color: var(--text-gray); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
-
-        /* SUCCESS STORIES */
+        /* SUCCESS STORIES MARQUEE */
         .marquee-wrapper {
             overflow: hidden;
-            background: rgba(0,0,0,0.2);
-            padding: 30px 0;
+            background: var(--bg-grey);
+            padding: 40px 0;
             cursor: pointer; 
-            border-top: 1px solid rgba(255,255,255,0.05);
-            border-bottom: 1px solid rgba(255,255,255,0.05);
         }
 
         .marquee-content {
             display: flex;
-            gap: 20px;
+            gap: 30px;
             width: max-content;
             animation: scroll-left 30s linear infinite;
-            will-change: transform;
         }
 
         .marquee-paused { animation-play-state: paused !important; }
 
         .story-card {
-            width: 300px;
-            background: var(--card-bg);
+            width: 320px;
+            background: var(--bg-white);
             padding: 25px;
-            border-radius: 10px;
-            border-left: 3px solid var(--secondary);
+            border-radius: 8px;
+            border-left: 4px solid var(--accent-teal);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
             flex-shrink: 0;
         }
-        .story-card h3 { color: var(--white); margin-bottom: 10px; font-size: 1.1rem; }
-        .story-text { color: var(--text-gray); font-size: 0.9rem; }
-
-        /* FAQ */
-        .faq-container { max-width: 800px; margin: 0 auto; }
-        .faq-item {
-            background: rgba(255,255,255,0.03);
-            margin-bottom: 10px;
-            border-radius: 5px;
-            overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-        .faq-question {
-            padding: 15px 20px;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 600;
-            font-size: 1rem;
-            color: var(--white);
-        }
-        .faq-question:hover { background: rgba(255,255,255,0.05); color: var(--secondary); }
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            padding: 0 20px;
-            color: var(--text-gray);
-            font-size: 0.9rem;
-            transition: 0.3s ease;
-        }
-        .faq-item.active .faq-answer { padding: 0 20px 20px; max-height: 300px; }
-        .faq-icon { transition: 0.3s; }
-        .faq-item.active .faq-icon { transform: rotate(180deg); }
-
-        /* CLIENTS */
-        .client-marquee {
-            display: flex; gap: 50px; width: max-content;
-            animation: scroll-left 25s linear infinite; 
-            will-change: transform;
-            align-items: center;
-        }
-        
-        .client-marquee img { 
-            height: 60px; 
-            width: auto;
-            object-fit: contain;
-            filter: brightness(0) invert(1) opacity(0.8); /* White logos */
-            transition: 0.3s;
-        }
-        .client-marquee img:hover { filter: none; opacity: 1; }
-        
-        /* TECHNOLOGIES */
-        .tech-marquee {
-            display: flex; gap: 60px; width: max-content;
-            animation: scroll-right 35s linear infinite;
-            will-change: transform;
-            align-items: center;
-        }
-        .tech-item {
-            display: flex; flex-direction: column; align-items: center;
-            color: var(--text-gray); font-size: 0.85rem; font-weight: 600;
-            min-width: 80px;
-        }
-        .tech-item i { 
-            font-size: 2.5rem; margin-bottom: 10px; color: var(--secondary);
-        }
-        .tech-item:hover i { color: var(--white); }
-
-        @keyframes scroll-left { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-        @keyframes scroll-right { 0% { transform: translateX(-50%); } 100% { transform: translateX(0); } }
+        .story-card h3 { color: var(--primary-dark); margin-bottom: 8px; font-size: 1.1rem; }
+        .story-text { color: var(--text-grey); font-size: 0.9rem; }
 
         /* CONTACT */
-        .contact-section { background: rgba(0,0,0,0.2); border-top: 1px solid rgba(255,255,255,0.1); }
+        .contact-section { background: var(--bg-white); }
         
-        .contact-grid { display: grid; gap: 50px; }
+        .contact-grid { display: grid; gap: 60px; }
 
         @media (min-width: 769px) {
             .contact-grid { grid-template-columns: 1fr 1fr; }
             .contact-form-wrapper { order: 1; }
             .contact-info-wrapper { order: 2; }
         }
-        @media (max-width: 768px) {
-            .contact-grid { grid-template-columns: 1fr; }
-            .contact-info-wrapper { order: 1; margin-bottom: 30px; }
-            .contact-form-wrapper { order: 2; }
-            
-            /* Mobile Process Reset */
-            .process-row {
-                flex-direction: column; 
-                align-items: center;
-                gap: 40px; 
-            }
-            .process-step::before {
-                width: 2px; height: 40px;
-                top: auto; bottom: -42px;
-                left: 50%; right: auto;
-                transform: translateX(-50%);
-                background: linear-gradient(180deg, var(--secondary), transparent);
-            }
-            .process-step::after {
-                top: auto; bottom: -6px;
-                left: 50%; right: auto;
-                transform: translateX(-50%);
-            }
-            .hero-content h1 { font-size: 1.8rem; }
-        }
-
-        .contact-info h4 { color: var(--secondary); margin-bottom: 5px; font-size: 1.1rem; }
-        .contact-row { display: flex; align-items: flex-start; margin-bottom: 25px; }
+        
+        .contact-info h4 { color: var(--accent-teal); margin-bottom: 5px; font-size: 1.1rem; }
+        .contact-row { display: flex; align-items: flex-start; margin-bottom: 30px; }
         
         .contact-icon { 
-            font-size: 1.4rem; color: var(--primary); margin-right: 15px; margin-top: 5px; 
+            font-size: 1.4rem; color: var(--primary-dark); margin-right: 20px; margin-top: 5px; 
         }
+        .contact-text p { color: var(--text-dark); }
 
         .form-control {
             width: 100%; padding: 15px; margin-bottom: 20px;
-            background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
-            color: var(--white); border-radius: 5px; font-size: 1rem;
+            background: #f9f9f9; border: 1px solid #ddd;
+            color: var(--text-dark); border-radius: 5px; font-size: 1rem;
+            font-family: var(--font-main);
         }
-        .form-control:focus { outline: none; border-color: var(--secondary); background: rgba(255,255,255,0.1); }
-        option { background: var(--dark); }
+        .form-control:focus { outline: none; border-color: var(--accent-teal); background: #fff; }
 
         /* FOOTER */
         footer {
-            background: #051333;
-            padding: 60px 0 20px;
-            border-top: 1px solid rgba(255,255,255,0.05);
+            background: var(--primary-dark);
+            padding: 80px 0 30px;
+            color: var(--text-light);
         }
 
         .footer-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 50px;
+            margin-bottom: 60px;
         }
 
-        .footer-col h4 { color: var(--white); margin-bottom: 20px; font-size: 1.1rem; }
-        .footer-col ul li { margin-bottom: 10px; }
-        .footer-col ul li a { color: var(--text-gray); font-size: 0.9rem; transition: 0.3s; }
-        .footer-col ul li a:hover { color: var(--secondary); }
+        .footer-col h4 { color: var(--text-light); margin-bottom: 25px; font-size: 1.2rem; }
+        .footer-col ul li { margin-bottom: 12px; }
+        .footer-col ul li a { color: #b0c4de; font-size: 0.95rem; transition: 0.3s; }
+        .footer-col ul li a:hover { color: var(--accent-teal); padding-left: 5px; }
 
         .social-links a {
-            display: inline-flex; width: 40px; height: 40px;
-            background: rgba(255,255,255,0.1); color: var(--white);
+            display: inline-flex; width: 45px; height: 45px;
+            background: rgba(255,255,255,0.1); color: var(--text-light);
             align-items: center; justify-content: center;
-            border-radius: 50%; margin-right: 10px;
+            border-radius: 50%; margin-right: 12px;
             transition: 0.3s;
         }
-        .social-links a:hover { background: var(--secondary); }
+        .social-links a:hover { background: var(--accent-teal); transform: translateY(-3px); }
 
         .copyright {
-            text-align: center; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.05);
-            color: #666; font-size: 0.9rem;
+            text-align: center; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1);
+            color: #889bb0; font-size: 0.9rem;
         }
 
+        /* CLIENTS & TECH */
+        .client-marquee img { height: 50px; width: auto; object-fit: contain; filter: grayscale(100%); opacity: 0.7; transition: 0.3s; }
+        .client-marquee img:hover { filter: none; opacity: 1; }
+        .tech-item i { font-size: 2.5rem; margin-bottom: 10px; color: var(--accent-teal); }
+        .tech-item span { color: var(--text-dark); }
+
+        @keyframes scroll-left { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        /* MOBILE OPTIMIZATION */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            .hero-subtext { font-size: 1rem; }
+            .hero-subtext span { display: block; padding: 5px 0; }
+            .hero-subtext span:not(:last-child)::after { display: none; }
+            
+            .nav-right { gap: 15px; }
+            .btn-header-call span { display: none; } /* Show icon only on mobile */
+            .btn-header-call { padding: 10px; }
+            
+            .process-row { flex-direction: column; align-items: center; gap: 40px; }
+            .process-step::before {
+                width: 2px; height: 40px;
+                top: auto; bottom: -42px; left: 50%; transform: translateX(-50%);
+                background: linear-gradient(180deg, var(--accent-teal), transparent);
+            }
+            .process-step::after { top: auto; bottom: -6px; left: 50%; transform: translateX(-50%); }
+            
+            .contact-grid { grid-template-columns: 1fr; }
+            .contact-info-wrapper { order: 1; }
+            .contact-form-wrapper { order: 2; }
+        }
+
+        /* Float WhatsApp */
         .float-wa {
-            position: fixed; bottom: 20px; right: 20px;
+            position: fixed; bottom: 25px; right: 25px;
             background-color: #25d366; color: #FFF;
             width: 60px; height: 60px; border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
-            font-size: 30px; z-index: 2000;
-            box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+            font-size: 32px; z-index: 2000;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
             animation: pulse-wave 2s infinite;
         }
-        
         @keyframes pulse-wave {
             0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
             70% { transform: scale(1); box-shadow: 0 0 0 20px rgba(37, 211, 102, 0); }
@@ -618,7 +609,7 @@
     <header class="header">
         <div class="container nav">
             <a href="#" class="logo">
-                <img src="images/mylogo.png" alt="Knox Logo">
+                <img src="images/mylogo.png" alt="Knox IT Services">
             </a>
             
             <div class="nav-right">
@@ -627,8 +618,15 @@
                     <span>Live:</span>
                     <span id="visitor-count">107</span>
                 </div>
+                
+                <a href="tel:8009262472" class="btn-header-call">
+                    <i class="fas fa-phone-alt"></i> <span>Call Now</span>
+                </a>
+
                 <div class="hamburger" id="hamburger-btn">
-                    <i class="fas fa-bars"></i>
+                    <span></span>
+                    <span></span>
+                    <span></span>
                 </div>
             </div>
         </div>
@@ -644,80 +642,102 @@
     </div>
 
     <section id="home" class="hero">
-        <video class="hero-video" autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1920&auto=format&fit=crop">
-            <source src="images/topbanner.mp4" type="video/mp4">
-        </video>
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <h1>Transform Ideas Into <br><span>Reality</span></h1>
+        <div class="container hero-content">
+            <h1>Complete IT Solutions <br> For Businesses</h1>
+            <div class="hero-subtext">
+                <span>Web Development</span>
+                <span>Business E-Mail</span>
+                <span>Refurbished Laptops</span>
+            </div>
             <div class="hero-buttons">
-                <a href="https://wa.me/918009262472?text=Hello%20Knox%20IT,%20I%20am%20interested%20in%20your%20services.%20Please%20guide%20me.%0A%0ARef:%20Web-Lead" class="btn btn-primary" target="_blank">
+                <a href="https://wa.me/918009262472?text=Hello%20Knox%20IT,%20I%20am%20interested%20in%20your%20services.%20Please%20guide%20me.%0A%0ARef:%20Web-Lead" class="btn btn-teal" target="_blank">
                     <i class="fab fa-whatsapp"></i> Get Free Consultation
                 </a>
-                <a href="tel:8009262472" class="btn btn-secondary">Call Now</a>
             </div>
         </div>
     </section>
 
-    <section id="services" class="section-padding">
+    <section id="services" class="section-padding services-section">
         <div class="container">
-            <h2 class="section-title">Our <span>Services</span></h2>
+            <h2 class="section-title">Our Services</h2>
             <div class="services-grid">
                 <div class="service-card">
                     <h3>Website Development</h3>
                     <span class="price">₹12,499 / Start</span>
                     <ul>
-                        <li><i class="fas fa-check"></i> Custom Design</li>
-                        <li><i class="fas fa-check"></i> Mobile Responsive</li>
-                        <li><i class="fas fa-check"></i> SEO Optimization</li>
-                        <li class="hosting-highlight"><i class="fas fa-star"></i> 1 Year Free Hosting</li>
-                        <li><i class="fas fa-check"></i> Free SSL Certificate</li>
-                        <li><i class="fas fa-check"></i> Contact Form Integration</li>
-                        <li><i class="fas fa-check"></i> Social Media Links</li>
-                        <li><i class="fas fa-check"></i> Fast Page Loading</li>
-                        <li><i class="fas fa-check"></i> WhatsApp Button</li>
-                        <li><i class="fas fa-check"></i> 1 Month Support</li>
+                        <li><i class="fas fa-check-circle"></i> Custom Corporate Design</li>
+                        <li><i class="fas fa-check-circle"></i> Mobile Responsive & Fast</li>
+                        <li><i class="fas fa-check-circle"></i> SEO Friendly Structure</li>
+                        <li style="color:var(--primary-dark); font-weight:600;"><i class="fas fa-star" style="color:gold;"></i> 1 Year Free Hosting</li>
+                        <li><i class="fas fa-check-circle"></i> Free SSL Security</li>
+                        <li><i class="fas fa-check-circle"></i> Contact Form Integration</li>
+                        <li><i class="fas fa-check-circle"></i> Social Media Integration</li>
+                        <li><i class="fas fa-check-circle"></i> 1 Month Premium Support</li>
                     </ul>
                 </div>
                 <div class="service-card">
                     <h3>Business Email</h3>
-                    <span class="price">₹600 / ID / Start</span>
+                    <span class="price">₹1,500 / ID / Year</span>
                     <ul>
-                        <li><i class="fas fa-check"></i> Zoho / Outlook Setup</li>
-                        <li><i class="fas fa-check"></i> Custom Domain Email</li>
-                        <li><i class="fas fa-check"></i> 5GB Storage</li>
-                        <li><i class="fas fa-check"></i> Spam & Virus Protection</li>
-                        <li><i class="fas fa-check"></i> Mobile & Outlook Access</li>
-                        <li><i class="fas fa-check"></i> Calendar Sync</li>
-                        <li><i class="fas fa-check"></i> SPF / DKIM Security</li>
-                        <li><i class="fas fa-check"></i> 99.9% Uptime</li>
-                        <li><i class="fas fa-check"></i> Easy User Management</li>
-                        <li><i class="fas fa-check"></i> 24×7 Support</li>
+                        <li><i class="fas fa-check-circle"></i> Professional Domain Email</li>
+                        <li><i class="fas fa-check-circle"></i> Zoho / Outlook Setup</li>
+                        <li><i class="fas fa-check-circle"></i> 5GB Secure Storage</li>
+                        <li><i class="fas fa-check-circle"></i> Advanced Spam Protection</li>
+                        <li><i class="fas fa-check-circle"></i> Sync with Mobile & Desktop</li>
+                        <li><i class="fas fa-check-circle"></i> 99.9% Uptime Guarantee</li>
+                        <li><i class="fas fa-check-circle"></i> SPF / DKIM Authentication</li>
+                        <li><i class="fas fa-check-circle"></i> 24×7 Technical Support</li>
                     </ul>
                 </div>
                 <div class="service-card">
                     <h3>Refurbished Laptops</h3>
-                    <span class="price">Retail & Bulk</span>
+                    <span class="price">Retail & Bulk Orders</span>
                     <ul>
-                        <li><i class="fas fa-check"></i> Business Series (Dell/HP/Lenovo)</li>
-                        <li><i class="fas fa-check"></i> Core i3 / i5 / i7 Processors</li>
-                        <li><i class="fas fa-check"></i> 8GB / 16GB RAM</li>
-                        <li><i class="fas fa-check"></i> SSD Upgrades Available</li>
-                        <li><i class="fas fa-check"></i> Windows 10/11 Pro</li>
-                        <li><i class="fas fa-check"></i> MS Office Installed</li>
-                        <li><i class="fas fa-check"></i> 1 Year Warranty</li>
-                        <li><i class="fas fa-check"></i> Quality Check Tested</li>
-                        <li><i class="fas fa-check"></i> Antivirus Installed</li>
-                        <li><i class="fas fa-check"></i> Pan India Delivery</li>
+                        <li><i class="fas fa-check-circle"></i> Enterprise Grade (Dell/HP/Lenovo)</li>
+                        <li><i class="fas fa-check-circle"></i> Core i3 / i5 / i7 Processors</li>
+                        <li><i class="fas fa-check-circle"></i> 8GB / 16GB RAM Options</li>
+                        <li><i class="fas fa-check-circle"></i> High Speed SSD Upgrades</li>
+                        <li><i class="fas fa-check-circle"></i> Windows 10/11 Pro Licensed</li>
+                        <li><i class="fas fa-check-circle"></i> Rigorous Quality Checks</li>
+                        <li><i class="fas fa-check-circle"></i> Up to 1 Year Warranty</li>
+                        <li><i class="fas fa-check-circle"></i> Pan India Delivery</li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="process" class="section-padding">
+    <section class="section-padding why-choose-section">
         <div class="container">
-            <h2 class="section-title">Our <span>Process</span></h2>
+            <h2 class="section-title">Why Choose Knox IT</h2>
+            <div class="features-grid">
+                <div class="feature-box">
+                    <i class="fas fa-headset feature-icon"></i>
+                    <h4>Fast Support</h4>
+                    <p>Dedicated team available to resolve queries instantly.</p>
+                </div>
+                <div class="feature-box">
+                    <i class="fas fa-users-cog feature-icon"></i>
+                    <h4>Experienced Teams</h4>
+                    <p>Skilled professionals delivering top-notch solutions.</p>
+                </div>
+                <div class="feature-box">
+                    <i class="fas fa-tags feature-icon"></i>
+                    <h4>Best Pricing</h4>
+                    <p>Premium services at the most competitive market rates.</p>
+                </div>
+                <div class="feature-box">
+                    <i class="fas fa-handshake feature-icon"></i>
+                    <h4>Trusted IT Partner</h4>
+                    <p>Serving 100+ corporate clients with reliability.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="process" class="section-padding" style="background: white;">
+        <div class="container">
+            <h2 class="section-title">Our Process</h2>
             <div class="process-row">
                 <div class="process-step">
                     <i class="fas fa-comments process-icon"></i>
@@ -743,147 +763,47 @@
         </div>
     </section>
 
-    <section class="section-padding" style="background: rgba(255,255,255,0.02);">
+    <section id="stories" class="section-padding" style="background: var(--bg-grey);">
         <div class="container">
-            <h2 class="section-title achieve-title">Our <span>Achievements</span></h2>
-            <div class="stats-row">
-                <div class="stat-box">
-                    <h3 data-target="4">0</h3>
-                    <p>Years Experience</p>
-                </div>
-                <div class="stat-box">
-                    <h3 data-target="8000">0</h3>
-                    <p>Websites Live</p>
-                </div>
-                <div class="stat-box">
-                    <h3 data-target="5000">0</h3>
-                    <p>Emails Managed</p>
-                </div>
-                <div class="stat-box">
-                    <h3 data-target="1200">0</h3>
-                    <p>Laptops Sold</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="stories" class="section-padding">
-        <div class="container">
-            <h2 class="section-title">Success <span>Stories</span></h2>
+            <h2 class="section-title">Success Stories</h2>
         </div>
         <div class="marquee-wrapper" id="stories-marquee-wrapper">
             <div class="marquee-content" id="stories-marquee-content">
-                <div class="story-card"><h3>School Website</h3><p class="story-text">Automated admissions & fees.</p></div>
-                <div class="story-card"><h3>Corp Email</h3><p class="story-text">Zero spam & 99.9% uptime.</p></div>
-                <div class="story-card"><h3>Startup Launch</h3><p class="story-text">Brand identity & first clients.</p></div>
-                <div class="story-card"><h3>Call Center</h3><p class="story-text">50 Laptops bulk supply.</p></div>
-                <div class="story-card"><h3>E-Commerce</h3><p class="story-text">Sales boosted by 200%.</p></div>
-                <div class="story-card"><h3>Dental Clinic</h3><p class="story-text">Online appointment booking.</p></div>
-                <div class="story-card"><h3>Real Estate</h3><p class="story-text">Property listing portal.</p></div>
-                <div class="story-card"><h3>NGO Website</h3><p class="story-text">Donation gateway integration.</p></div>
-                <div class="story-card"><h3>Logistics</h3><p class="story-text">Tracking system setup.</p></div>
-                <div class="story-card"><h3>Law Firm</h3><p class="story-text">Secure document portal.</p></div>
-                <div class="story-card"><h3>School Website</h3><p class="story-text">Automated admissions & fees.</p></div>
-                <div class="story-card"><h3>Corp Email</h3><p class="story-text">Zero spam & 99.9% uptime.</p></div>
+                <div class="story-card"><h3>School Website</h3><p class="story-text">Automated admissions & fees portal.</p></div>
+                <div class="story-card"><h3>Corp Email Migration</h3><p class="story-text">Zero downtime & 100% data safety.</p></div>
+                <div class="story-card"><h3>Startup Branding</h3><p class="story-text">Complete identity & web launch.</p></div>
+                <div class="story-card"><h3>BPO IT Setup</h3><p class="story-text">Supplied 50+ Laptops with networking.</p></div>
+                <div class="story-card"><h3>E-Commerce Store</h3><p class="story-text">Sales boosted by 200% in 3 months.</p></div>
+                <div class="story-card"><h3>Dental Clinic</h3><p class="story-text">Online appointment booking system.</p></div>
+                <div class="story-card"><h3>Real Estate Portal</h3><p class="story-text">Property listing & lead management.</p></div>
+                <div class="story-card"><h3>NGO Platform</h3><p class="story-text">Secure donation gateway integration.</p></div>
             </div>
         </div>
     </section>
 
-    <section class="section-padding" style="background: rgba(255,255,255,0.02);">
+    <section class="section-padding" style="background: white;">
         <div class="container">
-            <h2 class="section-title">Frequently Asked <span>Questions</span></h2>
-            <div class="faq-container">
-                <div class="faq-item">
-                    <div class="faq-question">How long does website development take? <i class="fas fa-chevron-down faq-icon"></i></div>
-                    <div class="faq-answer">Usually 5-7 working days depending on the requirements.</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">Do you provide support after delivery? <i class="fas fa-chevron-down faq-icon"></i></div>
-                    <div class="faq-answer">Yes, we provide 1 year of technical support with our packages.</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">Do you provide GST Invoice? <i class="fas fa-chevron-down faq-icon"></i></div>
-                    <div class="faq-answer">Yes, we provide valid GST invoices for all services.</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">Is the hosting really free? <i class="fas fa-chevron-down faq-icon"></i></div>
-                    <div class="faq-answer">Yes, the first year of hosting is 100% free with website development.</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">Can you handle bulk laptop orders? <i class="fas fa-chevron-down faq-icon"></i></div>
-                    <div class="faq-answer">Yes, we supply bulk refurbished laptops to offices and schools.</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">What is the warranty on laptops? <i class="fas fa-chevron-down faq-icon"></i></div>
-                    <div class="faq-answer">We provide up to 1 year warranty on refurbished business series laptops.</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">Do you setup Outlook/Office 365? <i class="fas fa-chevron-down faq-icon"></i></div>
-                    <div class="faq-answer">Yes, we can setup Office 365 and Outlook emails.</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">Will my website work on Mobile? <i class="fas fa-chevron-down faq-icon"></i></div>
-                    <div class="faq-answer">Absolutely. All our designs are 100% mobile responsive.</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="section-padding" style="background: rgba(255,255,255,0.02);">
-        <div class="container">
-            <h2 class="section-title">Our Valued <span>Clients</span></h2>
+            <h2 class="section-title">Our Valued Clients</h2>
         </div>
         <div class="marquee-wrapper" style="background: transparent; cursor: default; border: none;">
-            <div class="client-marquee">
-                <img src="images/client1.png" alt="Client 1">
-                <img src="images/client2.png" alt="Client 2">
-                <img src="images/client3.png" alt="Client 3">
-                <img src="images/client4.png" alt="Client 4">
-                <img src="images/client5.png" alt="Client 5">
-                <img src="images/client1.png" alt="Client 1">
-                <img src="images/client2.png" alt="Client 2">
-                <img src="images/client3.png" alt="Client 3">
-                <img src="images/client4.png" alt="Client 4">
-                <img src="images/client5.png" alt="Client 5">
-            </div>
-        </div>
-    </section>
-
-    <section class="section-padding">
-        <div class="container">
-            <h2 class="section-title">Technologies <span>We Use</span></h2>
-        </div>
-        <div class="marquee-wrapper" style="background: transparent; cursor: default; border: none;">
-            <div class="tech-marquee">
-                <div class="tech-item"><i class="fas fa-envelope-open-text"></i><span>Zoho</span></div>
-                <div class="tech-item"><i class="fab fa-google"></i><span>Workspace</span></div>
-                <div class="tech-item"><i class="fab fa-microsoft"></i><span>Azure</span></div>
-                <div class="tech-item"><i class="fas fa-database"></i><span>Oracle</span></div>
-                <div class="tech-item"><i class="fab fa-aws"></i><span>AWS</span></div>
-                <div class="tech-item"><i class="fas fa-server"></i><span>GoDaddy</span></div>
-                <div class="tech-item"><i class="fas fa-globe"></i><span>Hostinger</span></div>
-                <div class="tech-item"><i class="fab fa-docker"></i><span>Docker</span></div>
-                <div class="tech-item"><i class="fab fa-wordpress"></i><span>WordPress</span></div>
-                <div class="tech-item"><i class="fab fa-html5"></i><span>HTML5</span></div>
-                <div class="tech-item"><i class="fab fa-css3-alt"></i><span>CSS3</span></div>
-                <div class="tech-item"><i class="fab fa-js"></i><span>JavaScript</span></div>
-                <div class="tech-item"><i class="fab fa-react"></i><span>React</span></div>
-                <div class="tech-item"><i class="fab fa-node"></i><span>Node.js</span></div>
-                <div class="tech-item"><i class="fab fa-php"></i><span>PHP</span></div>
-                <div class="tech-item"><i class="fab fa-python"></i><span>Python</span></div>
-                <div class="tech-item"><i class="fab fa-linux"></i><span>Linux</span></div>
-                <div class="tech-item"><i class="fas fa-database"></i><span>MySQL</span></div>
-                <div class="tech-item"><i class="fab fa-shopify"></i><span>Shopify</span></div>
-                <div class="tech-item"><i class="fab fa-android"></i><span>Android</span></div>
-                <div class="tech-item"><i class="fas fa-envelope-open-text"></i><span>Zoho</span></div>
-                <div class="tech-item"><i class="fab fa-google"></i><span>Workspace</span></div>
+            <div class="marquee-content" style="animation: scroll-left 25s linear infinite;">
+                <div class="client-marquee" style="display:flex; gap:50px; align-items:center;">
+                    <img src="images/client1.png" alt="Client">
+                    <img src="images/client2.png" alt="Client">
+                    <img src="images/client3.png" alt="Client">
+                    <img src="images/client4.png" alt="Client">
+                    <img src="images/client5.png" alt="Client">
+                    <img src="images/client1.png" alt="Client">
+                    <img src="images/client2.png" alt="Client">
+                    <img src="images/client3.png" alt="Client">
+                </div>
             </div>
         </div>
     </section>
 
     <section id="contact" class="section-padding contact-section">
         <div class="container">
-            <h2 class="section-title">Contact <span>Us</span></h2>
+            <h2 class="section-title">Contact Us</h2>
             <div class="contact-grid">
                 
                 <div class="contact-form-wrapper">
@@ -898,14 +818,14 @@
                             <option value="Email">Business Email</option>
                             <option value="Laptops">Refurbished Laptops</option>
                         </select>
-                        <textarea name="message" class="form-control" placeholder="Message" style="height:100px; resize:none;"></textarea>
-                        <button type="submit" class="btn btn-primary" style="width:100%;">Send Message</button>
+                        <textarea name="message" class="form-control" placeholder="Message" style="height:120px; resize:none;"></textarea>
+                        <button type="submit" class="btn btn-teal" style="width:100%;">Send Message</button>
                     </form>
                 </div>
 
                 <div class="contact-info-wrapper contact-info">
                     <div class="contact-row">
-                        <i class="fas fa-phone contact-icon"></i>
+                        <i class="fas fa-phone-alt contact-icon"></i>
                         <div class="contact-text">
                             <h4>Helpline</h4>
                             <p class="selectable-text">8009262472</p>
@@ -943,19 +863,20 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-col">
-                    <h4>About Knox IT Services</h4>
-                    <p style="color:var(--text-gray); font-size:0.9rem;">Providing top-tier IT solutions for businesses across India. Coding, Hosting, and Hardware under one roof.</p>
+                    <h4>Knox IT Services</h4>
+                    <p style="color:#b0c4de; font-size:0.9rem;">Providing top-tier IT solutions for businesses across India. Coding, Hosting, and Hardware under one roof.</p>
                 </div>
                 <div class="footer-col">
-                    <h4>Services</h4>
+                    <h4>Quick Links</h4>
                     <ul>
                         <li><a href="#services">Web Development</a></li>
                         <li><a href="#services">Business Email</a></li>
                         <li><a href="#services">Laptop Sales</a></li>
+                        <li><a href="#contact">Contact Support</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h4>Connect</h4>
+                    <h4>Follow Us</h4>
                     <div class="social-links">
                         <a href="https://www.facebook.com/share/14bCEnk7Etd/" target="_blank"><i class="fab fa-facebook-f"></i></a>
                         <a href="https://www.instagram.com/knoxit.in?igsh=M2xtcmljZjczOTMw" target="_blank"><i class="fab fa-instagram"></i></a>
@@ -963,7 +884,7 @@
                 </div>
             </div>
             <div class="copyright">
-                Copyright © 2025 Knox IT Services. All Rights Reserved
+                Copyright © 2025 Knox IT Services. All Rights Reserved.
             </div>
         </div>
     </footer>
@@ -973,66 +894,41 @@
     </a>
 
     <script>
-        // Random Visitor Counter Logic
+        // VISITOR COUNTER LOGIC (Update every 2 seconds)
         const visitorCountElement = document.getElementById('visitor-count');
         
         setInterval(() => {
             // Generate random number between 10 and 1277
             const randomVisitors = Math.floor(Math.random() * (1277 - 10 + 1) + 10);
             visitorCountElement.innerText = randomVisitors;
-        }, 1000); // Update every second
+        }, 2000); 
 
-        // Menu Logic
+        // MENU LOGIC (Hamburger Animation & Drawer)
         const hamburger = document.getElementById('hamburger-btn');
         const navMenu = document.getElementById('nav-menu');
         const overlay = document.getElementById('menu-overlay');
         const navLinks = document.querySelectorAll('.nav-link');
 
-        function openMenu() {
-            navMenu.classList.add('active');
-            overlay.classList.add('active');
+        function toggleMenu() {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+            overlay.classList.toggle('active');
         }
 
         function closeMenu() {
+            hamburger.classList.remove('active');
             navMenu.classList.remove('active');
             overlay.classList.remove('active');
         }
 
-        hamburger.addEventListener('click', openMenu);
+        hamburger.addEventListener('click', toggleMenu);
         overlay.addEventListener('click', closeMenu);
 
         navLinks.forEach(link => {
             link.addEventListener('click', closeMenu);
         });
 
-        // Stats Animation
-        const statsSection = document.querySelector('.stats-row');
-        let statsAnimated = false;
-
-        const statsObserver = new IntersectionObserver((entries) => {
-            if (entries[0].isIntersecting && !statsAnimated) {
-                document.querySelectorAll('.stat-box h3').forEach(counter => {
-                    const target = +counter.getAttribute('data-target');
-                    const duration = 2000;
-                    const increment = target / (duration / 16);
-                    let current = 0;
-                    const timer = setInterval(() => {
-                        current += increment;
-                        if (current >= target) {
-                            counter.innerText = target + "+";
-                            clearInterval(timer);
-                        } else {
-                            counter.innerText = Math.ceil(current) + "+";
-                        }
-                    }, 16);
-                });
-                statsAnimated = true;
-            }
-        }, { threshold: 0.5 });
-
-        if(statsSection) statsObserver.observe(statsSection);
-
-        // Success Stories Tap Logic
+        // SUCCESS STORIES PAUSE ON CLICK
         const storiesWrapper = document.getElementById('stories-marquee-wrapper');
         const storiesContent = document.getElementById('stories-marquee-content');
         let isPaused = false;
@@ -1053,14 +949,6 @@
                 storiesContent.classList.remove('marquee-paused');
                 isPaused = false;
             }
-        });
-
-        // FAQ Toggle
-        document.querySelectorAll('.faq-question').forEach(q => {
-            q.addEventListener('click', () => {
-                const item = q.parentElement;
-                item.classList.toggle('active');
-            });
         });
     </script>
 </body>
