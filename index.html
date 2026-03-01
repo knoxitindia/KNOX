@@ -214,10 +214,10 @@
         .hamburger.active span:nth-child(2) { opacity: 0; }
         .hamburger.active span:nth-child(3) { transform: translateY(-10.5px) rotate(-45deg); }
 
-        /* MENU SIDEBAR (Opens BELOW Header) */
+        /* MENU SIDEBAR */
         .nav-menu {
             position: fixed;
-            top: 80px; /* Header Height */
+            top: 80px; 
             right: -320px;
             width: 280px;
             height: calc(100vh - 80px);
@@ -273,7 +273,7 @@
             top: 0; left: 0; width: 100%; height: 100%;
             object-fit: cover;
             z-index: 0;
-            filter: blur(4px); /* Light Blur */
+            filter: blur(4px);
             opacity: 1;
         }
 
@@ -325,7 +325,7 @@
         .service-card ul li { margin-bottom: 8px; color: var(--text-grey); display: flex; align-items: center; font-size: 0.9rem; }
         .service-card ul li i { color: var(--primary); margin-right: 10px; font-size: 0.9rem; flex-shrink: 0;}
 
-        /* ACHIEVEMENTS (2x2 Grid Mobile) */
+        /* ACHIEVEMENTS */
         .achievements-section { background-color: var(--bg-grey); }
         .stats-row {
             display: flex;
@@ -345,81 +345,78 @@
         .stat-box h3 { font-size: 2.2rem; color: var(--primary); font-weight: 700; }
         .stat-box p { color: var(--text-grey); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* PROCESS (Ferris Wheel - Fixed Orientation & Shape) */
-        .process-section { background-color: var(--bg-white); overflow: hidden; }
+        /* PROCESS (Ferris Wheel - Compact) */
+        .process-section { background-color: var(--bg-white); overflow: hidden; padding: 40px 0; } /* Compact Padding */
         
         .process-container-outer {
-            height: 500px;
+            height: 400px; /* Reduced Height to not cover full page */
             position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
-        /* The rotating ring */
         .process-ring {
             position: relative;
-            width: 350px;
-            height: 350px;
+            width: 320px; /* Slightly smaller ring */
+            height: 320px;
             border: 2px dashed var(--primary);
             border-radius: 50%;
             animation: rotate-ring 25s linear infinite;
         }
 
-        /* The item container attached to ring */
         .process-item {
             position: absolute;
             top: 50%;
             left: 50%;
-            width: 100px; /* Fixed width to prevent squash */
-            height: 100px; /* Fixed height to prevent squash */
-            margin: -50px; /* Center offset */
+            width: 100px;
+            height: 100px;
+            margin: -50px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
-            /* Animation to keep item upright by rotating opposite to ring */
             animation: rotate-ring-reverse 25s linear infinite; 
         }
         
-        /* Positioning items around the circle */
-        .p-item-1 { transform: rotate(0deg) translate(175px) rotate(0deg); }
-        .p-item-2 { transform: rotate(72deg) translate(175px) rotate(-72deg); }
-        .p-item-3 { transform: rotate(144deg) translate(175px) rotate(-144deg); }
-        .p-item-4 { transform: rotate(216deg) translate(175px) rotate(-216deg); }
-        .p-item-5 { transform: rotate(288deg) translate(175px) rotate(-288deg); }
+        /* Radius adjusted for 320px ring (160px radius) */
+        .p-item-1 { transform: rotate(0deg) translate(160px) rotate(0deg); }
+        .p-item-2 { transform: rotate(72deg) translate(160px) rotate(-72deg); }
+        .p-item-3 { transform: rotate(144deg) translate(160px) rotate(-144deg); }
+        .p-item-4 { transform: rotate(216deg) translate(160px) rotate(-216deg); }
+        .p-item-5 { transform: rotate(288deg) translate(160px) rotate(-288deg); }
 
         .process-icon-circle {
-            width: 60px;
-            height: 60px;
+            width: 55px;
+            height: 55px;
             background: var(--bg-white);
             border: 2px solid var(--accent-teal);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             margin-bottom: 5px;
-            flex-shrink: 0; /* Prevent squashing */
+            flex-shrink: 0;
         }
         
         .process-text {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 600;
             color: var(--text-dark);
             background: rgba(255,255,255,0.9);
             padding: 2px 6px;
             border-radius: 4px;
-            white-space: nowrap; /* Prevent text wrap issues */
+            white-space: nowrap;
         }
 
         .center-logo {
             position: absolute;
             top: 50%; left: 50%;
             transform: translate(-50%, -50%);
-            width: 120px; height: 120px;
+            width: 100px; height: 100px;
             background: var(--primary);
             color: #fff;
             border-radius: 50%;
@@ -477,13 +474,13 @@
 
         /* CLIENTS & TECH */
         .clients-section { background: var(--bg-white); padding: 40px 0; }
-        /* Right to Left Scroll (<--) */
-        .clients-scroll { animation: scroll-left 30s linear infinite; display: flex; gap: 50px; align-items: center; }
+        /* Right to Left (<--) */
+        .clients-scroll { animation: scroll-right 30s linear infinite; display: flex; gap: 50px; align-items: center; }
         .clients-scroll img { height: 60px; width: auto; object-fit: contain; filter: none !important; }
         
         .tech-section { background: var(--bg-grey); padding: 40px 0; }
-        /* Left to Right Scroll (-->) */
-        .tech-scroll { animation: scroll-right 40s linear infinite; display: flex; gap: 60px; align-items: center;}
+        /* Left to Right (-->) */
+        .tech-scroll { animation: scroll-left 40s linear infinite; display: flex; gap: 60px; align-items: center;}
         
         .tech-item { display: flex; flex-direction: column; align-items: center; min-width: 80px; height: 60px; justify-content: center; }
         .tech-item i { font-size: 2.5rem; margin-bottom: 5px; }
@@ -511,10 +508,19 @@
         .contact-form-wrapper { background: var(--bg-white); padding: 30px; border-radius: 10px; border: 1px solid #eee; box-shadow: var(--shadow-card); }
         .contact-info-wrapper { background: #eef4fc; padding: 30px; border-radius: 10px; border: 1px solid #dcebff; height: 100%; }
         
+        /* Corrected Contact Row Alignment */
         .contact-row { display: flex; align-items: flex-start; margin-bottom: 20px; }
-        .contact-icon { font-size: 1.5rem; color: var(--accent-teal); margin-right: 20px; margin-top: 5px; flex-shrink: 0;}
+        .contact-icon { 
+            font-size: 1.5rem; 
+            color: var(--accent-teal); 
+            margin-right: 15px; 
+            margin-top: 2px; 
+            width: 40px; /* Fixed width for alignment */
+            text-align: center;
+            flex-shrink: 0;
+        }
         .contact-text h4 { color: var(--primary); margin-bottom: 5px; font-size: 1.1rem; }
-        /* Smaller text size for address as requested */
+        /* Smaller address text */
         .contact-text p.selectable-text { font-size: 0.85rem; line-height: 1.4; color: var(--text-grey); }
         
         .form-control { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 5px; font-family: var(--font-main); }
@@ -527,7 +533,11 @@
         .footer-col ul li { margin-bottom: 10px; }
         .footer-col ul li a { color: #dcebff; font-size: 0.9rem; transition: 0.3s; }
         .footer-col ul li a:hover { color: var(--accent-teal); padding-left: 5px; }
-        /* Small copyright font */
+        
+        /* Desktop vs Mobile Description Logic */
+        .footer-desc-desktop { display: block; color: #dcebff; font-size: 0.9rem; line-height: 1.6; text-align: justify;}
+        .footer-desc-mobile { display: none; color: #dcebff; font-size: 0.9rem; }
+
         .copyright { text-align: center; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.2); font-size: 11px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding-left: 10px; padding-right: 10px; }
 
         .social-links a {
@@ -571,9 +581,11 @@
             .contact-info-wrapper { order: 1; }
             .contact-form-wrapper { order: 2; }
             
+            /* Process Ring Mobile Size */
             .process-ring { width: 280px; height: 280px; }
             .process-item { margin: -30px; width: 60px; height: 60px; }
             .process-icon-circle { width: 50px; height: 50px; font-size: 1.2rem; }
+            .process-container-outer { height: 350px; }
             
             /* Mobile positions for Ferris Wheel (scaled down translate) */
             .p-item-1 { transform: rotate(0deg) translate(140px) rotate(0deg); }
@@ -581,6 +593,10 @@
             .p-item-3 { transform: rotate(144deg) translate(140px) rotate(-144deg); }
             .p-item-4 { transform: rotate(216deg) translate(140px) rotate(-216deg); }
             .p-item-5 { transform: rotate(288deg) translate(140px) rotate(-288deg); }
+
+            /* Footer Description Toggle */
+            .footer-desc-desktop { display: none; }
+            .footer-desc-mobile { display: block; }
         }
     </style>
 </head>
@@ -720,7 +736,7 @@
         </div>
     </section>
 
-    <section id="process" class="section-padding process-section">
+    <section id="process" class="section-padding-compact process-section">
         <div class="container">
             <h2 class="section-title">Process</h2>
             <div class="process-container-outer">
@@ -859,7 +875,7 @@
 
     <section class="clients-section">
         <div class="container">
-            <h2 class="section-title">Valued Customers</h2>
+            <h2 class="section-title">Valued Clients</h2>
         </div>
         <div class="marquee-wrapper" style="background: transparent; padding: 10px 0;">
             <div class="marquee-content clients-scroll">
@@ -878,7 +894,7 @@
     ) -->
     <section class="tech-section">
         <div class="container">
-            <h2 class="section-title">Technologies</h2>
+            <h2 class="section-title">Technologies We Use</h2>
         </div>
         <div class="marquee-wrapper" style="background: transparent; padding: 10px 0;">
             <div class="marquee-content tech-scroll">
@@ -963,8 +979,9 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-col">
-                    <h4>Knox IT Services</h4>
-                    <p style="color:#dcebff; font-size:0.9rem;">Providing top-tier IT solutions for businesses across India.</p>
+                    <h4>About Knox IT Services</h4>
+                    <p class="footer-desc-desktop">We provide comprehensive IT solutions tailored for modern businesses. From crafting high-performance corporate websites and secure business email hosting to supplying reliable refurbished hardware, we are your one-stop technology partner in Mumbai.</p>
+                    <p class="footer-desc-mobile">Providing top-tier IT solutions for businesses across India. Coding, Hosting, and Hardware under one roof.</p>
                 </div>
                 <div class="footer-col">
                     <h4>Quick Links</h4>
