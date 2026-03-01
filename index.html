@@ -10,11 +10,11 @@
     
     <meta property="og:title" content="Knox IT Services - Corporate IT Solutions">
     <meta property="og:description" content="Transform your business with our premium IT solutions.">
-    <meta property="og:image" content="images/mylogo.png?v=2.1">
+    <meta property="og:image" content="images/mylogo.png?v=2.2">
     
-    <link rel="icon" href="images/favicon.png?v=2.1" type="image/png">
-    <link rel="shortcut icon" href="images/favicon.png?v=2.1" type="image/png">
-    <link rel="apple-touch-icon" href="images/favicon.png?v=2.1">
+    <link rel="icon" href="images/favicon.png?v=2.2" type="image/png">
+    <link rel="shortcut icon" href="images/favicon.png?v=2.2" type="image/png">
+    <link rel="apple-touch-icon" href="images/favicon.png?v=2.2">
     
     <title>Knox IT Services | Complete IT Solutions</title>
     
@@ -69,7 +69,7 @@
         .section-padding { padding: 80px 0; }
         .section-padding-compact { padding: 40px 0; }
         
-        /* Global Scroll Reveal */
+        /* Global Scroll Reveal Logic */
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
@@ -118,9 +118,7 @@
         .service-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-hover); }
         .service-card h3 { font-size: 1.4rem; margin-bottom: 10px; color: var(--primary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .service-card .price { font-size: 1.2rem; color: var(--accent-teal); font-weight: 700; margin-bottom: 0px; display: block; }
-        /* NEW: Original Price Styling */
         .original-price { font-size: 0.9rem; color: #999; text-decoration: line-through; font-weight: 500; margin-bottom: 20px; display: block; }
-        
         .service-card ul li { margin-bottom: 8px; color: var(--text-grey); display: flex; align-items: center; font-size: 0.9rem; }
         .service-card ul li i { color: var(--primary); margin-right: 10px; font-size: 0.9rem; flex-shrink: 0;}
 
@@ -131,20 +129,65 @@
         .stat-box h3 { font-size: 2.2rem; color: var(--primary); font-weight: 700; }
         .stat-box p { color: var(--text-grey); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* PROCESS (Linear Connected Buttons) */
+        /* PROCESS (Linear Connected Buttons with Shine) */
         .process-section { background-color: var(--bg-white); }
         .process-container { display: flex; justify-content: center; align-items: center; flex-wrap: nowrap; gap: 15px; padding: 20px 0; }
-        .process-btn { background: var(--bg-white); color: var(--primary); padding: 15px 25px; border-radius: 50px; font-weight: 600; font-size: 0.9rem; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border: 2px solid var(--primary); text-align: center; position: relative; transition: all 0.3s ease; min-width: 140px; display: flex; align-items: center; justify-content: center; gap: 10px; animation: popIn 0.5s ease backwards; }
-        .process-btn i { font-size: 1.1rem; }
-        .process-btn:hover { background: var(--primary); color: #fff; transform: translateY(-5px); }
-        .process-arrow { color: var(--accent-teal); font-size: 1.5rem; animation: fadeIn 1s ease backwards; }
         
-        .p-step-1 { animation-delay: 0.1s; } .arrow-1 { animation-delay: 0.2s; }
-        .p-step-2 { animation-delay: 0.3s; } .arrow-2 { animation-delay: 0.4s; }
-        .p-step-3 { animation-delay: 0.5s; } .arrow-3 { animation-delay: 0.6s; }
-        .p-step-4 { animation-delay: 0.7s; } .arrow-4 { animation-delay: 0.8s; }
-        .p-step-5 { animation-delay: 0.9s; }
-        @keyframes popIn { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); } }
+        .process-btn { 
+            background: var(--bg-white); 
+            color: var(--primary); 
+            padding: 15px 25px; 
+            border-radius: 50px; 
+            font-weight: 600; 
+            font-size: 0.9rem; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
+            border: 2px solid var(--primary); 
+            text-align: center; 
+            position: relative; 
+            transition: all 0.3s ease; 
+            min-width: 140px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            gap: 10px;
+            pointer-events: none; /* Unclickable */
+            overflow: hidden; /* For Shine */
+        }
+        
+        /* Shine Effect */
+        .process-btn::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
+            animation: shine 3s infinite;
+        }
+        
+        @keyframes shine {
+            0% { left: -100%; }
+            20% { left: 100%; }
+            100% { left: 100%; }
+        }
+
+        .process-btn i { font-size: 1.1rem; }
+        .process-arrow { color: var(--accent-teal); font-size: 1.5rem; opacity: 0; }
+
+        /* Animations triggered via class */
+        .process-section.active .process-btn { animation: popIn 0.5s ease backwards; }
+        .process-section.active .process-arrow { animation: fadeIn 1s ease backwards; }
+
+        .process-section.active .p-step-1 { animation-delay: 0.1s; } 
+        .process-section.active .arrow-1 { animation-delay: 0.2s; }
+        .process-section.active .p-step-2 { animation-delay: 0.3s; } 
+        .process-section.active .arrow-2 { animation-delay: 0.4s; }
+        .process-section.active .p-step-3 { animation-delay: 0.5s; } 
+        .process-section.active .arrow-3 { animation-delay: 0.6s; }
+        .process-section.active .p-step-4 { animation-delay: 0.7s; } 
+        .process-section.active .arrow-4 { animation-delay: 0.8s; }
+        .process-section.active .p-step-5 { animation-delay: 0.9s; }
+        
+        @keyframes popIn { from { opacity: 0; transform: scale(0.8) translateY(20px); } to { opacity: 1; transform: scale(1) translateY(0); } }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
         /* SUCCESS STORIES */
@@ -217,7 +260,9 @@
         .social-links a { display: inline-flex; width: 40px; height: 40px; background: #fff; color: var(--primary); align-items: center; justify-content: center; border-radius: 50%; margin-right: 10px; transition: 0.3s; font-size: 1.2rem; }
         .social-links a.fb { color: #1877F2; } .social-links a.in { color: #E1306C; } .social-links a.li { color: #0077B5; }
         .social-links a:hover { transform: translateY(-3px); background: #eee; }
-        .float-wa { position: fixed; bottom: 20px; right: 20px; background-color: #25d366; color: #FFF; width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; z-index: 2000; box-shadow: 0 4px 10px rgba(37, 211, 102, 0.4); animation: pulse-wave 2s infinite; }
+        
+        /* Fixed WhatsApp Button Position */
+        .float-wa { position: fixed; bottom: 80px; right: 20px; background-color: #25d366; color: #FFF; width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; z-index: 2000; box-shadow: 0 4px 10px rgba(37, 211, 102, 0.4); animation: pulse-wave 2s infinite; }
         @keyframes pulse-wave { 0% { transform: scale(0.95); } 70% { transform: scale(1); box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); } 100% { transform: scale(0.95); } }
 
         /* MOBILE SPECIFIC */
@@ -229,20 +274,14 @@
             .stat-box h3 { font-size: 1.8rem; }
             
             /* Process: 2-1-2 Grid Layout */
-            .process-container {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                gap: 15px;
-            }
-            .process-arrow { display: none; } /* Hide arrows on mobile */
+            .process-container { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+            .process-arrow { display: none; }
             .process-btn { width: 100%; min-width: auto; padding: 10px 5px; font-size: 0.8rem; }
-            
-            /* Grid Placement */
-            .p-step-1 { grid-row: 1; grid-column: 1; } /* Discussion */
-            .p-step-2 { grid-row: 1; grid-column: 2; } /* Planning */
-            .p-step-3 { grid-row: 2; grid-column: 1 / span 2; justify-self: center; width: 80%; } /* Dev Center */
-            .p-step-4 { grid-row: 3; grid-column: 1; } /* Testing */
-            .p-step-5 { grid-row: 3; grid-column: 2; } /* Delivery */
+            .p-step-1 { grid-row: 1; grid-column: 1; }
+            .p-step-2 { grid-row: 1; grid-column: 2; }
+            .p-step-3 { grid-row: 2; grid-column: 1 / span 2; justify-self: center; width: 80%; }
+            .p-step-4 { grid-row: 3; grid-column: 1; }
+            .p-step-5 { grid-row: 3; grid-column: 2; }
 
             .contact-grid { display: flex; flex-direction: column; }
             .contact-info-wrapper { order: 1; }
@@ -258,7 +297,7 @@
     <header class="header">
         <div class="container nav">
             <a href="#" class="logo">
-                <img src="images/mylogo.png?v=2.1" alt="Knox IT Services">
+                <img src="images/mylogo.png?v=2.2" alt="Knox IT Services">
             </a>
             <div class="nav-right">
                 <div class="live-visitor">
@@ -286,7 +325,7 @@
 
     <section id="home" class="hero reveal">
         <video class="hero-video" autoplay muted loop playsinline>
-            <source src="images/topbanner.mp4?v=2.1" type="video/mp4">
+            <source src="images/topbanner.mp4?v=2.2" type="video/mp4">
         </video>
         <div class="container hero-content">
             <h1>Complete IT Solutions</h1>
@@ -311,7 +350,8 @@
                 <div class="service-card">
                     <h3>Website Development</h3>
                     <span class="price">₹12,499 / Start</span>
-                    <span class="original-price">₹38,000</span> <ul>
+                    <span class="original-price">₹38,000</span>
+                    <ul>
                         <li><i class="fas fa-check-circle"></i> Custom Corporate Design</li>
                         <li><i class="fas fa-check-circle"></i> Mobile Responsive & Fast</li>
                         <li><i class="fas fa-check-circle"></i> SEO Friendly Structure</li>
@@ -327,7 +367,8 @@
                 <div class="service-card">
                     <h3>Business Email</h3>
                     <span class="price">₹1,500 / ID / Year</span>
-                    <span class="original-price">₹2,600</span> <ul>
+                    <span class="original-price">₹2,600</span>
+                    <ul>
                         <li><i class="fas fa-check-circle"></i> Professional Domain ID</li>
                         <li><i class="fas fa-check-circle"></i> Zoho / Outlook Setup</li>
                         <li><i class="fas fa-check-circle"></i> 5GB Secure Storage</li>
@@ -343,7 +384,8 @@
                 <div class="service-card">
                     <h3>Refurbished Laptops</h3>
                     <span class="price">Retail & Bulk Orders</span>
-                    <span class="original-price" style="color:transparent; user-select:none;">-</span> <ul>
+                    <span class="original-price" style="color:transparent; user-select:none;">-</span>
+                    <ul>
                         <li><i class="fas fa-check-circle"></i> Dell / HP / Lenovo</li>
                         <li><i class="fas fa-check-circle"></i> Core i3 / i5 / i7</li>
                         <li><i class="fas fa-check-circle"></i> 8GB / 16GB RAM Options</li>
@@ -444,16 +486,16 @@
         </div>
         <div class="marquee-wrapper" style="background: transparent; padding: 10px 0;">
             <div class="clients-scroll">
-                <img src="images/client1.png?v=2.1" alt="Client">
-                <img src="images/client2.png?v=2.1" alt="Client">
-                <img src="images/client3.png?v=2.1" alt="Client">
-                <img src="images/client4.png?v=2.1" alt="Client">
-                <img src="images/client5.png?v=2.1" alt="Client">
-                <img src="images/client1.png?v=2.1" alt="Client">
-                <img src="images/client2.png?v=2.1" alt="Client">
-                <img src="images/client3.png?v=2.1" alt="Client">
-                <img src="images/client4.png?v=2.1" alt="Client">
-                <img src="images/client5.png?v=2.1" alt="Client">
+                <img src="images/client1.png?v=2.2" alt="Client">
+                <img src="images/client2.png?v=2.2" alt="Client">
+                <img src="images/client3.png?v=2.2" alt="Client">
+                <img src="images/client4.png?v=2.2" alt="Client">
+                <img src="images/client5.png?v=2.2" alt="Client">
+                <img src="images/client1.png?v=2.2" alt="Client">
+                <img src="images/client2.png?v=2.2" alt="Client">
+                <img src="images/client3.png?v=2.2" alt="Client">
+                <img src="images/client4.png?v=2.2" alt="Client">
+                <img src="images/client5.png?v=2.2" alt="Client">
             </div>
         </div>
     </section>
@@ -553,7 +595,7 @@
         </div>
     </footer>
 
-    <a href="https://wa.me/918009262472" class="float-wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    <a href="https://wa.me/918009262472?text=Hello%20Knox%20IT,%20I%20am%20interested%20in%20your%20services.%20Please%20guide%20me.%0A%0ARef:%20Web-Lead" class="float-wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
     <script>
         // Visitor Counter
@@ -568,28 +610,33 @@
         hb.addEventListener('click', toggle); ol.addEventListener('click', toggle);
         document.querySelectorAll('.nav-link').forEach(l => l.addEventListener('click', toggle));
 
-        // Stats Animation (Restartable)
-        const statSec = document.querySelector('.stats-row');
-        new IntersectionObserver((entries) => {
+        // Global Intersection Observer for Restarting Animations
+        const globalObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    document.querySelectorAll('.stat-box h3').forEach(c => {
-                        const t = +c.getAttribute('data-target'); let cur = 0, inc = t / 50;
-                        const tm = setInterval(() => { cur += inc; if(cur>=t) { c.innerText = t + "+"; clearInterval(tm); } else c.innerText = Math.ceil(cur) + "+"; }, 20);
-                        c.setAttribute('data-interval', tm);
-                    });
+                    entry.target.classList.add('active');
+                    
+                    // Specific Logic for Achievements Restart
+                    if(entry.target.id === 'achievements') {
+                        document.querySelectorAll('.stat-box h3').forEach(c => {
+                            const t = +c.getAttribute('data-target'); let cur = 0, inc = t / 50;
+                            const tm = setInterval(() => { cur += inc; if(cur>=t) { c.innerText = t + "+"; clearInterval(tm); } else c.innerText = Math.ceil(cur) + "+"; }, 20);
+                            c.setAttribute('data-interval', tm);
+                        });
+                    }
                 } else {
-                    document.querySelectorAll('.stat-box h3').forEach(c => { clearInterval(c.getAttribute('data-interval')); c.innerText = "0"; });
+                    entry.target.classList.remove('active');
+                    
+                    // Reset Stats
+                    if(entry.target.id === 'achievements') {
+                        document.querySelectorAll('.stat-box h3').forEach(c => { clearInterval(c.getAttribute('data-interval')); c.innerText = "0"; });
+                    }
                 }
             });
-        }, {threshold: 0.2}).observe(statSec);
+        }, {threshold: 0.15});
 
-        // Scroll Reveal
-        const reveals = document.querySelectorAll('.reveal');
-        const revealObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
-        }, {threshold: 0.1});
-        reveals.forEach(r => revealObserver.observe(r));
+        // Observe all sections for animations
+        document.querySelectorAll('.reveal').forEach(r => globalObserver.observe(r));
 
         // FAQ Toggle & Marquee Pause
         document.querySelectorAll('.faq-question').forEach(q => q.addEventListener('click', () => q.parentElement.classList.toggle('active')));
