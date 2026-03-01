@@ -145,7 +145,7 @@
             top: 0;
             z-index: 1000;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            height: 80px; /* Fixed Height */
+            height: 80px;
             display: flex;
             align-items: center;
         }
@@ -277,8 +277,6 @@
             opacity: 1;
         }
 
-        /* No Overlay */
-        
         .hero-content {
             position: relative;
             z-index: 2;
@@ -347,7 +345,7 @@
         .stat-box h3 { font-size: 2.2rem; color: var(--primary); font-weight: 700; }
         .stat-box p { color: var(--text-grey); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* PROCESS (Rotating Ring - Ferris Wheel) */
+        /* PROCESS (Ferris Wheel - Fixed Orientation & Shape) */
         .process-section { background-color: var(--bg-white); overflow: hidden; }
         
         .process-container-outer {
@@ -358,6 +356,7 @@
             justify-content: center;
         }
 
+        /* The rotating ring */
         .process-ring {
             position: relative;
             width: 350px;
@@ -367,22 +366,24 @@
             animation: rotate-ring 25s linear infinite;
         }
 
+        /* The item container attached to ring */
         .process-item {
             position: absolute;
             top: 50%;
             left: 50%;
-            width: 80px;
-            height: 80px;
-            margin: -40px; /* Center offset */
+            width: 100px; /* Fixed width to prevent squash */
+            height: 100px; /* Fixed height to prevent squash */
+            margin: -50px; /* Center offset */
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
-            animation: rotate-ring-reverse 25s linear infinite; /* Counter rotate */
+            /* Animation to keep item upright by rotating opposite to ring */
+            animation: rotate-ring-reverse 25s linear infinite; 
         }
         
-        /* Positioning items around the circle (approx 72 degrees apart for 5 items) */
+        /* Positioning items around the circle */
         .p-item-1 { transform: rotate(0deg) translate(175px) rotate(0deg); }
         .p-item-2 { transform: rotate(72deg) translate(175px) rotate(-72deg); }
         .p-item-3 { transform: rotate(144deg) translate(175px) rotate(-144deg); }
@@ -398,19 +399,20 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--primary);
             font-size: 1.5rem;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             margin-bottom: 5px;
+            flex-shrink: 0; /* Prevent squashing */
         }
         
         .process-text {
             font-size: 0.85rem;
             font-weight: 600;
             color: var(--text-dark);
-            background: rgba(255,255,255,0.8);
-            padding: 2px 5px;
+            background: rgba(255,255,255,0.9);
+            padding: 2px 6px;
             border-radius: 4px;
+            white-space: nowrap; /* Prevent text wrap issues */
         }
 
         .center-logo {
@@ -428,8 +430,15 @@
             text-align: center;
         }
 
-        @keyframes rotate-ring { 100% { transform: rotate(360deg); } }
-        /* Complex counter-rotation handled by transform in individual classes for placement, this just spins */
+        @keyframes rotate-ring { 
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); } 
+        }
+        
+        @keyframes rotate-ring-reverse { 
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(-360deg); } 
+        }
 
         /* SUCCESS STORIES */
         .marquee-wrapper { overflow: hidden; background: var(--bg-grey); padding: 30px 0; cursor: pointer; }
@@ -469,20 +478,25 @@
         /* CLIENTS & TECH */
         .clients-section { background: var(--bg-white); padding: 40px 0; }
         /* Right to Left Scroll (<--) */
-        .clients-scroll { animation: scroll-right 30s linear infinite; display: flex; gap: 50px; align-items: center; }
+        .clients-scroll { animation: scroll-left 30s linear infinite; display: flex; gap: 50px; align-items: center; }
         .clients-scroll img { height: 60px; width: auto; object-fit: contain; filter: none !important; }
         
         .tech-section { background: var(--bg-grey); padding: 40px 0; }
         /* Left to Right Scroll (-->) */
-        .tech-scroll { animation: scroll-left 40s linear infinite; display: flex; gap: 60px; align-items: center;}
+        .tech-scroll { animation: scroll-right 40s linear infinite; display: flex; gap: 60px; align-items: center;}
         
-        /* Uniform Sizing */
-        .tech-item i { font-size: 2.5rem; margin-bottom: 5px; }
         .tech-item { display: flex; flex-direction: column; align-items: center; min-width: 80px; height: 60px; justify-content: center; }
+        .tech-item i { font-size: 2.5rem; margin-bottom: 5px; }
         .tech-item span { font-size: 0.75rem; font-weight: 600; color: var(--text-dark); margin-top: 5px; }
 
-        @keyframes scroll-left { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-        @keyframes scroll-right { 0% { transform: translateX(-50%); } 100% { transform: translateX(0); } }
+        @keyframes scroll-left { 
+            0% { transform: translateX(0); } 
+            100% { transform: translateX(-50%); } 
+        }
+        @keyframes scroll-right { 
+            0% { transform: translateX(-50%); } 
+            100% { transform: translateX(0); } 
+        }
 
         /* CONTACT */
         .contact-section { background: var(--bg-white); }
@@ -497,9 +511,11 @@
         .contact-form-wrapper { background: var(--bg-white); padding: 30px; border-radius: 10px; border: 1px solid #eee; box-shadow: var(--shadow-card); }
         .contact-info-wrapper { background: #eef4fc; padding: 30px; border-radius: 10px; border: 1px solid #dcebff; height: 100%; }
         
-        .contact-row { display: flex; align-items: flex-start; margin-bottom: 25px; }
+        .contact-row { display: flex; align-items: flex-start; margin-bottom: 20px; }
         .contact-icon { font-size: 1.5rem; color: var(--accent-teal); margin-right: 20px; margin-top: 5px; flex-shrink: 0;}
         .contact-text h4 { color: var(--primary); margin-bottom: 5px; font-size: 1.1rem; }
+        /* Smaller text size for address as requested */
+        .contact-text p.selectable-text { font-size: 0.85rem; line-height: 1.4; color: var(--text-grey); }
         
         .form-control { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 5px; font-family: var(--font-main); }
         .form-control:focus { outline: none; border-color: var(--primary); }
@@ -511,7 +527,8 @@
         .footer-col ul li { margin-bottom: 10px; }
         .footer-col ul li a { color: #dcebff; font-size: 0.9rem; transition: 0.3s; }
         .footer-col ul li a:hover { color: var(--accent-teal); padding-left: 5px; }
-        .copyright { text-align: center; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.2); font-size: 0.85rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        /* Small copyright font */
+        .copyright { text-align: center; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.2); font-size: 11px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding-left: 10px; padding-right: 10px; }
 
         .social-links a {
             display: inline-flex; width: 40px; height: 40px;
@@ -523,7 +540,7 @@
         }
         /* Brand Colors */
         .social-links a.fb { color: #1877F2; }
-        .social-links a.in { color: #E1306C; } /* Approximate Insta */
+        .social-links a.in { color: #E1306C; }
         .social-links a.li { color: #0077B5; }
         .social-links a:hover { transform: translateY(-3px); background: #eee; }
 
@@ -558,7 +575,7 @@
             .process-item { margin: -30px; width: 60px; height: 60px; }
             .process-icon-circle { width: 50px; height: 50px; font-size: 1.2rem; }
             
-            /* Process Positions Mobile (Scale down translate) */
+            /* Mobile positions for Ferris Wheel (scaled down translate) */
             .p-item-1 { transform: rotate(0deg) translate(140px) rotate(0deg); }
             .p-item-2 { transform: rotate(72deg) translate(140px) rotate(-72deg); }
             .p-item-3 { transform: rotate(144deg) translate(140px) rotate(-144deg); }
@@ -598,6 +615,7 @@
         <a href="#achievements" class="nav-link">Achievements</a>
         <a href="#process" class="nav-link">Process</a>
         <a href="#stories" class="nav-link">Success Stories</a>
+        <a href="#why-choose" class="nav-link">Why Choose Us</a>
         <a href="#contact" class="nav-link">Contact</a>
     </div>
 
@@ -708,23 +726,23 @@
             <div class="process-container-outer">
                 <div class="process-ring">
                     <div class="process-item p-item-1">
-                        <div class="process-icon-circle"><i class="fas fa-comments"></i></div>
+                        <div class="process-icon-circle"><i class="fas fa-comments" style="color:#0E4BCF;"></i></div>
                         <div class="process-text">Discussion</div>
                     </div>
                     <div class="process-item p-item-2">
-                        <div class="process-icon-circle"><i class="fas fa-pencil-ruler"></i></div>
+                        <div class="process-icon-circle"><i class="fas fa-pencil-ruler" style="color:#FF9900;"></i></div>
                         <div class="process-text">Planning</div>
                     </div>
                     <div class="process-item p-item-3">
-                        <div class="process-icon-circle"><i class="fas fa-code"></i></div>
+                        <div class="process-icon-circle"><i class="fas fa-code" style="color:#E1306C;"></i></div>
                         <div class="process-text">Dev</div>
                     </div>
                     <div class="process-item p-item-4">
-                        <div class="process-icon-circle"><i class="fas fa-check-circle"></i></div>
+                        <div class="process-icon-circle"><i class="fas fa-check-circle" style="color:#25d366;"></i></div>
                         <div class="process-text">Testing</div>
                     </div>
                     <div class="process-item p-item-5">
-                        <div class="process-icon-circle"><i class="fas fa-rocket"></i></div>
+                        <div class="process-icon-circle"><i class="fas fa-rocket" style="color:#8E44AD;"></i></div>
                         <div class="process-text">Delivery</div>
                     </div>
                 </div>
@@ -763,7 +781,7 @@
         </div>
     </section>
 
-    <section class="section-padding why-choose-section">
+    <section id="why-choose" class="section-padding why-choose-section">
         <div class="container">
             <h2 class="section-title">Why Choose Knox</h2>
             <div class="features-grid">
@@ -857,7 +875,7 @@
         </div>
     </section>
 
-    , 20+ Logos) -->
+    ) -->
     <section class="tech-section">
         <div class="container">
             <h2 class="section-title">Technologies</h2>
@@ -897,6 +915,7 @@
                 <div class="contact-form-wrapper">
                     <form action="https://api.web3forms.com/submit" method="POST">
                         <input type="hidden" name="access_key" value="94a17473-8d95-43ec-9b0e-e39d7f2cee6c">
+                        <input type="text" name="company" class="form-control" placeholder="Company Name" required>
                         <input type="text" name="name" class="form-control" placeholder="Your Name" required>
                         <input type="tel" name="phone" class="form-control" placeholder="Phone Number" required>
                         <select name="service" class="form-control" required>
@@ -950,8 +969,12 @@
                 <div class="footer-col">
                     <h4>Quick Links</h4>
                     <ul>
+                        <li><a href="#home">Home</a></li>
                         <li><a href="#services">Services</a></li>
                         <li><a href="#achievements">Achievements</a></li>
+                        <li><a href="#process">Process</a></li>
+                        <li><a href="#stories">Success Stories</a></li>
+                        <li><a href="#why-choose">Why Choose Us</a></li>
                         <li><a href="#contact">Contact</a></li>
                     </ul>
                 </div>
