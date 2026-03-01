@@ -345,11 +345,11 @@
         .stat-box h3 { font-size: 2.2rem; color: var(--primary); font-weight: 700; }
         .stat-box p { color: var(--text-grey); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* PROCESS (Ferris Wheel - Compact) */
-        .process-section { background-color: var(--bg-white); overflow: hidden; padding: 40px 0; } /* Compact Padding */
+        /* PROCESS (Ferris Wheel - Icons Visible) */
+        .process-section { background-color: var(--bg-white); overflow: hidden; padding: 40px 0; }
         
         .process-container-outer {
-            height: 400px; /* Reduced Height to not cover full page */
+            height: 400px; /* Reduced Height */
             position: relative;
             display: flex;
             align-items: center;
@@ -358,7 +358,7 @@
 
         .process-ring {
             position: relative;
-            width: 320px; /* Slightly smaller ring */
+            width: 320px;
             height: 320px;
             border: 2px dashed var(--primary);
             border-radius: 50%;
@@ -378,9 +378,10 @@
             justify-content: center;
             text-align: center;
             animation: rotate-ring-reverse 25s linear infinite; 
+            z-index: 10;
         }
         
-        /* Radius adjusted for 320px ring (160px radius) */
+        /* Positioning logic */
         .p-item-1 { transform: rotate(0deg) translate(160px) rotate(0deg); }
         .p-item-2 { transform: rotate(72deg) translate(160px) rotate(-72deg); }
         .p-item-3 { transform: rotate(144deg) translate(160px) rotate(-144deg); }
@@ -390,8 +391,8 @@
         .process-icon-circle {
             width: 55px;
             height: 55px;
-            background: var(--bg-white);
-            border: 2px solid var(--accent-teal);
+            background: #fff; /* Solid background for visibility */
+            border: 2px solid var(--primary); /* Blue Border */
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -400,6 +401,11 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             margin-bottom: 5px;
             flex-shrink: 0;
+            z-index: 20;
+        }
+        
+        .process-icon-circle i {
+            color: var(--primary) !important; /* Force Blue Color */
         }
         
         .process-text {
@@ -472,15 +478,15 @@
         .faq-icon { transition: 0.3s; }
         .faq-item.active .faq-icon { transform: rotate(180deg); }
 
-        /* CLIENTS & TECH */
+        /* MARQUEES - SMOOTH & CORRECT DIRECTION */
         .clients-section { background: var(--bg-white); padding: 40px 0; }
         /* Right to Left (<--) */
-        .clients-scroll { animation: scroll-right 30s linear infinite; display: flex; gap: 50px; align-items: center; }
+        .clients-scroll { animation: scroll-right 40s linear infinite; display: flex; gap: 50px; align-items: center; width: max-content; }
         .clients-scroll img { height: 60px; width: auto; object-fit: contain; filter: none !important; }
         
         .tech-section { background: var(--bg-grey); padding: 40px 0; }
         /* Left to Right (-->) */
-        .tech-scroll { animation: scroll-left 40s linear infinite; display: flex; gap: 60px; align-items: center;}
+        .tech-scroll { animation: scroll-left 40s linear infinite; display: flex; gap: 60px; align-items: center; width: max-content;}
         
         .tech-item { display: flex; flex-direction: column; align-items: center; min-width: 80px; height: 60px; justify-content: center; }
         .tech-item i { font-size: 2.5rem; margin-bottom: 5px; }
@@ -495,46 +501,76 @@
             100% { transform: translateX(0); } 
         }
 
-        /* CONTACT */
+        /* CONTACT & MAP */
         .contact-section { background: var(--bg-white); }
         .contact-grid { display: grid; gap: 40px; }
         
         @media (min-width: 769px) {
             .contact-grid { grid-template-columns: 1fr 1fr; }
-            .contact-form-wrapper { order: 1; } /* Left */
-            .contact-info-wrapper { order: 2; } /* Right */
+            .contact-form-wrapper { order: 1; }
+            .contact-info-wrapper { order: 2; display: flex; flex-direction: column;}
         }
 
         .contact-form-wrapper { background: var(--bg-white); padding: 30px; border-radius: 10px; border: 1px solid #eee; box-shadow: var(--shadow-card); }
-        .contact-info-wrapper { background: #eef4fc; padding: 30px; border-radius: 10px; border: 1px solid #dcebff; height: 100%; }
+        .contact-info-wrapper { background: transparent; height: 100%; }
         
-        /* Corrected Contact Row Alignment */
-        .contact-row { display: flex; align-items: flex-start; margin-bottom: 20px; }
+        .contact-details-box {
+            background: #eef4fc; 
+            padding: 25px; 
+            border-radius: 10px; 
+            border: 1px solid #dcebff;
+            margin-bottom: 20px;
+        }
+
+        .map-box {
+            flex-grow: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #eee;
+            height: 300px;
+        }
+        .map-box iframe { width: 100%; height: 100%; border: 0; }
+
+        .contact-row { display: flex; align-items: flex-start; margin-bottom: 15px; }
         .contact-icon { 
             font-size: 1.5rem; 
             color: var(--accent-teal); 
             margin-right: 15px; 
             margin-top: 2px; 
-            width: 40px; /* Fixed width for alignment */
+            width: 40px; /* Fixed width */
             text-align: center;
             flex-shrink: 0;
         }
-        .contact-text h4 { color: var(--primary); margin-bottom: 5px; font-size: 1.1rem; }
-        /* Smaller address text */
+        .contact-text h4 { color: var(--primary); margin-bottom: 2px; font-size: 1.1rem; }
         .contact-text p.selectable-text { font-size: 0.85rem; line-height: 1.4; color: var(--text-grey); }
         
         .form-control { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 5px; font-family: var(--font-main); }
         .form-control:focus { outline: none; border-color: var(--primary); }
 
-        /* FOOTER */
+        /* FOOTER SPACING */
         footer { background: var(--primary); padding: 60px 0 20px; color: var(--text-light); }
-        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-bottom: 40px; }
+        .footer-grid { 
+            display: grid; 
+            gap: 40px; 
+            margin-bottom: 40px; 
+        }
+        /* Desktop specific grid for spacing */
+        @media (min-width: 769px) {
+            .footer-grid {
+                grid-template-columns: 2fr 1fr 1fr; /* More space for About */
+            }
+        }
+        @media (max-width: 768px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
         .footer-col h4 { margin-bottom: 20px; font-size: 1.2rem; }
         .footer-col ul li { margin-bottom: 10px; }
         .footer-col ul li a { color: #dcebff; font-size: 0.9rem; transition: 0.3s; }
         .footer-col ul li a:hover { color: var(--accent-teal); padding-left: 5px; }
         
-        /* Desktop vs Mobile Description Logic */
         .footer-desc-desktop { display: block; color: #dcebff; font-size: 0.9rem; line-height: 1.6; text-align: justify;}
         .footer-desc-mobile { display: none; color: #dcebff; font-size: 0.9rem; }
 
@@ -548,13 +584,11 @@
             transition: 0.3s;
             font-size: 1.2rem;
         }
-        /* Brand Colors */
         .social-links a.fb { color: #1877F2; }
         .social-links a.in { color: #E1306C; }
         .social-links a.li { color: #0077B5; }
         .social-links a:hover { transform: translateY(-3px); background: #eee; }
 
-        /* WhatsApp Float */
         .float-wa {
             position: fixed; bottom: 20px; right: 20px;
             background-color: #25d366; color: #FFF;
@@ -571,30 +605,27 @@
             .hero-subtext span:not(:last-child)::after { display: none; }
             .hero-subtext span { display: block; }
             
-            /* Stats 2x2 Grid */
             .stats-row { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
             .stat-box { width: 100%; padding: 15px; }
             .stat-box h3 { font-size: 1.8rem; }
             
-            /* Contact Order: Details Top, Form Bottom */
+            /* Contact Order: Details Top, Form Bottom - No Map */
             .contact-grid { display: flex; flex-direction: column; }
             .contact-info-wrapper { order: 1; }
             .contact-form-wrapper { order: 2; }
+            .map-box { display: none; }
             
-            /* Process Ring Mobile Size */
             .process-ring { width: 280px; height: 280px; }
             .process-item { margin: -30px; width: 60px; height: 60px; }
             .process-icon-circle { width: 50px; height: 50px; font-size: 1.2rem; }
             .process-container-outer { height: 350px; }
             
-            /* Mobile positions for Ferris Wheel (scaled down translate) */
             .p-item-1 { transform: rotate(0deg) translate(140px) rotate(0deg); }
             .p-item-2 { transform: rotate(72deg) translate(140px) rotate(-72deg); }
             .p-item-3 { transform: rotate(144deg) translate(140px) rotate(-144deg); }
             .p-item-4 { transform: rotate(216deg) translate(140px) rotate(-216deg); }
             .p-item-5 { transform: rotate(288deg) translate(140px) rotate(-288deg); }
 
-            /* Footer Description Toggle */
             .footer-desc-desktop { display: none; }
             .footer-desc-mobile { display: block; }
         }
@@ -742,23 +773,23 @@
             <div class="process-container-outer">
                 <div class="process-ring">
                     <div class="process-item p-item-1">
-                        <div class="process-icon-circle"><i class="fas fa-comments" style="color:#0E4BCF;"></i></div>
+                        <div class="process-icon-circle"><i class="fas fa-comments"></i></div>
                         <div class="process-text">Discussion</div>
                     </div>
                     <div class="process-item p-item-2">
-                        <div class="process-icon-circle"><i class="fas fa-pencil-ruler" style="color:#FF9900;"></i></div>
+                        <div class="process-icon-circle"><i class="fas fa-pencil-ruler"></i></div>
                         <div class="process-text">Planning</div>
                     </div>
                     <div class="process-item p-item-3">
-                        <div class="process-icon-circle"><i class="fas fa-code" style="color:#E1306C;"></i></div>
+                        <div class="process-icon-circle"><i class="fas fa-code"></i></div>
                         <div class="process-text">Dev</div>
                     </div>
                     <div class="process-item p-item-4">
-                        <div class="process-icon-circle"><i class="fas fa-check-circle" style="color:#25d366;"></i></div>
+                        <div class="process-icon-circle"><i class="fas fa-check-circle"></i></div>
                         <div class="process-text">Testing</div>
                     </div>
                     <div class="process-item p-item-5">
-                        <div class="process-icon-circle"><i class="fas fa-rocket" style="color:#8E44AD;"></i></div>
+                        <div class="process-icon-circle"><i class="fas fa-rocket"></i></div>
                         <div class="process-text">Delivery</div>
                     </div>
                 </div>
@@ -887,11 +918,12 @@
                 <img src="images/client1.png" alt="Client">
                 <img src="images/client2.png" alt="Client">
                 <img src="images/client3.png" alt="Client">
+                <img src="images/client4.png" alt="Client">
+                <img src="images/client5.png" alt="Client">
             </div>
         </div>
     </section>
 
-    ) -->
     <section class="tech-section">
         <div class="container">
             <h2 class="section-title">Technologies We Use</h2>
@@ -910,7 +942,7 @@
                 <div class="tech-item"><i class="fab fa-python" style="color:#3776AB;"></i><span>Python</span></div>
                 <div class="tech-item"><i class="fab fa-java" style="color:#007396;"></i><span>Java</span></div>
                 <div class="tech-item"><i class="fas fa-database" style="color:#4479A1;"></i><span>MySQL</span></div>
-                <div class="tech-item"><i class="fas fa-leaf" style="color:#47A248;"></i><span>MongoDB</span></div>
+                <div class="tech-item"><i class="fab fa-leaf" style="color:#47A248;"></i><span>MongoDB</span></div>
                 <div class="tech-item"><i class="fab fa-shopify" style="color:#96BF48;"></i><span>Shopify</span></div>
                 <div class="tech-item"><i class="fab fa-wordpress" style="color:#21759B;"></i><span>WordPress</span></div>
                 <div class="tech-item"><i class="fab fa-linux" style="color:#FCC624;"></i><span>Linux</span></div>
@@ -919,6 +951,11 @@
                 <div class="tech-item"><i class="fas fa-layer-group" style="color:#D82C20;"></i><span>Redis</span></div>
                 <div class="tech-item"><i class="fab fa-android" style="color:#3DDC84;"></i><span>Flutter</span></div>
                 <div class="tech-item"><i class="fab fa-js" style="color:#F7DF1E;"></i><span>JavaScript</span></div>
+                <div class="tech-item"><i class="fab fa-google" style="color:#4285F4;"></i><span>Google Cloud</span></div>
+                <div class="tech-item"><i class="fab fa-aws" style="color:#FF9900;"></i><span>AWS</span></div>
+                <div class="tech-item"><i class="fas fa-database" style="color:#F80000;"></i><span>Oracle</span></div>
+                <div class="tech-item"><i class="fas fa-envelope-open-text" style="color:#009688;"></i><span>Zoho</span></div>
+                <div class="tech-item"><i class="fab fa-microsoft" style="color:#00A4EF;"></i><span>Azure</span></div>
             </div>
         </div>
     </section>
@@ -947,27 +984,33 @@
                 </div>
 
                 <div class="contact-info-wrapper">
-                    <div class="contact-row">
-                        <i class="fas fa-mobile-screen contact-icon"></i>
-                        <div class="contact-text">
-                            <h4>Helpline</h4>
-                            <p class="selectable-text">8009262472</p>
+                    <div class="contact-details-box">
+                        <div class="contact-row">
+                            <i class="fas fa-mobile-screen contact-icon"></i>
+                            <div class="contact-text">
+                                <h4>Helpline</h4>
+                                <p class="selectable-text">8009262472</p>
+                            </div>
+                        </div>
+                        <div class="contact-row">
+                            <i class="fas fa-envelope contact-icon"></i>
+                            <div class="contact-text">
+                                <h4>Email</h4>
+                                <p class="selectable-text">sales@knoxit.in</p>
+                                <p class="selectable-text">support@knoxit.in</p>
+                            </div>
+                        </div>
+                        <div class="contact-row">
+                            <i class="fas fa-map-marker-alt contact-icon"></i>
+                            <div class="contact-text">
+                                <h4>Address</h4>
+                                <p class="selectable-text">Hema Industrial Estate, E-7,<br>Sher E Punjab Colony,<br>Andheri East, Mumbai, Maharashtra 400060</p>
+                            </div>
                         </div>
                     </div>
-                    <div class="contact-row">
-                        <i class="fas fa-envelope contact-icon"></i>
-                        <div class="contact-text">
-                            <h4>Email</h4>
-                            <p class="selectable-text">sales@knoxit.in</p>
-                            <p class="selectable-text">support@knoxit.in</p>
-                        </div>
-                    </div>
-                    <div class="contact-row">
-                        <i class="fas fa-map-marker-alt contact-icon"></i>
-                        <div class="contact-text">
-                            <h4>Address</h4>
-                            <p class="selectable-text">Hema Industrial Estate, E-7,<br>Sher E Punjab Colony,<br>Andheri East, Mumbai, Maharashtra 400060</p>
-                        </div>
+                    
+                    <div class="map-box">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3769.967677103233!2d72.8633!3d19.1171!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c83c21747a3d%3A0xb732292024560733!2sHema%20Industrial%20Estate!5e0!3m2!1sen!2sin!4v1709400000000!5m2!1sen!2sin" allowfullscreen="" loading="lazy"></iframe>
                     </div>
                 </div>
 
