@@ -30,9 +30,9 @@
       "email": "sales@knoxit.in",
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "F-7 Hema Industrial Estate, Andheri East",
+        "streetAddress": "Hema Industrial Estate, E-7, Sher E Punjab Colony, Andheri East",
         "addressLocality": "Mumbai",
-        "postalCode": "400093",
+        "postalCode": "400060",
         "addressCountry": "IN"
       },
       "url": "https://knoxit.in"
@@ -145,13 +145,16 @@
             top: 0;
             z-index: 1000;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            height: 80px; /* Fixed Height */
+            display: flex;
+            align-items: center;
         }
 
         .nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 50px;
+            width: 100%;
         }
 
         .logo img { height: 50px; filter: none !important; }
@@ -211,10 +214,10 @@
         .hamburger.active span:nth-child(2) { opacity: 0; }
         .hamburger.active span:nth-child(3) { transform: translateY(-10.5px) rotate(-45deg); }
 
-        /* MENU SIDEBAR (Below Header) */
+        /* MENU SIDEBAR (Opens BELOW Header) */
         .nav-menu {
             position: fixed;
-            top: 80px; /* Opens below header */
+            top: 80px; /* Header Height */
             right: -320px;
             width: 280px;
             height: calc(100vh - 80px);
@@ -255,7 +258,7 @@
         .hero {
             position: relative;
             background-color: var(--primary);
-            height: 60vh; /* Reduced Height */
+            height: 60vh; 
             min-height: 500px;
             display: flex;
             align-items: center;
@@ -271,17 +274,17 @@
             object-fit: cover;
             z-index: 0;
             filter: blur(4px); /* Light Blur */
-            opacity: 0.9;
+            opacity: 1;
         }
 
-        /* No Overlay as requested */
+        /* No Overlay */
         
         .hero-content {
             position: relative;
             z-index: 2;
             max-width: 900px;
             margin: 0 auto;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5); /* Shadow for readability */
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5); 
         }
 
         .hero h1 {
@@ -321,8 +324,8 @@
         .service-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-hover); }
         .service-card h3 { font-size: 1.4rem; margin-bottom: 10px; color: var(--primary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .service-card .price { font-size: 1.2rem; color: var(--accent-teal); font-weight: 700; margin-bottom: 20px; display: block; }
-        .service-card ul li { margin-bottom: 10px; color: var(--text-grey); display: flex; align-items: center; font-size: 0.9rem; }
-        .service-card ul li i { color: var(--primary); margin-right: 10px; font-size: 1rem; }
+        .service-card ul li { margin-bottom: 8px; color: var(--text-grey); display: flex; align-items: center; font-size: 0.9rem; }
+        .service-card ul li i { color: var(--primary); margin-right: 10px; font-size: 0.9rem; flex-shrink: 0;}
 
         /* ACHIEVEMENTS (2x2 Grid Mobile) */
         .achievements-section { background-color: var(--bg-grey); }
@@ -344,50 +347,77 @@
         .stat-box h3 { font-size: 2.2rem; color: var(--primary); font-weight: 700; }
         .stat-box p { color: var(--text-grey); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* PROCESS (Rotating Ring) */
+        /* PROCESS (Rotating Ring - Ferris Wheel) */
         .process-section { background-color: var(--bg-white); overflow: hidden; }
-        .process-ring-container {
-            position: relative;
-            width: 300px;
-            height: 300px;
-            margin: 0 auto;
-        }
         
-        .process-ring {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            border: 2px dashed var(--primary);
-            border-radius: 50%;
-            animation: rotate-ring 20s linear infinite;
+        .process-container-outer {
+            height: 500px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .process-node {
+        .process-ring {
+            position: relative;
+            width: 350px;
+            height: 350px;
+            border: 2px dashed var(--primary);
+            border-radius: 50%;
+            animation: rotate-ring 25s linear infinite;
+        }
+
+        .process-item {
             position: absolute;
-            width: 60px; height: 60px;
+            top: 50%;
+            left: 50%;
+            width: 80px;
+            height: 80px;
+            margin: -40px; /* Center offset */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            animation: rotate-ring-reverse 25s linear infinite; /* Counter rotate */
+        }
+        
+        /* Positioning items around the circle (approx 72 degrees apart for 5 items) */
+        .p-item-1 { transform: rotate(0deg) translate(175px) rotate(0deg); }
+        .p-item-2 { transform: rotate(72deg) translate(175px) rotate(-72deg); }
+        .p-item-3 { transform: rotate(144deg) translate(175px) rotate(-144deg); }
+        .p-item-4 { transform: rotate(216deg) translate(175px) rotate(-216deg); }
+        .p-item-5 { transform: rotate(288deg) translate(175px) rotate(-288deg); }
+
+        .process-icon-circle {
+            width: 60px;
+            height: 60px;
             background: var(--bg-white);
             border: 2px solid var(--accent-teal);
             border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1.5rem; color: var(--primary);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 5px;
         }
-
-        /* Positioning nodes on circle */
-        .node-1 { top: -30px; left: 50%; transform: translateX(-50%); }
-        .node-2 { top: 30%; right: -30px; }
-        .node-3 { bottom: 30%; right: -30px; }
-        .node-4 { bottom: -30px; left: 50%; transform: translateX(-50%); }
-        .node-5 { top: 50%; left: -30px; transform: translateY(-50%); }
         
-        /* Counter-rotate icons to keep them upright */
-        .process-node i { animation: rotate-ring-reverse 20s linear infinite; }
+        .process-text {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            background: rgba(255,255,255,0.8);
+            padding: 2px 5px;
+            border-radius: 4px;
+        }
 
         .center-logo {
             position: absolute;
             top: 50%; left: 50%;
             transform: translate(-50%, -50%);
-            width: 100px; height: 100px;
+            width: 120px; height: 120px;
             background: var(--primary);
             color: #fff;
             border-radius: 50%;
@@ -395,18 +425,27 @@
             font-weight: bold;
             z-index: 2;
             box-shadow: 0 0 20px rgba(14, 75, 207, 0.3);
+            text-align: center;
         }
 
         @keyframes rotate-ring { 100% { transform: rotate(360deg); } }
-        @keyframes rotate-ring-reverse { 100% { transform: rotate(-360deg); } }
+        /* Complex counter-rotation handled by transform in individual classes for placement, this just spins */
 
         /* SUCCESS STORIES */
         .marquee-wrapper { overflow: hidden; background: var(--bg-grey); padding: 30px 0; cursor: pointer; }
         .marquee-content { display: flex; gap: 30px; width: max-content; animation: scroll-left 30s linear infinite; }
         .marquee-paused { animation-play-state: paused !important; }
-        .story-card { width: 300px; background: var(--bg-white); padding: 20px; border-radius: 8px; border-left: 4px solid var(--accent-teal); flex-shrink: 0; }
-        .story-card h3 { color: var(--primary); margin-bottom: 5px; font-size: 1rem; }
-        .story-text { color: var(--text-grey); font-size: 0.9rem; }
+        
+        .story-card { 
+            width: 320px; 
+            background: var(--bg-white); 
+            padding: 25px; 
+            border-radius: 8px; 
+            border-left: 4px solid var(--accent-teal); 
+            flex-shrink: 0; 
+        }
+        .story-card h3 { color: var(--primary); margin-bottom: 10px; font-size: 1.1rem; }
+        .story-text { color: var(--text-grey); font-size: 0.9rem; line-height: 1.5; }
 
         /* WHY CHOOSE KNOX */
         .why-choose-section { background-color: var(--bg-white); }
@@ -429,12 +468,18 @@
 
         /* CLIENTS & TECH */
         .clients-section { background: var(--bg-white); padding: 40px 0; }
-        .client-marquee img { height: 50px; width: auto; object-fit: contain; filter: none !important; margin: 0 30px; }
+        /* Right to Left Scroll (<--) */
+        .clients-scroll { animation: scroll-right 30s linear infinite; display: flex; gap: 50px; align-items: center; }
+        .clients-scroll img { height: 60px; width: auto; object-fit: contain; filter: none !important; }
         
         .tech-section { background: var(--bg-grey); padding: 40px 0; }
-        .tech-item { display: flex; flex-direction: column; align-items: center; min-width: 100px; margin: 0 20px; }
-        .tech-item i { font-size: 2.5rem; margin-bottom: 8px; }
-        .tech-item span { font-size: 0.8rem; font-weight: 600; color: var(--text-dark); }
+        /* Left to Right Scroll (-->) */
+        .tech-scroll { animation: scroll-left 40s linear infinite; display: flex; gap: 60px; align-items: center;}
+        
+        /* Uniform Sizing */
+        .tech-item i { font-size: 2.5rem; margin-bottom: 5px; }
+        .tech-item { display: flex; flex-direction: column; align-items: center; min-width: 80px; height: 60px; justify-content: center; }
+        .tech-item span { font-size: 0.75rem; font-weight: 600; color: var(--text-dark); margin-top: 5px; }
 
         @keyframes scroll-left { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
         @keyframes scroll-right { 0% { transform: translateX(-50%); } 100% { transform: translateX(0); } }
@@ -445,15 +490,15 @@
         
         @media (min-width: 769px) {
             .contact-grid { grid-template-columns: 1fr 1fr; }
-            .contact-form-wrapper { height: 100%; }
-            .contact-info-wrapper { height: 100%; }
+            .contact-form-wrapper { order: 1; } /* Left */
+            .contact-info-wrapper { order: 2; } /* Right */
         }
 
         .contact-form-wrapper { background: var(--bg-white); padding: 30px; border-radius: 10px; border: 1px solid #eee; box-shadow: var(--shadow-card); }
-        .contact-info-wrapper { background: #eef4fc; padding: 30px; border-radius: 10px; border: 1px solid #dcebff; }
+        .contact-info-wrapper { background: #eef4fc; padding: 30px; border-radius: 10px; border: 1px solid #dcebff; height: 100%; }
         
         .contact-row { display: flex; align-items: flex-start; margin-bottom: 25px; }
-        .contact-icon { font-size: 1.5rem; color: var(--accent-teal); margin-right: 20px; margin-top: 5px; }
+        .contact-icon { font-size: 1.5rem; color: var(--accent-teal); margin-right: 20px; margin-top: 5px; flex-shrink: 0;}
         .contact-text h4 { color: var(--primary); margin-bottom: 5px; font-size: 1.1rem; }
         
         .form-control { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 5px; font-family: var(--font-main); }
@@ -467,6 +512,20 @@
         .footer-col ul li a { color: #dcebff; font-size: 0.9rem; transition: 0.3s; }
         .footer-col ul li a:hover { color: var(--accent-teal); padding-left: 5px; }
         .copyright { text-align: center; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.2); font-size: 0.85rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+        .social-links a {
+            display: inline-flex; width: 40px; height: 40px;
+            background: #fff; color: var(--primary);
+            align-items: center; justify-content: center;
+            border-radius: 50%; margin-right: 10px;
+            transition: 0.3s;
+            font-size: 1.2rem;
+        }
+        /* Brand Colors */
+        .social-links a.fb { color: #1877F2; }
+        .social-links a.in { color: #E1306C; } /* Approximate Insta */
+        .social-links a.li { color: #0077B5; }
+        .social-links a:hover { transform: translateY(-3px); background: #eee; }
 
         /* WhatsApp Float */
         .float-wa {
@@ -495,7 +554,16 @@
             .contact-info-wrapper { order: 1; }
             .contact-form-wrapper { order: 2; }
             
-            .process-ring-container { width: 260px; height: 260px; }
+            .process-ring { width: 280px; height: 280px; }
+            .process-item { margin: -30px; width: 60px; height: 60px; }
+            .process-icon-circle { width: 50px; height: 50px; font-size: 1.2rem; }
+            
+            /* Process Positions Mobile (Scale down translate) */
+            .p-item-1 { transform: rotate(0deg) translate(140px) rotate(0deg); }
+            .p-item-2 { transform: rotate(72deg) translate(140px) rotate(-72deg); }
+            .p-item-3 { transform: rotate(144deg) translate(140px) rotate(-144deg); }
+            .p-item-4 { transform: rotate(216deg) translate(140px) rotate(-216deg); }
+            .p-item-5 { transform: rotate(288deg) translate(140px) rotate(-288deg); }
         }
     </style>
 </head>
@@ -556,18 +624,22 @@
 
     <section id="services" class="section-padding services-section">
         <div class="container">
-            <h2 class="section-title">Our Services</h2>
+            <h2 class="section-title">Services</h2>
             <div class="services-grid">
                 <div class="service-card">
                     <h3>Website Development</h3>
                     <span class="price">₹12,499 / Start</span>
                     <ul>
                         <li><i class="fas fa-check-circle"></i> Custom Corporate Design</li>
-                        <li><i class="fas fa-check-circle"></i> Mobile Responsive</li>
-                        <li><i class="fas fa-check-circle"></i> SEO Friendly</li>
-                        <li style="color:var(--text-dark); font-weight:700;"><i class="fas fa-star" style="color:gold;"></i> 1 Year Free Hosting</li>
+                        <li><i class="fas fa-check-circle"></i> Mobile Responsive & Fast</li>
+                        <li><i class="fas fa-check-circle"></i> SEO Friendly Structure</li>
+                        <li><i class="fas fa-check-circle"></i> 1 Year Free Hosting</li>
                         <li><i class="fas fa-check-circle"></i> Free SSL Security</li>
-                        <li><i class="fas fa-check-circle"></i> 1 Month Support</li>
+                        <li><i class="fas fa-check-circle"></i> Contact Form Integration</li>
+                        <li><i class="fas fa-check-circle"></i> Social Media Integration</li>
+                        <li><i class="fas fa-check-circle"></i> WhatsApp Chat Button</li>
+                        <li><i class="fas fa-check-circle"></i> High Speed Loading</li>
+                        <li><i class="fas fa-check-circle"></i> 1 Month Premium Support</li>
                     </ul>
                 </div>
                 <div class="service-card">
@@ -576,10 +648,14 @@
                     <ul>
                         <li><i class="fas fa-check-circle"></i> Professional Domain ID</li>
                         <li><i class="fas fa-check-circle"></i> Zoho / Outlook Setup</li>
-                        <li><i class="fas fa-check-circle"></i> 5GB Storage</li>
-                        <li><i class="fas fa-check-circle"></i> Spam Protection</li>
-                        <li><i class="fas fa-check-circle"></i> 99.9% Uptime</li>
-                        <li><i class="fas fa-check-circle"></i> 24×7 Support</li>
+                        <li><i class="fas fa-check-circle"></i> 5GB Secure Storage</li>
+                        <li><i class="fas fa-check-circle"></i> Advanced Spam Protection</li>
+                        <li><i class="fas fa-check-circle"></i> 99.9% Uptime Guarantee</li>
+                        <li><i class="fas fa-check-circle"></i> Mobile & Desktop Sync</li>
+                        <li><i class="fas fa-check-circle"></i> Secure Admin Panel</li>
+                        <li><i class="fas fa-check-circle"></i> SPF / DKIM Security</li>
+                        <li><i class="fas fa-check-circle"></i> Easy Migration</li>
+                        <li><i class="fas fa-check-circle"></i> 24×7 Technical Support</li>
                     </ul>
                 </div>
                 <div class="service-card">
@@ -588,10 +664,14 @@
                     <ul>
                         <li><i class="fas fa-check-circle"></i> Dell / HP / Lenovo</li>
                         <li><i class="fas fa-check-circle"></i> Core i3 / i5 / i7</li>
-                        <li><i class="fas fa-check-circle"></i> 8GB / 16GB RAM</li>
-                        <li><i class="fas fa-check-circle"></i> SSD Upgrades</li>
+                        <li><i class="fas fa-check-circle"></i> 8GB / 16GB RAM Options</li>
+                        <li><i class="fas fa-check-circle"></i> High Speed SSD Upgrades</li>
                         <li><i class="fas fa-check-circle"></i> Windows 10/11 Pro</li>
-                        <li><i class="fas fa-check-circle"></i> 1 Year Warranty</li>
+                        <li><i class="fas fa-check-circle"></i> MS Office Pre-loaded</li>
+                        <li><i class="fas fa-check-circle"></i> Up to 1 Year Warranty</li>
+                        <li><i class="fas fa-check-circle"></i> Rigorous Quality Checks</li>
+                        <li><i class="fas fa-check-circle"></i> Free Antivirus</li>
+                        <li><i class="fas fa-check-circle"></i> Pan India Delivery</li>
                     </ul>
                 </div>
             </div>
@@ -600,7 +680,7 @@
 
     <section id="achievements" class="section-padding achievements-section">
         <div class="container">
-            <h2 class="section-title">Our Achievements</h2>
+            <h2 class="section-title">Achievements</h2>
             <div class="stats-row">
                 <div class="stat-box">
                     <h3 data-target="4">0</h3>
@@ -624,18 +704,32 @@
 
     <section id="process" class="section-padding process-section">
         <div class="container">
-            <h2 class="section-title">Our Process</h2>
-            <div class="process-ring-container">
+            <h2 class="section-title">Process</h2>
+            <div class="process-container-outer">
                 <div class="process-ring">
-                    <div class="process-node node-1"><i class="fas fa-comments"></i></div>
-                    <div class="process-node node-2"><i class="fas fa-pencil-ruler"></i></div>
-                    <div class="process-node node-3"><i class="fas fa-code"></i></div>
-                    <div class="process-node node-4"><i class="fas fa-check-circle"></i></div>
-                    <div class="process-node node-5"><i class="fas fa-rocket"></i></div>
+                    <div class="process-item p-item-1">
+                        <div class="process-icon-circle"><i class="fas fa-comments"></i></div>
+                        <div class="process-text">Discussion</div>
+                    </div>
+                    <div class="process-item p-item-2">
+                        <div class="process-icon-circle"><i class="fas fa-pencil-ruler"></i></div>
+                        <div class="process-text">Planning</div>
+                    </div>
+                    <div class="process-item p-item-3">
+                        <div class="process-icon-circle"><i class="fas fa-code"></i></div>
+                        <div class="process-text">Dev</div>
+                    </div>
+                    <div class="process-item p-item-4">
+                        <div class="process-icon-circle"><i class="fas fa-check-circle"></i></div>
+                        <div class="process-text">Testing</div>
+                    </div>
+                    <div class="process-item p-item-5">
+                        <div class="process-icon-circle"><i class="fas fa-rocket"></i></div>
+                        <div class="process-text">Delivery</div>
+                    </div>
                 </div>
                 <div class="center-logo">Knox IT</div>
             </div>
-            <p style="text-align:center; margin-top:30px; color:var(--text-grey);">Discussion &rarr; Planning &rarr; Development &rarr; Testing &rarr; Delivery</p>
         </div>
     </section>
 
@@ -645,39 +739,53 @@
         </div>
         <div class="marquee-wrapper" id="stories-marquee-wrapper">
             <div class="marquee-content" id="stories-marquee-content">
-                <div class="story-card"><h3>School Website</h3><p class="story-text">Admissions & fees portal.</p></div>
-                <div class="story-card"><h3>Corp Email</h3><p class="story-text">100% data safety migration.</p></div>
-                <div class="story-card"><h3>Startup Launch</h3><p class="story-text">Identity & web launch.</p></div>
-                <div class="story-card"><h3>BPO Setup</h3><p class="story-text">50+ Laptops networking.</p></div>
-                <div class="story-card"><h3>E-Commerce</h3><p class="story-text">Sales boosted by 200%.</p></div>
-                <div class="story-card"><h3>Dental Clinic</h3><p class="story-text">Online appointment booking.</p></div>
+                <div class="story-card">
+                    <h3>School Website</h3>
+                    <p class="story-text">Developed a complete portal for St. Xavier's managing over 2000 students. Includes online admissions, fee payments, and result publication.</p>
+                </div>
+                <div class="story-card">
+                    <h3>Corp Email Migration</h3>
+                    <p class="story-text">Seamlessly migrated 500+ users from G-Suite to Zoho Mail for a logistics firm, saving 60% costs with zero data loss and downtime.</p>
+                </div>
+                <div class="story-card">
+                    <h3>Startup Branding</h3>
+                    <p class="story-text">Helped 'FreshGo' launch their digital identity with a modern website, logo design, and social media setup, acquiring 10k users in month 1.</p>
+                </div>
+                <div class="story-card">
+                    <h3>BPO IT Setup</h3>
+                    <p class="story-text">Supplied and networked 100+ refurbished Dell Laptops for a new BPO in Navi Mumbai, including server setup and firewall configuration.</p>
+                </div>
+                <div class="story-card">
+                    <h3>Dental Clinic</h3>
+                    <p class="story-text">Created an appointment booking system for 'SmileCare', reducing waiting times by 40% and organizing patient records digitally.</p>
+                </div>
             </div>
         </div>
     </section>
 
     <section class="section-padding why-choose-section">
         <div class="container">
-            <h2 class="section-title">Why Choose Knox IT</h2>
+            <h2 class="section-title">Why Choose Knox</h2>
             <div class="features-grid">
                 <div class="feature-box">
                     <i class="fas fa-headset feature-icon"></i>
                     <h4>Fast Support</h4>
-                    <p>Instant query resolution.</p>
+                    <p>Instant query resolution by dedicated team.</p>
                 </div>
                 <div class="feature-box">
                     <i class="fas fa-users-cog feature-icon"></i>
                     <h4>Expert Team</h4>
-                    <p>Skilled professionals.</p>
+                    <p>Skilled professionals for every tech need.</p>
                 </div>
                 <div class="feature-box">
                     <i class="fas fa-tags feature-icon"></i>
                     <h4>Best Pricing</h4>
-                    <p>Competitive market rates.</p>
+                    <p>Premium services at competitive market rates.</p>
                 </div>
                 <div class="feature-box">
                     <i class="fas fa-handshake feature-icon"></i>
                     <h4>Trusted</h4>
-                    <p>100+ corporate clients.</p>
+                    <p>Partner to 100+ corporate clients.</p>
                 </div>
             </div>
         </div>
@@ -736,48 +844,47 @@
             <h2 class="section-title">Valued Customers</h2>
         </div>
         <div class="marquee-wrapper" style="background: transparent; padding: 10px 0;">
-            <div class="marquee-content" style="animation: scroll-right 25s linear infinite;">
-                <div style="display:flex; align-items:center;">
-                    <img src="images/client1.png" alt="Client">
-                    <img src="images/client2.png" alt="Client">
-                    <img src="images/client3.png" alt="Client">
-                    <img src="images/client4.png" alt="Client">
-                    <img src="images/client5.png" alt="Client">
-                    <img src="images/client1.png" alt="Client">
-                    <img src="images/client2.png" alt="Client">
-                </div>
+            <div class="marquee-content clients-scroll">
+                <img src="images/client1.png" alt="Client">
+                <img src="images/client2.png" alt="Client">
+                <img src="images/client3.png" alt="Client">
+                <img src="images/client4.png" alt="Client">
+                <img src="images/client5.png" alt="Client">
+                <img src="images/client1.png" alt="Client">
+                <img src="images/client2.png" alt="Client">
+                <img src="images/client3.png" alt="Client">
             </div>
         </div>
     </section>
 
+    , 20+ Logos) -->
     <section class="tech-section">
         <div class="container">
-            <h2 class="section-title">Technologies We Use</h2>
+            <h2 class="section-title">Technologies</h2>
         </div>
         <div class="marquee-wrapper" style="background: transparent; padding: 10px 0;">
-            <div class="marquee-content" style="animation: scroll-left 40s linear infinite;">
-                <div style="display:flex;">
-                    <div class="tech-item"><i class="fab fa-google" style="color:#4285F4;"></i><span>Google Cloud</span></div>
-                    <div class="tech-item"><i class="fab fa-aws" style="color:#FF9900;"></i><span>AWS</span></div>
-                    <div class="tech-item"><i class="fas fa-database" style="color:#F80000;"></i><span>Oracle</span></div>
-                    <div class="tech-item"><i class="fas fa-envelope-open-text" style="color:#009688;"></i><span>Zoho</span></div>
-                    <div class="tech-item"><i class="fab fa-microsoft" style="color:#00A4EF;"></i><span>Azure</span></div>
-                    <div class="tech-item"><i class="fab fa-docker" style="color:#2496ED;"></i><span>Docker</span></div>
-                    <div class="tech-item"><i class="fas fa-cubes" style="color:#326CE5;"></i><span>Kubernetes</span></div>
-                    <div class="tech-item"><i class="fab fa-react" style="color:#61DAFB;"></i><span>React</span></div>
-                    <div class="tech-item"><i class="fab fa-node" style="color:#339933;"></i><span>Node.js</span></div>
-                    <div class="tech-item"><i class="fab fa-python" style="color:#3776AB;"></i><span>Python</span></div>
-                    <div class="tech-item"><i class="fab fa-java" style="color:#007396;"></i><span>Java</span></div>
-                    <div class="tech-item"><i class="fas fa-database" style="color:#4479A1;"></i><span>MySQL</span></div>
-                    <div class="tech-item"><i class="fas fa-leaf" style="color:#47A248;"></i><span>MongoDB</span></div>
-                    <div class="tech-item"><i class="fab fa-shopify" style="color:#96BF48;"></i><span>Shopify</span></div>
-                    <div class="tech-item"><i class="fab fa-wordpress" style="color:#21759B;"></i><span>WordPress</span></div>
-                    <div class="tech-item"><i class="fab fa-linux" style="color:#FCC624;"></i><span>Linux</span></div>
-                    <div class="tech-item"><i class="fab fa-git-alt" style="color:#F05032;"></i><span>Git</span></div>
-                    <div class="tech-item"><i class="fas fa-server" style="color:#009639;"></i><span>Nginx</span></div>
-                    <div class="tech-item"><i class="fas fa-layer-group" style="color:#D82C20;"></i><span>Redis</span></div>
-                    <div class="tech-item"><i class="fab fa-android" style="color:#3DDC84;"></i><span>Flutter</span></div>
-                </div>
+            <div class="marquee-content tech-scroll">
+                <div class="tech-item"><i class="fab fa-google" style="color:#4285F4;"></i><span>Google Cloud</span></div>
+                <div class="tech-item"><i class="fab fa-aws" style="color:#FF9900;"></i><span>AWS</span></div>
+                <div class="tech-item"><i class="fas fa-database" style="color:#F80000;"></i><span>Oracle</span></div>
+                <div class="tech-item"><i class="fas fa-envelope-open-text" style="color:#009688;"></i><span>Zoho</span></div>
+                <div class="tech-item"><i class="fab fa-microsoft" style="color:#00A4EF;"></i><span>Azure</span></div>
+                <div class="tech-item"><i class="fab fa-docker" style="color:#2496ED;"></i><span>Docker</span></div>
+                <div class="tech-item"><i class="fas fa-cubes" style="color:#326CE5;"></i><span>Kubernetes</span></div>
+                <div class="tech-item"><i class="fab fa-react" style="color:#61DAFB;"></i><span>React</span></div>
+                <div class="tech-item"><i class="fab fa-node" style="color:#339933;"></i><span>Node.js</span></div>
+                <div class="tech-item"><i class="fab fa-python" style="color:#3776AB;"></i><span>Python</span></div>
+                <div class="tech-item"><i class="fab fa-java" style="color:#007396;"></i><span>Java</span></div>
+                <div class="tech-item"><i class="fas fa-database" style="color:#4479A1;"></i><span>MySQL</span></div>
+                <div class="tech-item"><i class="fas fa-leaf" style="color:#47A248;"></i><span>MongoDB</span></div>
+                <div class="tech-item"><i class="fab fa-shopify" style="color:#96BF48;"></i><span>Shopify</span></div>
+                <div class="tech-item"><i class="fab fa-wordpress" style="color:#21759B;"></i><span>WordPress</span></div>
+                <div class="tech-item"><i class="fab fa-linux" style="color:#FCC624;"></i><span>Linux</span></div>
+                <div class="tech-item"><i class="fab fa-git-alt" style="color:#F05032;"></i><span>Git</span></div>
+                <div class="tech-item"><i class="fas fa-server" style="color:#009639;"></i><span>Nginx</span></div>
+                <div class="tech-item"><i class="fas fa-layer-group" style="color:#D82C20;"></i><span>Redis</span></div>
+                <div class="tech-item"><i class="fab fa-android" style="color:#3DDC84;"></i><span>Flutter</span></div>
+                <div class="tech-item"><i class="fab fa-js" style="color:#F7DF1E;"></i><span>JavaScript</span></div>
             </div>
         </div>
     </section>
@@ -787,6 +894,23 @@
             <h2 class="section-title">Contact Us</h2>
             <div class="contact-grid">
                 
+                <div class="contact-form-wrapper">
+                    <form action="https://api.web3forms.com/submit" method="POST">
+                        <input type="hidden" name="access_key" value="94a17473-8d95-43ec-9b0e-e39d7f2cee6c">
+                        <input type="text" name="name" class="form-control" placeholder="Your Name" required>
+                        <input type="tel" name="phone" class="form-control" placeholder="Phone Number" required>
+                        <select name="service" class="form-control" required>
+                            <option value="" disabled selected>Select Service</option>
+                            <option value="Website">Website Development</option>
+                            <option value="Email">Business Email</option>
+                            <option value="Laptops">Refurbished Laptops</option>
+                            <option value="Other">Other</option>
+                        </select>
+                        <textarea name="message" class="form-control" placeholder="Message" style="height:100px; resize:none;"></textarea>
+                        <button type="submit" class="btn btn-teal" style="width:100%;">Send Message</button>
+                    </form>
+                </div>
+
                 <div class="contact-info-wrapper">
                     <div class="contact-row">
                         <i class="fas fa-mobile-screen contact-icon"></i>
@@ -800,31 +924,16 @@
                         <div class="contact-text">
                             <h4>Email</h4>
                             <p class="selectable-text">sales@knoxit.in</p>
+                            <p class="selectable-text">support@knoxit.in</p>
                         </div>
                     </div>
                     <div class="contact-row">
                         <i class="fas fa-map-marker-alt contact-icon"></i>
                         <div class="contact-text">
                             <h4>Address</h4>
-                            <p class="selectable-text">F-7 Hema Industrial Estate,<br>Andheri East, Mumbai</p>
+                            <p class="selectable-text">Hema Industrial Estate, E-7,<br>Sher E Punjab Colony,<br>Andheri East, Mumbai, Maharashtra 400060</p>
                         </div>
                     </div>
-                </div>
-
-                <div class="contact-form-wrapper">
-                    <form action="https://api.web3forms.com/submit" method="POST">
-                        <input type="hidden" name="access_key" value="94a17473-8d95-43ec-9b0e-e39d7f2cee6c">
-                        <input type="text" name="name" class="form-control" placeholder="Your Name" required>
-                        <input type="tel" name="phone" class="form-control" placeholder="Phone Number" required>
-                        <select name="service" class="form-control">
-                            <option value="Website">Website Development</option>
-                            <option value="Email">Business Email</option>
-                            <option value="Laptops">Refurbished Laptops</option>
-                            <option value="Other">Other</option>
-                        </select>
-                        <textarea name="message" class="form-control" placeholder="Message" style="height:100px; resize:none;"></textarea>
-                        <button type="submit" class="btn btn-teal" style="width:100%;">Send Message</button>
-                    </form>
                 </div>
 
             </div>
@@ -846,6 +955,14 @@
                         <li><a href="#contact">Contact</a></li>
                     </ul>
                 </div>
+                <div class="footer-col">
+                    <h4>Follow Us</h4>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/share/14bCEnk7Etd/" target="_blank" class="fb"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/knoxit.in?igsh=M2xtcmljZjczOTMw" target="_blank" class="in"><i class="fab fa-instagram"></i></a>
+                        <a href="#" target="_blank" class="li"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
             </div>
             <div class="copyright">Copyright © 2025 Knox IT Services. All Rights Reserved.</div>
         </div>
@@ -854,7 +971,7 @@
     <a href="https://wa.me/918009262472" class="float-wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
     <script>
-        // Visitor Counter (Slow)
+        // Visitor Counter
         const vCount = document.getElementById('visitor-count');
         let count = Math.floor(Math.random() * (1277 - 10) + 10);
         vCount.innerText = count;
@@ -890,6 +1007,15 @@
         // FAQ Toggle
         document.querySelectorAll('.faq-question').forEach(q => {
             q.addEventListener('click', () => q.parentElement.classList.toggle('active'));
+        });
+
+        // Stories Play/Pause
+        const storiesWrapper = document.getElementById('stories-marquee-wrapper');
+        const storiesContent = document.getElementById('stories-marquee-content');
+        let isPaused = false;
+        storiesWrapper.addEventListener('click', () => {
+            if(!isPaused) { storiesContent.classList.add('marquee-paused'); isPaused = true; }
+            else { storiesContent.classList.remove('marquee-paused'); isPaused = false; }
         });
     </script>
 </body>
