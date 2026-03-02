@@ -10,9 +10,9 @@
     
     <meta property="og:title" content="Knox IT Services - Premium Web Development">
     <meta property="og:description" content="Custom Web Development & Corporate IT Solutions. We build brands.">
-    <meta property="og:image" content="images/mylogo.png?v=3.0">
+    <meta property="og:image" content="images/mylogo.png?v=3.1">
     
-    <link rel="icon" href="images/favicon.png?v=3.0" type="image/png">
+    <link rel="icon" href="images/favicon.png?v=3.1" type="image/png">
     
     <title>Knox IT Services | Premium Web Development</title>
     
@@ -297,7 +297,7 @@
     <header class="header">
         <div class="container nav">
             <a href="#" class="logo">
-                <img src="images/mylogo.png?v=3.0" alt="Knox IT Services">
+                <img src="images/mylogo.png?v=3.1" alt="Knox IT Services">
             </a>
             <div class="nav-right">
                 <div class="live-visitor">
@@ -327,7 +327,7 @@
     <div id="main-view">
         <section id="home" class="hero reveal">
             <video class="hero-video" autoplay muted loop playsinline>
-                <source src="images/topbanner.mp4?v=3.0" type="video/mp4">
+                <source src="images/topbanner.mp4?v=3.1" type="video/mp4">
             </video>
             <div class="container hero-content">
                 <h1>Premium Web Development</h1>
@@ -497,16 +497,16 @@
             </div>
             <div class="marquee-wrapper" style="background: transparent; padding: 10px 0;">
                 <div class="clients-scroll">
-                    <img src="images/client1.png?v=3.0" alt="Client">
-                    <img src="images/client2.png?v=3.0" alt="Client">
-                    <img src="images/client3.png?v=3.0" alt="Client">
-                    <img src="images/client4.png?v=3.0" alt="Client">
-                    <img src="images/client5.png?v=3.0" alt="Client">
-                    <img src="images/client1.png?v=3.0" alt="Client">
-                    <img src="images/client2.png?v=3.0" alt="Client">
-                    <img src="images/client3.png?v=3.0" alt="Client">
-                    <img src="images/client4.png?v=3.0" alt="Client">
-                    <img src="images/client5.png?v=3.0" alt="Client">
+                    <img src="images/client1.png?v=3.1" alt="Client">
+                    <img src="images/client2.png?v=3.1" alt="Client">
+                    <img src="images/client3.png?v=3.1" alt="Client">
+                    <img src="images/client4.png?v=3.1" alt="Client">
+                    <img src="images/client5.png?v=3.1" alt="Client">
+                    <img src="images/client1.png?v=3.1" alt="Client">
+                    <img src="images/client2.png?v=3.1" alt="Client">
+                    <img src="images/client3.png?v=3.1" alt="Client">
+                    <img src="images/client4.png?v=3.1" alt="Client">
+                    <img src="images/client5.png?v=3.1" alt="Client">
                 </div>
             </div>
         </section>
@@ -618,7 +618,8 @@
     <a href="https://wa.me/918009262472?text=Hello%20Knox%20IT,%20I%20am%20interested%20in%20your%20services.%20Please%20guide%20me.%0A%0ARef:%20Web-Lead" class="float-wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
     <script>
-        // --- DATA WITH STABLE IMAGE IDs ---
+        // --- DATA WITH 100% STABLE UNSPLASH IMAGE IDs ---
+        // Using specific Photo IDs to avoid broken links
         const blogs = [
             { title: "Why Every Business Needs a Website", img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80" },
             { title: "Building Trust Through Design", img: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=600&q=80" },
@@ -635,7 +636,7 @@
         // --- FUNCTIONS ---
         const today = new Date().toLocaleDateString('en-GB').replace(/\//g, '-');
 
-        // Contact Form Template (Reused in Detail Views)
+        // Contact Form Template (Only for Web Dev page)
         const contactFormHTML = `
             <div class="contact-grid" style="margin-top: 50px; border-top: 1px solid #eee; padding-top: 40px;">
                 <div class="contact-form-wrapper">
@@ -714,7 +715,7 @@
                 const blog = blogs[index];
                 
                 // Generate Related Blogs HTML (Filtering out current blog)
-                let relatedBlogsHTML = '<div class="blog-section section-padding"><h3 class="section-title" style="margin-bottom:30px; font-size:1.8rem;">More Tech Insights</h3><div class="blog-grid">';
+                let relatedBlogsHTML = '<div class="blog-section section-padding" style="border-top: 1px solid #eee; margin-top:40px;"><h3 class="section-title" style="margin-bottom:30px; font-size:1.8rem;">More Tech Insights</h3><div class="blog-grid">';
                 blogs.forEach((b, i) => {
                     if (i !== index) {
                         relatedBlogsHTML += `
@@ -729,6 +730,7 @@
                 });
                 relatedBlogsHTML += '</div></div>';
 
+                // NOTE: removed ${contactFormHTML} as requested
                 contentDiv.innerHTML = `
                     <h1 style="color:var(--primary); margin-bottom:10px;">${blog.title}</h1>
                     <p style="color:var(--accent-teal); margin-bottom:20px; font-weight:600;">Published: ${today}</p>
@@ -745,7 +747,7 @@
                         As a local business, you might attract a local set of customers, but the internet has no boundaries. A website can help you generate business from all over India, breaking geographical barriers.
                     </p>
                     <p style="margin-top:30px; font-weight:bold;">Ready to get online? Contact Knox IT Services today.</p>
-                    ${contactFormHTML}
+                    
                     ${relatedBlogsHTML}
                 `;
             }
