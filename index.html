@@ -10,9 +10,9 @@
     
     <meta property="og:title" content="Knox IT Services - Premium Web Development">
     <meta property="og:description" content="Custom Web Development & Corporate IT Solutions. We build brands.">
-    <meta property="og:image" content="images/mylogo.png?v=3.6">
+    <meta property="og:image" content="images/mylogo.png?v=3.5">
     
-    <link rel="icon" href="images/favicon.png?v=3.6" type="image/png">
+    <link rel="icon" href="images/favicon.png?v=3.5" type="image/png">
     
     <title>Knox IT Services | Premium Web Development</title>
     
@@ -297,7 +297,7 @@
     <header class="header">
         <div class="container nav">
             <a href="#" class="logo" onclick="closeDetail(); window.scrollTo(0,0); return false;">
-                <img src="images/mylogo.png?v=3.6" alt="Knox IT Services">
+                <img src="images/mylogo.png?v=3.5" alt="Knox IT Services">
             </a>
             <div class="nav-right">
                 <div class="live-visitor">
@@ -314,20 +314,20 @@
 
     <div class="menu-overlay" id="menu-overlay"></div>
     <div class="nav-menu" id="nav-menu">
-        <a href="#home" class="nav-link">Home</a>
-        <a href="#services" class="nav-link">Services</a>
-        <a href="#achievements" class="nav-link">Achievements</a>
-        <a href="#process" class="nav-link">Process</a>
-        <a href="#stories" class="nav-link">Success Stories</a>
-        <a href="#why-choose" class="nav-link">Why Choose Us</a>
-        <a href="#blogs" class="nav-link">Blogs</a>
-        <a href="#contact" class="nav-link">Contact</a>
+        <a href="#home" class="nav-link" onclick="closeDetail(); window.scrollTo(0,0);">Home</a>
+        <a href="#services" class="nav-link" onclick="closeDetail(); document.getElementById('services').scrollIntoView();">Services</a>
+        <a href="#achievements" class="nav-link" onclick="closeDetail(); document.getElementById('achievements').scrollIntoView();">Achievements</a>
+        <a href="#process" class="nav-link" onclick="closeDetail(); document.getElementById('process').scrollIntoView();">Process</a>
+        <a href="#stories" class="nav-link" onclick="closeDetail(); document.getElementById('stories').scrollIntoView();">Success Stories</a>
+        <a href="#why-choose" class="nav-link" onclick="closeDetail(); document.getElementById('why-choose').scrollIntoView();">Why Choose Us</a>
+        <a href="#blogs" class="nav-link" onclick="closeDetail(); document.getElementById('blogs').scrollIntoView();">Blogs</a>
+        <a href="#contact" class="nav-link" onclick="closeDetail(); document.getElementById('contact').scrollIntoView();">Contact</a>
     </div>
 
     <div id="main-view">
         <section id="home" class="hero reveal">
             <video class="hero-video" autoplay muted loop playsinline>
-                <source src="images/topbanner.mp4?v=3.6" type="video/mp4">
+                <source src="images/topbanner.mp4?v=3.5" type="video/mp4">
             </video>
             <div class="container hero-content">
                 <h1>Premium Web Development</h1>
@@ -497,16 +497,16 @@
             </div>
             <div class="marquee-wrapper" style="background: transparent; padding: 10px 0;">
                 <div class="clients-scroll">
-                    <img src="images/client1.png?v=3.6" alt="Client">
-                    <img src="images/client2.png?v=3.6" alt="Client">
-                    <img src="images/client3.png?v=3.6" alt="Client">
-                    <img src="images/client4.png?v=3.6" alt="Client">
-                    <img src="images/client5.png?v=3.6" alt="Client">
-                    <img src="images/client1.png?v=3.6" alt="Client">
-                    <img src="images/client2.png?v=3.6" alt="Client">
-                    <img src="images/client3.png?v=3.6" alt="Client">
-                    <img src="images/client4.png?v=3.6" alt="Client">
-                    <img src="images/client5.png?v=3.6" alt="Client">
+                    <img src="images/client1.png?v=3.5" alt="Client">
+                    <img src="images/client2.png?v=3.5" alt="Client">
+                    <img src="images/client3.png?v=3.5" alt="Client">
+                    <img src="images/client4.png?v=3.5" alt="Client">
+                    <img src="images/client5.png?v=3.5" alt="Client">
+                    <img src="images/client1.png?v=3.5" alt="Client">
+                    <img src="images/client2.png?v=3.5" alt="Client">
+                    <img src="images/client3.png?v=3.5" alt="Client">
+                    <img src="images/client4.png?v=3.5" alt="Client">
+                    <img src="images/client5.png?v=3.5" alt="Client">
                 </div>
             </div>
         </section>
@@ -618,20 +618,19 @@
     <a href="https://wa.me/918009262472?text=Hello%20Knox%20IT,%20I%20am%20interested%20in%20your%20services.%20Please%20guide%20me.%0A%0ARef:%20Web-Lead" class="float-wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
     <script>
-        // --- DATA WITH 100% STABLE UNSPLASH IMAGE IDs (CYBER THEME) ---
-        // Updated Blog 4 and Blog 9 with stable, high-tech images.
+        // --- DATA WITH NEW CYBER THEMED STABLE IDs FOR BLOG 4 & 9 ---
         const blogs = [
             { title: "Why Every Business Needs a Website", img: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=600&q=80" },
             { title: "Building Trust Through Design", img: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=600&q=80" },
             { title: "Don't Lose Customers to Competitors", img: "https://images.unsplash.com/photo-1510511459019-5dda7724fd87?auto=format&fit=crop&w=600&q=80" },
-            // UPDATED IMAGE 4: Futuristic AI Robot Face (Stable ID)
-            { title: "Your 24/7 Digital Salesperson", img: "https://images.unsplash.com/photo-1535378437803-bf409101f552?auto=format&fit=crop&w=600&q=80" },
+            // UPDATED IMAGE 4: Cyber AI / Robot Face
+            { title: "Your 24/7 Digital Salesperson", img: "https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=600&q=80" },
             { title: "The Secret to Ranking #1 on Google", img: "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?auto=format&fit=crop&w=600&q=80" },
             { title: "Custom Code vs. Templates: The Truth", img: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&w=600&q=80" },
             { title: "Website Security Essentials", img: "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?auto=format&fit=crop&w=600&q=80" },
             { title: "Mobile-First Design Strategy", img: "https://images.unsplash.com/photo-1526374804772-243e33cb9350?auto=format&fit=crop&w=600&q=80" },
-            // UPDATED IMAGE 9: Digital Network/Blockchain (Stable ID)
-            { title: "E-commerce: Sell While You Sleep", img: "https://images.unsplash.com/photo-1558494949-efc02570fbc9?auto=format&fit=crop&w=600&q=80" },
+            // UPDATED IMAGE 9: Digital Data / Abstract Blockchain
+            { title: "E-commerce: Sell While You Sleep", img: "https://images.unsplash.com/photo-1523961131990-5ea7c61b2107?auto=format&fit=crop&w=600&q=80" },
             { title: "Digital Identity vs. Social Media", img: "https://images.unsplash.com/photo-1509966756634-9c23dd6e6815?auto=format&fit=crop&w=600&q=80" }
         ];
 
@@ -732,7 +731,7 @@
                 });
                 relatedBlogsHTML += '</div></div>';
 
-                // NOTE: REMOVED contactFormHTML as requested. Pure blog content + related links.
+                // NOTE: Contact Form is completely removed from here.
                 contentDiv.innerHTML = `
                     <h1 style="color:var(--primary); margin-bottom:10px;">${blog.title}</h1>
                     <p style="color:var(--accent-teal); margin-bottom:20px; font-weight:600;">Published: ${today}</p>
